@@ -83,7 +83,7 @@ What we perceive as "expansion" is simply the system adding more pixels to the s
 
 We introduce \textbf{Resolution Cosmology}, where the fundamental variable is not scale, but information density. Under a conformal transformation 
 \begin{equation}
-\tilde{g}_{\mu\nu} = \Omega^2 g_{\mu\nu} = \frac{\lP^2}{\Rcal(t)^2} g_{\mu\nu},
+\tilde{g}_{\mu\nu} = \Omega^2 g_{\mu\nu} = \frac{1}{(\lP \Rcal(t))^2} g_{\mu\nu},
 \end{equation}
 the FLRW metric is mapped onto a static manifold of fixed coordinate volume. The "expansion" is identified with the growth of the resolution field $\Rcal(t)$, representing the inverse lattice spacing of the spacetime causal set.
 
@@ -123,11 +123,11 @@ As resolution increases, the lattice spacing $\Rcal^{-1}$ drops below the scale 
 Today, we inhabit a rendering of $\sim 10^{122}$ degrees of freedom. The vacuum energy $\Lambda$ is the irreducible "pixelation noise" of this finite-resolution manifold.
 
 \section{Formalism and Predictions}
-The action for the resolution field $\phi$ is:
+The action for the resolution field $\phi$ (with units of mass, representing the inverse lattice spacing) is:
 \begin{equation}
-S = \int \dd^4x \sqrt{-g} \left[ \frac{\Mpl^2}{2}\left(\frac{\phi}{\lP}\right)^2 R - \frac{1}{2}(\partial\phi)^2 - V(\phi) \right]
+S = \int \dd^4x \sqrt{-g} \left[ \frac{\Mpl^2}{2}(\phi \lP)^2 R - \frac{1}{2}(\partial\phi)^2 - V(\phi) \right]
 \end{equation}
-where $V(\phi) \sim \Mpl^4(1 - \lP^4/\phi^4)^2$.
+where $V(\phi) \approx \Mpl^4 (\lP \phi)^{-4}$.
 
 \subsection{Derivation of Non-Gaussianity}
 The finite resolution $\Rcal(t)$ introduces a strictly positive minimum wavelength for causal influence, acting as a window function $W(k) = e^{-k^2/2\Rcal^2}$ on the primordial power spectrum. This "undersampling" at the horizon crossing induces mode coupling.
@@ -180,11 +180,11 @@ Supported by Maya Educación.
 \end{acknowledgments}
 
 \begin{thebibliography}{11}
-\bibitem{Sorkin} R. Sorkin, arXiv:gr-qc/0309009.
-\bibitem{Banks} T. Banks, Phys. Scripta T117, 56.
+\bibitem{Sorkin} R. Sorkin, "Causal Sets: Discrete Gravity," arXiv:gr-qc/0309009.
+\bibitem{Banks} T. Banks, "Cosmological constant as a manifestation of the cyclicity of time," Phys. Scripta T117, 56.
 \bibitem{Hertog2023} T. Hertog, \textit{On the Origin of Time} (Bantam, 2023).
-\bibitem{DESI2024} DESI Collaboration, arXiv:2404.03002 (2024).
-\bibitem{CMBS4} CMB-S4 Collaboration, arXiv:1610.02743.
+\bibitem{DESI2024} DESI Collaboration, "DESI 2024 VI: Cosmological Constraints from the Measurements of Baryon Acoustic Oscillations," arXiv:2404.03002 (2024).
+\bibitem{CMBS4} CMB-S4 Collaboration, "CMB-S4 Science Book, First Edition," arXiv:1610.02743.
 \bibitem{Penrose} R. Penrose, \textit{Cycles of Time} (Vintage, 2010).
 \bibitem{Verlinde} E. Verlinde, SciPost Phys. 2, 016 (2017).
 \bibitem{Maldacena} J. Maldacena, JHEP 05, 013 (2003).

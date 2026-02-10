@@ -3,7 +3,7 @@ import os
 import math
 import random
 
-output_dir = r"c:\Users\Patricio\Downloads\universo render\Finales\Final_Paper\figures"
+output_dir = "figures"
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
