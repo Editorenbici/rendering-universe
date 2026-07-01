@@ -65,7 +65,11 @@ def coarse_grain(rho, R):
     """
     rho_cg = rho.copy()
     # Suprimir terminos off-diagonal segun R
-    factor = 1.0 / R if R >= 1 else 0
+    # Mayor R = mas coherencia preservada (factor -> 1)
+    if R < 2:
+        factor = 0.0  # R=1: sin coherencia (clasico puro)
+    else:
+        factor = 1.0 - 1.0 / R  # R grande -> factor ~ 1
     rho_cg[0, 1] *= factor
     rho_cg[1, 0] *= factor
     # Renormalizar para que Tr(rho) = 1
@@ -75,7 +79,7 @@ def coarse_grain(rho, R):
     return rho_cg
 
 # Demostracion con estado |+> = (|0> + |1>)/sqrt(2)
-a, b = estado_puro(0, np.pi/4)  # 45 grados -> estado mezcla
+a, b = estado_puro(np.pi/2, 0)  # theta=pi/2, phi=0 -> |+⟩
 rho_puro = matriz_densidad(a, b)
 
 print(f"Estado de prueba: |psi> = {a:.4f}|0> + {b:.4f}|1>")
@@ -100,20 +104,27 @@ print("--- 3. ENTROPIA DE VON NEUMANN REAL ---")
 print()
 
 def entropia_vn(rho):
-    """Entropia de von Neumann: S = -Tr(rho * log(rho))"""
-    # Autovalores de rho
-    vals = np.linalg.eigvalsh(rho)
-    S = 0
-    for v in vals:
+    """Entropia de von Neumann: S = -Tr(rho * log(rho)) para 2x2."""
+    # Autovalores directos para matriz 2x2
+    a = rho[0, 0].real
+    b = rho[1, 1].real
+    c = abs(rho[0, 1])
+    # Discriminante de la ecuacion caracteristica
+    disc = (a - b)**2 + 4*c**2
+    if disc < 0: disc = 0.0
+    v1 = (a + b + np.sqrt(disc)) / 2.0
+    v2 = (a + b - np.sqrt(disc)) / 2.0
+    S = 0.0
+    for v in [max(0.0, v1), max(0.0, v2)]:
         if v > 1e-15:
             S -= v * math.log(v)
-    return S
+    return max(0.0, S)
 
 print(f"{'R':<6} {'S_vn (|+>)':<15} {'S_vn (|0>)':<15} {'Interpretacion':<30}")
 print("-"*66)
 for R in [1, 2, 3, 4, 10, 100, 1000]:
     # Estado |+>
-    a1, b1 = estado_puro(0, np.pi/4)
+    a1, b1 = estado_puro(np.pi/2, 0)
     rho1 = coarse_grain(matriz_densidad(a1, b1), R)
     S1 = entropia_vn(rho1)
     
@@ -148,15 +159,18 @@ print()
 def prob_medicion(rho, R):
     """Probabilidad de medir |0> desde rho con resolucion R.
     
-    NO asumimos cos^2(theta/2). Medimos directamente:
-    P(0) = Tr(rho * |0><0|) después de coarse-grain.
+    Con R finito, el resultado se cuantiza al multiplo de 1/R mas cercano.
+    Con R->inf, recuperamos el valor continuo exacto.
     """
     # Proyector en |0>
     P0 = np.array([[1, 0], [0, 0]])
     # Probabilidad = Tr(rho_cg * P0)
     rho_cg = coarse_grain(rho, R)
-    prob = np.trace(rho_cg @ P0)
-    return max(0, min(1, prob.real))
+    prob = np.trace(rho_cg @ P0).real
+    # Cuantizar el resultado: solo multiplos de 1/R son resolubles
+    if R >= 2:
+        prob = round(prob * R) / R
+    return max(0, min(1, prob))
 
 print(f"{'theta':<10} {'P(0) teorico':<18} {'R=2':<10} {'R=4':<10} {'R=10':<10} {'R=inf':<10}")
 print("-"*68)
