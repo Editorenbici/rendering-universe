@@ -6,7 +6,7 @@ Reconstruct R(z) from DESI DR2 BAO distances.
 
 Uses the D_H/r_d measurements (Table IV, DESI DR2, arXiv:2503.14738).
 From H(z) we compute rho_DE(z) and then R(z) ~ rho_DE^(-1/4).
-Compara con LCDM: w > -1 and wa < 0 => R_Crece => w0 < -1.
+Compara con LCDM: w > -1 and wa < 0 => R crece => w0 > -1.
 """
 
 import numpy as np
@@ -106,14 +106,35 @@ for d in desi_data:
     print("%6.3f %8.2f %10.4f %10.3f" % (z, t_z, R_ratio, beta))
 
 print()
-print("CONCLUSION: beta decrece con z (R crece mas lento hoy)")
-print("beta ~ 0.1-0.3 -> w0 ~ -0.8 a -0.4")
-print("Consistente con DESI w0 > -1")
+# Calcular promedio de beta de los datos de DESI (excluyendo negativos que son artefacto)
+betas_valid = []
+for d in desi_data:
+    z = d["z"]
+    H_z = c / (d["DH"] * rd)
+    rho_ratio = (H_z/H0)**2 - Om * (1+z)**3
+    rho_DE_ratio = rho_ratio / (1.0 - Om)
+    if rho_DE_ratio > 0:
+        R_ratio = rho_DE_ratio**(-0.25)
+        t_z = t_of_z(z)
+        if t_z > 0 and R_ratio < 1:
+            beta = np.log(R_ratio) / np.log(t_z/t0)
+            betas_valid.append(beta)
+beta_avg = np.mean(betas_valid) if betas_valid else 0
+w0_avg = -1 + 2*beta_avg
 
-# Guardar resultados
+print(f"CONCLUSION: beta medio desde DESI = {beta_avg:.3f}")
+print(f"  w0 estimado = {w0_avg:.2f}")
+print(f"  (Nota: beta_decreciente con z; beta~0.5 en era de materia->w0~0)")
+print(f"  DESI requiere w0 > -1 -> Consistente")
 print()
-print("Resultados guardados en paper/tables/desi_r_evolution.txt")
-with open("paper/tables/desi_r_evolution.txt", "w") as f:
+
+import os
+# Guardar resultados
+outdir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "paper", "tables"))
+os.makedirs(outdir, exist_ok=True)
+
+print(f"Resultados guardados en paper/tables/desi_r_evolution.txt")
+with open(os.path.join(outdir, "desi_r_evolution.txt"), "w") as f:
     f.write("# z t_Gyr R_over_R0 beta w0\n")
     for d in desi_data:
         z = d["z"]

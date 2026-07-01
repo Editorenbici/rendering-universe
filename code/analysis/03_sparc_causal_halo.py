@@ -12,6 +12,7 @@ Data: SPARC (Lelli+ 2016) - 175 galaxies with HI rotation curves.
 
 import numpy as np
 import os
+import csv
 
 # Cargar datos SPARC
 sparc_path = os.path.expanduser("~/rendering-universe/data/sparc")
@@ -133,8 +134,9 @@ print("Causal halo has 1 fewer free parameter (Rc only, no concentration)")
 print()
 
 # Save results
-import csv
-outpath = os.path.expanduser("~/rendering-universe/paper/tables/sparc_fit_results.csv")
+outdir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "paper", "tables"))
+os.makedirs(outdir, exist_ok=True)
+outpath = os.path.join(outdir, "sparc_fit_results.csv")
 with open(outpath, "w", newline="") as f:
     w = csv.writer(f)
     w.writerow(["Galaxy", "Npts", "Vflat", "Rc", "chi2_causal", "chi2_nfw", "Winner"])

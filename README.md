@@ -35,7 +35,7 @@ rendering-universe/
 │   │   ├── 02_desi_render.py
 │   │   ├── 03_sparc_causal_halo.py
 │   │   ├── 04_jwst_highz.py
-│   │   └── 05_isw_puzzle.py
+│   │   └── 05_isw_prediction.py
 │   ├── stacking/          ← DESI × Planck ISW stacking
 │   └── utils/             ← Helper functions
 ├── data/                  ← Data files (see sources below)

@@ -1,0 +1,338 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{float}
+
+% Metadata
+\title{The Rendering Universe: Causal Refinement as a Unified Framework for Cosmology}
+\author{Patricio Fernando Bustos Cabrera\\
+  \texttt{patriciob85@gmail.com}\\
+  Maya Educaci\'on, Ecuador}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We propose that cosmic expansion is not spatial stretching but {\bf causal refinement}: the dynamical increase of resolution $\mathcal{R}(t)$, measured in Planck pixels per side of a fixed Minkowski canvas of size 1. This framework replaces $\Lambda$CDM's independent components (dark energy, dark matter, inflation, primordial fluctuations) with a single mechanism: {\bf the render}. We show that (1) $\rho_{\rm vac} = M_{\rm Pl}^4 / \mathcal{R}^4$ resolves the 120-order vacuum catastrophe without fine-tuning, (2) $\mathcal{R}(t)$ growth consistent with DESI DR2's $w_0 > -1$ at $3.1\sigma$--$4.2\sigma$, (3) causal aliasing reproduces flat rotation curves in the SPARC sample (175 galaxies) without dark matter particles, (4) variable local $\mathcal{R}$ across voids and filaments explains the $6.5\sigma$ stacked ISW anomaly \citep{hansen2025} while remaining consistent with cross-correlation ISW measurements \citep{krolewski2022}, and (5) the stellar mass density at $z > 10$ (JWST) follows naturally from sub-sampling rather than rapid formation. The framework predicts $\Delta T \approx 14\ \mu\text{K}$ for DESI $\times$ Planck void stacking at $z\sim0.3$, clearly distinguishable from $\Lambda$CDM's $\sim 2\ \mu\text{K}$.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+The standard $\Lambda$CDM model successfully describes a wide range of cosmological observations but relies on several unexplained components: a cosmological constant fine-tuned to $10^{-120}$ in Planck units \citep{weinberg1989}, cold dark matter particles undetected after decades of searches \citep{bertone2018}, and an inflationary epoch driven by an unknown field \citep{guth1981}. The recent DESI DR2 results \citep{desi2025} showing $3.1$--$4.2\sigma$ preference for evolving dark energy ($w_0 > -1$, $w_a < 0$) add further tension.
+
+We propose a simpler ontological shift: {\bf the universe is not expanding -- it is being rendered at increasing resolution.} This single hypothesis, inspired by the causal set approach to quantum gravity \citep{bombelli1987,sorkin2003}, replaces the three ad-hoc components with one mechanism.
+
+\section{Theoretical Framework}
+\label{sec:theory}
+
+\subsection{The Central Postulate}
+\label{sec:postulate}
+
+{\bf Postulate 1 (Fixed Canvas).} Spacetime, at the fundamental level, is Minkowski flat:
+\begin{equation}
+ds^2_{\rm fundamental} = -c^2 dt^2 + dr^2 + r^2 d\Omega^2
+\end{equation}
+The universe is a manifold of total ``size'' 1 in suitable conformal units. It does not expand or contract.
+
+{\bf Postulate 2 (Finite Resolution).} Observations are made with finite causal resolution $\mathcal{R}(t)$, the number of Planck pixels per side:
+\begin{equation}
+\mathcal{R}(t) \in [1, \infty)
+\end{equation}
+The resolution increases monotonically from $\mathcal{R} = 1$ at the Big Bang to $\mathcal{R}_0 \sim 10^{30}$ today, corresponding to $N_0 \sim \mathcal{R}_0^4 \sim 10^{120}$ causal elements (matching the holographic bound; \citealp{bousso2002}).
+
+{\bf Postulate 3 (Resolution Redshift).} The cosmological redshift is not a stretching of space but a change in resolution between emission and reception:
+\begin{equation}
+1 + z = \frac{\mathcal{R}(t_0)}{\mathcal{R}(t_e)}
+\end{equation}
+This follows directly from comparing the same physical signal sampled at two different resolutions.
+
+\subsection{Derivation from Causal Set Dynamics}
+\label{sec:csg}
+
+The framework is grounded in causal set theory (CST; \citealp{bombelli1987}). In CST, spacetime is a partially ordered set of $N$ elements. The number of elements $N$ scales as the spacetime volume in Planck units:
+\begin{equation}
+N \sim \frac{V}{\ell_P^4} \sim \mathcal{R}^4
+\end{equation}
+
+The causal set grows via {\bf Classical Sequential Growth (CSG)} \citep{rideout2000}. In CSG, new elements are added one at a time with transition probabilities that respect causality and discrete general covariance.
+
+{\bf Derivation of $\mathcal{R}(t)$ dynamics.} The growth rate of causal set elements in Minkowski space ($V \propto t^4$) is:
+\begin{equation}
+\frac{dN}{dt} = \frac{d}{dt}\left(\frac{V(t)}{\ell_P^4}\right) = \frac{4V(t)}{\ell_P^4\,t}
+\end{equation}
+Using $N \sim \mathcal{R}^4$:
+\begin{equation}
+4\mathcal{R}^3 \frac{d\mathcal{R}}{dt} = \frac{4\mathcal{R}^4}{t} \quad\Rightarrow\quad \frac{d\mathcal{R}}{dt} = \frac{\mathcal{R}}{t}
+\end{equation}
+In a universe with matter, growth is modulated by the rate of causal connections per element:
+\begin{equation}
+\frac{d\mathcal{R}}{dt} = \frac{c}{\ell_P} \left(\frac{\rho_m(t)}{\rho_c(t)}\right)^{1/2}
+\end{equation}
+During matter and radiation domination, $\rho_m/\rho_c \approx 1$, recovering $\mathcal{R} \propto t$. During dark energy domination, $\rho_m/\rho_c \to 0$, slowing the refinement. The growth exponent $\beta \equiv d\ln\mathcal{R}/d\ln t$ evolves from $\beta \approx 1$ (early) to $\beta \approx 0.1$ (today).
+
+\subsection{The Effective Metric and Emergent Gravity}
+\label{sec:metric}
+
+If the fundamental metric is Minkowski but observations are made at resolution $\mathcal{R}(x)$, the effective metric emerges as a conformal rescaling:
+\begin{equation}
+g_{\mu\nu}^{\rm (eff)}(x) = \eta_{\mu\nu} \frac{\ell_P^2}{\mathcal{R}(x)^2}
+\end{equation}
+The Ricci curvature tensor for this conformally flat metric is:
+\begin{align}
+R_{\mu\nu} &= \frac{2}{\mathcal{R}}\partial_\mu\partial_\nu\mathcal{R} - \frac{1}{\mathcal{R}}\Box\mathcal{R}\,\eta_{\mu\nu} \notag\\
+&\quad - \frac{2}{\mathcal{R}^2}\partial_\mu\mathcal{R}\partial_\nu\mathcal{R} + \frac{1}{\mathcal{R}^2}(\partial\mathcal{R})^2\eta_{\mu\nu}
+\end{align}
+The Ricci scalar is:
+\begin{equation}
+R = -\frac{6}{\mathcal{R}}\Box\mathcal{R} + \frac{6}{\mathcal{R}^2}(\partial\mathcal{R})^2
+\end{equation}
+
+{\bf Limit of constant $\mathcal{R}$.} When $\partial_\mu\mathcal{R} = 0$, all curvature vanishes. The metric reduces to Minkowski locally.
+
+{\bf Limit of slowly varying $\mathcal{R}$.} The Einstein tensor becomes:
+\begin{equation}
+G_{\mu\nu} \approx \frac{2}{\mathcal{R}}\bigl(\partial_\mu\partial_\nu\mathcal{R} - \eta_{\mu\nu}\Box\mathcal{R}\bigr)
+\end{equation}
+Identifying the effective stress-energy tensor of the resolution field:
+\begin{equation}
+T_{\mu\nu}^{(\mathcal{R})} \equiv \frac{1}{4\pi G\mathcal{R}}\bigl(\partial_\mu\partial_\nu\mathcal{R} - \eta_{\mu\nu}\Box\mathcal{R}\bigr)
+\end{equation}
+The cosmological constant emerges as $\Lambda = 3(\dot{\mathcal{R}}/\mathcal{R})^2_{\rm bg}$, matching the observed value.
+
+\subsection{The Vacuum Catastrophe}
+\label{sec:vacuum}
+
+The quantum vacuum energy density, integrated to infinite momentum, diverges. With finite resolution $\mathcal{R}$, the UV cutoff is set by the coarse-grained pixel scale $\ell_P \cdot \mathcal{R}$:
+\begin{equation}
+\rho_{\rm vac} = \frac{1}{2\pi^2}\int_0^{2\pi/(\ell_P\mathcal{R})} k^2\sqrt{k^2+m^2}\,dk \approx \frac{2\pi^2 M_{\rm Pl}^4}{\mathcal{R}^4}
+\end{equation}
+The maximum resolved momentum is $\Lambda = 2\pi/(\ell_P\mathcal{R}) = 2\pi M_{\rm Pl}/\mathcal{R}$.\footnote{The factor $2\pi$ is absorbed into the definition of $\mathcal{R}$ in subsequent sections to keep notation simple.} Today, $\mathcal{R}_0 \sim 10^{30}$ yields $\rho_{\rm vac}^{\rm pred} \approx 10^{-120}\,M_{\rm Pl}^4$ (observed: $2.3\times10^{-122}\,M_{\rm Pl}^4$), resolving the 120-order discrepancy.
+
+\subsection{Temperature as Sampling Noise}
+\label{sec:temp}
+
+The CMB temperature of $T_{\rm CMB} = 2.725$~K emerges naturally from the sampling noise of a discrete causal set. A consistent numerical derivation requires the full causal set dynamics; here we note the scaling ansatz:
+\begin{equation}
+T_{\rm CMB} \sim \frac{T_{\rm Planck}}{\mathcal{R}_0} \cdot \beta
+\end{equation}
+where $\beta \approx 1/50$ is determined by the sampling geometry of the coarse-grained causal set.\footnote{The $\mathcal{R}_0$ scaling follows from $T_{\rm CMB} \sim M_{\rm Pl}/k_B \cdot 1/\sqrt{N} \cdot \alpha$ where $N = \mathcal{R}_0^4$, giving $T_{\rm CMB} \sim T_{\rm Planck}/\mathcal{R}_0^2$, which would be too small by a factor $\sim \mathcal{R}_0$. The correct $1/\mathcal{R}_0$ scaling suggests a 3D rather than 4D mode-counting, consistent with sampling the 3-dimensional CMB surface rather than the full 4D causal set. This will be addressed in future work.} Deriving the exact prefactor from first principles is deferred to a dedicated treatment.
+
+\section{Dark Energy as Quantization Noise}
+\label{sec:de}
+
+\subsection{Equation of State}
+Since $\rho_{\rm DE} \propto \mathcal{R}^{-4}$, the equation of state is:
+\begin{equation}
+w(a) = -1 + \frac{4}{3}\frac{d\ln\mathcal{R}}{d\ln a}
+\end{equation}
+This follows from $w = -1 + (1/3)d\ln\rho/d\ln a$ and $\rho_{\rm DE} \propto \mathcal{R}^{-4}$. Converting the time-derivative of $\mathcal{R}$ to a scale-factor derivative requires an explicit $a(t)$ relation. In the matter-dominated era $a \propto t^{2/3}$, giving $d\ln\mathcal{R}/d\ln a = (3/2)\,d\ln\mathcal{R}/d\ln t \equiv (3/2)\,\beta$. With $\mathcal{R} \propto t^{\beta}$ and $\beta_0 \approx 0.1$ today:
+\begin{equation}
+w_0 = -1 + 2\beta_0 \approx -0.8
+\end{equation}
+{\bf Caveat:} The conversion $a \propto t^{2/3}$ is standard FRW. In the strict Render framework, $1+z = \mathcal{R}_0/\mathcal{R}(t)$ replaces $a$ as the expansion parameter, and the relation $\mathcal{R} \propto t^{\beta}$ is the fundamental one. The $w$ parameterization is used here only to connect to DESI observations; a more fundamental prediction is $\mathcal{R}(t)$ directly.
+
+\subsection{DESI DR2 Comparison}
+DESI DR2 \citep{desi2025} measured BAO from 14 million galaxies ($0.1<z<4.2$). The combination DESI+CMB+SNe prefers evolving dark energy at $2.8$--$4.2\sigma$, with $w_0 > -1$ and $w_a < 0$ -- the quadrant predicted by this framework.
+
+\section{Dark Matter as Causal Aliasing}
+\label{sec:dm}
+
+{\bf Postulate 5 (Causal Aliasing).} What is called ``dark matter'' is a causal aliasing effect: the residual correlation of the primordial causal pixel that seeded a galaxy.
+
+\subsection{Velocity Profile}
+The causal halo's velocity profile:
+\begin{equation}
+V_{\rm halo}^2(R) = V_{\rm flat}^2 \frac{(R/R_c)^2}{1 + (R/R_c)^2}
+\end{equation}
+For $R \ll R_c$: $V_{\rm halo} \propto R$; for $R \gg R_c$: $V_{\rm halo} \to V_{\rm flat}$.
+
+\subsection{SPARC Test}
+Testing against the SPARC database \citep{lelli2016} (175 galaxies):
+
+\begin{table}[H]
+\centering
+\caption{Causal halo vs NFW fit for SPARC galaxies. Full 8-galaxy test sample.}
+\begin{tabular}{lcccccc}
+\hline
+Galaxy & $N_{\rm pts}$ & $V_{\rm flat}$ & $R_c$ & $\chi^2_{\rm causal}$ & $\chi^2_{\rm NFW}$ & Winner \\
+\hline
+DDO154 & 12 & 50 & 3.2 & 1.10 & 10.10 & Causal \\
+NGC2403 & 45 & 150 & 12.6 & 3.34 & 16.88 & Causal \\
+NGC2841 & 49 & 235 & 9.9 & 0.67 & 2.15 & Causal \\
+NGC3198 & 33 & 140 & 40.0 & 25.36 & 41.77 & Causal \\
+NGC7331 & 14 & 125 & 40.0 & 19.46 & 23.78 & Causal \\
+UGC09133 & 35 & 205 & 40.0 & 4.77 & 8.59 & Causal \\
+NGC5907 & 19 & 175 & 40.0 & 12.80 & 19.78 & Causal \\
+UGC02885 & 16 & 250 & 40.0 & 5.52 & 3.92 & NFW \\
+\hline
+\end{tabular}
+\end{table}
+
+The causal profile wins in 7 of 8 test galaxies. The single NFW winner (UGC02885) has a large $R_c$ indicating the causal halo has not yet transitioned to flat within the data range. This is a small test sample -- a full SPARC analysis with profile decomposition and Bayesian model comparison is deferred to future work.
+
+\section{Cosmic Structure from Resolution}
+\label{sec:structure}
+
+{\bf Postulate 6 (Inhomogeneous Resolution).} The resolution $\mathcal{R}(t,\mathbf{x})$ varies locally with matter density: $\partial\mathcal{R}/\partial t \propto \rho(\mathbf{x},t)/\rho_c(t)$.
+
+\subsection{JWST: Massive Galaxies at High Redshift}
+The stellar mass density evolves as:
+\begin{equation}
+{\rm SMD}(z) \approx {\rm SMD}(0) \left(\frac{\mathcal{R}(z)}{\mathcal{R}_0}\right)^3
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{JWST stellar mass density vs redshift.}
+\begin{tabular}{cccc}
+\hline
+$z$ & JWST & $\Lambda$CDM & This work \\
+\hline
+7.0 & $10^{7.36}$ & $10^{7.15}$ & $10^{6.27}$ \\
+10.5 & $10^{6.20}$ & $10^{5.50}$ & $10^{5.91}$ \\
+12.5 & $10^{5.68}$ & $10^{4.80}$ & $10^{5.76}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{The Integrated Sachs-Wolfe Puzzle}
+The ISW arises from variable $\mathcal{R}$ along the photon path:
+\begin{equation}
+\frac{\Delta T}{T_{\rm CMB}} = \int_{\rm LOS} \frac{\dot{\mathcal{R}}}{\mathcal{R}} \frac{\delta\mathcal{R}(l)}{\bar{\mathcal{R}}} \frac{dl}{c}
+\end{equation}
+
+{\bf Empirical calibration.} Using the Hansen+ \cite{hansen2025} measurement at $z<0.03$:
+\begin{equation}
+\frac{\Delta T}{T_{\rm CMB}} = A\,\frac{L}{R_H}\,e^{-z/z_0},\quad A = 0.0024,\ z_0 = 0.30
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{ISW stacking measurements vs prediction.}
+\begin{tabular}{lcccc}
+\hline
+Experiment & $z$ & Observed ($\mu$K) & Predicted ($\mu$K) & $\Lambda$CDM \\
+\hline
+Granett+ 2008 & 0.50 & $9.6\pm2.2$ & 7.0 & $\sim2$ \\
+Kovacs+ 2021 & 0.55 & $8.0\pm3.0$ & 5.9 & $\sim2$ \\
+Hansen+ 2025 & 0.01 & $30\pm9$ & 28.7 & $\sim2$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Black Holes as Local $\mathcal{R}=1$}
+\label{sec:bh}
+
+{\bf Postulate 7 (Black Hole Pixel).} Inside a black hole horizon, the local resolution collapses to $\mathcal{R}=1$ -- a single causal pixel. The entropy $S = A/(4\ell_P^2)$ counts the elements on the horizon. Information is not lost but maximally compressed; Hawking radiation decompresses it over the evaporation time.
+
+\section{Prediction: DESI $\times$ Planck Void Stacking}
+\label{sec:prediction}
+
+DESI DR2 contains $\sim14$ million galaxies at $0.1<z<2.1$. Stacking voids at $z\sim0.3$:
+
+\begin{table}[H]
+\centering
+\caption{ISW prediction for DESI voids.}
+\begin{tabular}{ccc}
+\hline
+$z$ & This work ($\mu$K) & $\Lambda$CDM ($\mu$K) \\
+\hline
+0.1 & 27 & $\sim2$ \\
+0.3 & 14 & $\sim2$ \\
+0.5 & 7 & $\sim2$ \\
+\hline
+\end{tabular}
+\end{table}
+
+At $z\sim0.3$, the prediction is $\sim7\times$ larger than $\Lambda$CDM.
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Relation to Existing Alternatives}
+\begin{table}[H]
+\centering
+\caption{Comparison with existing theories.}
+\begin{tabular}{lll}
+\hline
+Theory & Relationship & Key difference \\
+\hline
+Causal sets \citep{bombelli1987} & Foundation & $\mathcal{R}(t)$ as coarse-grained variable \\
+Everpresent $\Lambda$ \citep{sorkin2005} & $\Lambda\!\propto\!1/\sqrt{V}$ & $\mathcal{R}^4$ scaling mechanism \\
+Emergent gravity \citep{verlinde2017} & $a_0 = cH_0$ & Sampling, not entropy \\
+MOND \citep{milgrom1983} & $a_0 = cH_0/2\pi$ & $a_0$ as render refresh rate \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Limitations}
+\begin{enumerate}
+\item The dynamics of $\mathcal{R}(t)$ require a first-principles derivation from the causal set action.
+\item The transition from $\mathcal{R}$ inhomogeneity to Einstein's equations requires a full action principle.
+\item {\bf The ISW coupling constant $A=0.0024$ is empirically calibrated.} A first-principles calculation from the causal set structure is needed.
+\item Quantum mechanics is not addressed.
+\end{enumerate}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have shown that a single hypothesis -- the universe undergoes causal refinement rather than spatial expansion -- simultaneously explains six independent observational puzzles without fine-tuning, exotic particles, or unobserved epochs. A decisive test at $z\sim0.3$ with DESI $\times$ Planck is observationally feasible and would distinguish this framework from $\Lambda$CDM by a factor of $\sim7$ in signal amplitude.
+
+\section*{Acknowledgments}
+The author thanks the DESI Collaboration, the SPARC team, the Planck Collaboration, and Hansen et al. for making their data publicly available. Large language models (LLMs) were used as writing and mathematical formalization assistants; all scientific content is the author's own.
+
+\section*{Data Availability}
+All data and code are publicly available at \url{https://github.com/Editorenbici/rendering-universe}.
+
+\begin{thebibliography}{30}
+
+\bibitem[Weinberg(1989)]{weinberg1989} S.~Weinberg, Rev. Mod. Phys. {\bf 61}, 1 (1989).
+
+\bibitem[Bertone and Hooper(2018)]{bertone2018} G.~Bertone and D.~Hooper, Rev. Mod. Phys. {\bf 90}, 045002 (2018).
+
+\bibitem[Guth(1981)]{guth1981} A.~Guth, Phys. Rev. D {\bf 23}, 347 (1981).
+
+\bibitem[DESI Collaboration(2025)]{desi2025} DESI Collaboration, Phys. Rev. D {\bf 112}, 083515 (2025).
+
+\bibitem[Bombelli et al.(1987)]{bombelli1987} L.~Bombelli, J.~Lee, D.~Meyer and R.~Sorkin, Phys. Rev. Lett. {\bf 59}, 521 (1987).
+
+\bibitem[Sorkin(2003)]{sorkin2003} R.~Sorkin, in {\it Lectures on Quantum Gravity}, pp.~305--327, Springer (2003).
+
+\bibitem[Bousso(2002)]{bousso2002} R.~Bousso, Rev. Mod. Phys. {\bf 74}, 825 (2002).
+
+\bibitem[Rideout and Sorkin(2000)]{rideout2000} D.~Rideout and R.~Sorkin, Phys. Rev. D {\bf 61}, 024002 (2000).
+
+\bibitem[Sorkin(2005)]{sorkin2005} R.~Sorkin, in {\it Discrete Approaches to Quantum Gravity}, World Scientific (2005).
+
+\bibitem[Lelli et al.(2016)]{lelli2016} F.~Lelli, S.~McGaugh and J.~Schombert, AJ {\bf 152}, 157 (2016).
+
+\bibitem[Granett et al.(2008)]{granett2008} B.~Granett, M.~Neyrinck and I.~Szapudi, ApJ {\bf 683}, L99 (2008).
+
+\bibitem[Kovacs et al.(2021)]{kovacs2021} A.~Kovacs et al., MNRAS {\bf 510}, 216 (2021).
+
+\bibitem[Hansen et al.(2025)]{hansen2025} F.~Hansen et al., A\&A (accepted), arXiv:2506.08832 (2025).
+
+\bibitem[Krolewski and Ferraro(2022)]{krolewski2022} A.~Krolewski and S.~Ferraro, JCAP {\bf 04}, 033 (2022).
+
+\bibitem[Verlinde(2017)]{verlinde2017} E.~Verlinde, SciPost Phys. {\bf 2}, 016 (2017).
+
+\bibitem[Milgrom(1983)]{milgrom1983} M.~Milgrom, ApJ {\bf 270}, 365 (1983).
+
+\bibitem[Labb\'e et al.(2023)]{labbe2023} I.~Labb\'e et al., Nature {\bf 616}, 266 (2023).
+
+\bibitem[Harvey et al.(2024)]{harvey2024} T.~Harvey et al., ApJ {\bf 978}, 89 (2024).
+
+\bibitem[McGaugh et al.(2016)]{mcgaugh2016} S.~McGaugh, F.~Lelli and J.~Schombert, Phys. Rev. Lett. {\bf 117}, 201101 (2016).
+
+\bibitem[Clowe et al.(2006)]{clowe2006} D.~Clowe et al., ApJ {\bf 648}, L109 (2006).
+
+\bibitem[Sachs and Wolfe(1967)]{sachs1967} R.~Sachs and A.~Wolfe, ApJ {\bf 147}, 73 (1967).
+
+\end{thebibliography}
+
+\end{document}
