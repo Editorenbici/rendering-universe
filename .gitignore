@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data (download separately)
+data/desi/*
+data/planck/*
+data/sparc/*
+!data/desi/.gitkeep
+!data/planck/.gitkeep
+!data/sparc/.gitkeep
+
+# LaTeX aux
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.toc
+paper/arxiv/
