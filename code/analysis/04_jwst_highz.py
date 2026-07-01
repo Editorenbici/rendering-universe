@@ -81,10 +81,20 @@ print("gives a cleaner prediction than the power-law R ~ t^0.5 used")
 print("in earlier versions.")
 print()
 
-# Save
-outdir = os.path.dirname(os.path.abspath(__file__))
+# Save results to the paper tables directory so the paper is reproducible.
+repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+outdir = os.path.join(repo_root, "paper", "tables")
+os.makedirs(outdir, exist_ok=True)
 outpath = os.path.join(outdir, "jwst_smd.csv")
-with open(outpath, "w") as f:
+tmp_outpath = outpath + ".tmp"
+try:
+    f = open(tmp_outpath, "w")
+except PermissionError:
+    outpath = os.path.join(os.path.dirname(__file__), "jwst_smd.csv")
+    tmp_outpath = outpath + ".tmp"
+    f = open(tmp_outpath, "w")
+
+with f:
     f.write("z,JWST_SMD,LCDM_SMD,Render_SMD,diff_JWST_LCDM\n")
     for z in sorted(jwst_smd.keys()):
         j = jwst_smd[z]
@@ -93,6 +103,7 @@ with open(outpath, "w") as f:
         r = 9.2 + 3 * np.log10(R_rel)
         diff = j - l
         f.write(f"{z},{j},{l},{r:.2f},{diff:.2f}\n")
+os.replace(tmp_outpath, outpath)
 print(f"Table saved to {outpath}")
 print()
 print("DONE")

@@ -133,12 +133,23 @@ print("NFW wins in", sum(1 for r in results if r[-1]=="NFW"), "/", len(results))
 print("Causal halo has 1 fewer free parameter (Rc only, no concentration)")
 print()
 
-# Save results to the script's own directory
-outdir = os.path.dirname(os.path.abspath(__file__))
+# Save results to the paper tables directory so the paper is reproducible.
+repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+outdir = os.path.join(repo_root, "paper", "tables")
+os.makedirs(outdir, exist_ok=True)
 outpath = os.path.join(outdir, "sparc_fit_results.csv")
-with open(outpath, "w", newline="") as f:
+tmp_outpath = outpath + ".tmp"
+try:
+    f = open(tmp_outpath, "w", newline="")
+except PermissionError:
+    outpath = os.path.join(os.path.dirname(__file__), "sparc_fit_results.csv")
+    tmp_outpath = outpath + ".tmp"
+    f = open(tmp_outpath, "w", newline="")
+
+with f:
     w = csv.writer(f)
     w.writerow(["Galaxy", "Npts", "Vflat", "Rc", "chi2_causal", "chi2_nfw", "Winner"])
     for r in results:
         w.writerow(r)
+os.replace(tmp_outpath, outpath)
 print(f"Saved to {outpath}")

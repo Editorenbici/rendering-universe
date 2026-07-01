@@ -79,10 +79,10 @@ $$
 ## Tests Passed
 
 1. ✅ Vacuum catastrophe resolved
-2. ✅ DESI 2025: $w_0 > -1$ consistent
-3. ✅ SPARC: 175 galaxies fit causal halo profile
-4. ✅ JWST: massive galaxies at $z>10$ expected
-5. ✅ ISW puzzle: 6.5$\sigma$ anomaly explained
+2. ✅ DESI 2025: $w_0 > -1$ direction discussed phenomenologically
+3. ✅ SPARC: 8-galaxy pilot comparison of causal halo vs NFW
+4. ✅ JWST: high-$z$ stellar mass density scaling explored
+5. ✅ ISW puzzle: calibrated DESI × Planck prediction generated
 
 ## Prediction
 

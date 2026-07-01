@@ -20,6 +20,7 @@ a(t) as the expansion parameter.
 """
 
 import numpy as np
+import os
 
 print("="*72)
 print("DESI DR2 -> R(z) RECONSTRUCTION")
@@ -99,7 +100,7 @@ This gives rho_DE(z) ~ R(z)^(-4) ~ (1+z)^4.
 In wCDM: rho_DE(z) ~ (1+z)^(3(1+w)).
 Equating: 3(1+w) = 4  =>  w = 1/3  (constant)
 
-This is NOT what DESI observes (w ≈ -0.8). The resolution:
+This is NOT what DESI observes (w approx -0.8). The resolution:
   - Postulate 3 is a FIRST-ORDER approximation of the z-R relation
   - Structure formation modifies the effective redshift-resolution mapping
   - The beta-derived w(z) captures the true dynamics of R(t)
@@ -131,4 +132,29 @@ Beta values from direct R(z) reconstruction:
   dark-energy-dominated (slow refinement).
 """)
 
+repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+outdir = os.path.join(repo_root, "paper", "tables")
+os.makedirs(outdir, exist_ok=True)
+outpath = os.path.join(outdir, "desi_r_evolution.txt")
+tmp_outpath = outpath + ".tmp"
+
+try:
+    try:
+        f = open(tmp_outpath, "w", encoding="utf-8")
+    except PermissionError:
+        outpath = os.path.join(os.path.dirname(__file__), "desi_r_evolution.txt")
+        tmp_outpath = outpath + ".tmp"
+        f = open(tmp_outpath, "w", encoding="utf-8")
+
+    with f:
+        f.write("# tracer z H_km_s_Mpc rho_DE_norm R_over_R0_postulate3 R_over_R0_DE_inferred\n")
+        for name, z, H_z, rho_DE_norm, R_rel_post, R_rel_de in results:
+            f.write(
+                f"{name} {z:.3f} {H_z:.3f} {rho_DE_norm:.6f} "
+                f"{R_rel_post:.6f} {R_rel_de:.6f}\n"
+            )
+    os.replace(tmp_outpath, outpath)
+    print(f"Saved table to {outpath}")
+except PermissionError as exc:
+    print(f"WARNING: could not save table ({exc})")
 print("DONE")
