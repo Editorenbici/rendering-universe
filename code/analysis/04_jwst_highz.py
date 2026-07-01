@@ -3,16 +3,25 @@
 04_jwst_highz.py
 =================
 Compare JWST stellar mass density (SMD) at high z with LCDM predictions
-and the Render Universe expectation: SMD(z) ~ SMD(0) * (R(z)/R0)^3.
+and the Render Universe expectation.
 
-Data: EPOCHS IV (Harvey+ 2024) and Labbe+ 2023 (Nature).
+Using Postulate 3: 1+z = R0/R  =>  R(z)/R0 = 1/(1+z)
+SMD(z) ~ SMD(0) * (R/R0)^3 = SMD(0) * (1+z)^(-3)
+
+DATA SOURCE: Harvey et al. 2024 (EPOCHS IV), Labbe+ 2023 (Nature 616, 266)
+JWST log10(SMD) values at high z.
 """
 
 import numpy as np
 import os
 
-# JWST SMD data (EPOCHS IV, Harvey+2024)
-# z, log10(SMD / Msun Mpc^-3)
+print("="*70)
+print("JWST: STELLAR MASS DENSITY vs REDSHIFT")
+print("="*70)
+print()
+
+# JWST SMD data from EPOCHS IV (Harvey+ 2024) and Labbe+ 2023
+# log10(stellar mass density in M_sun / Mpc^3)
 jwst_smd = {
     7.0:  7.36,
     8.0:  6.92,
@@ -21,7 +30,7 @@ jwst_smd = {
     12.5: 5.68,
 }
 
-# LCDM prediction (Behroozi+ 2019)
+# LCDM predictions (semi-analytic, Behroozi+ 2020)
 lcdm_smd = {
     7.0:  7.15,
     8.0:  6.60,
@@ -30,33 +39,27 @@ lcdm_smd = {
     12.5: 4.80,
 }
 
-# SMD today (z~0)
-smd_hoy = 8.3  # log10 Msun/Mpc^3
-
-print("="*72)
-print("JWST: STELLAR MASS DENSITY vs REDSHIFT")
-print("="*72)
-print()
-print("%8s %10s %10s %10s %10s" % ("z", "JWST", "LCDM", "Render", "JWST-LCDM"))
-print("-"*50)
+print(f"{'z':>8} {'JWST':>8} {'LCDM':>8} {'Render':>8} {'JWST-LCDM':>10}")
+print("-"*45)
 
 for z in sorted(jwst_smd.keys()):
     j = jwst_smd[z]
     l = lcdm_smd.get(z, 0)
     
-    # Render: SMD(z) = SMD(0) * (R(z)/R0)^3
-    t_rel = (1+z)**(-1.5)
-    R_rel = t_rel**0.5
-    smd_r = smd_hoy + np.log10(R_rel**3)
+    # Render prediction using Postulate 3: R/R0 = 1/(1+z)
+    # SMD(z)/SMD(0) = (R/R0)^3 = (1+z)^(-3)
+    # SMD(0) ~ 10^9.2 (local stellar mass density)
+    SMD0 = 9.2
+    R_rel = 1.0 / (1+z)
+    r = SMD0 + 3 * np.log10(R_rel)  # log10(SMD)
     
     diff = j - l
-    
-    print("%8.1f %10.2f %10.2f %10.2f %+10.2f" % (z, j, l, smd_r, diff))
+    print(f"{z:>8.1f} {j:>8.2f} {l:>8.2f} {r:>8.2f} {diff:>+10.2f}")
 
 print()
-print("="*72)
+print("="*70)
 print("LABBE+ 2023: 6 MASSIVE GALAXIES AT z > 7")
-print("="*72)
+print("="*70)
 print()
 print("Labbe+ (Nature 2023) found 6 galaxies at z=7.4-9.1")
 print("with M* > 10^10 Msun, one with M* ~ 10^11 Msun.")
@@ -65,16 +68,20 @@ print("LCDM: requires SFE > 50% at z~8 (age ~600 Myr)")
 print("      Simulations max out at SFE ~ 10-20%")
 print()
 print("RENDER UNIVERSE:")
-print("  At z=8: R(z) ~ 0.18 * R0")
-print("  Volume ~ 0.6% of today")
-print("  Galaxies not 'formed' - they are RESOLVED")
-print("  A 10^11 Msun galaxy at z=8 looks like 10^10 Msun")
+print("  Postulate 3: R(z)/R0 = 1/(1+z)")
+print(f"  At z=8: R/R0 = {1/9:.4f} (resolution ~9x lower)")
+print("  Volume element ~ R^3 ~ 1/729 of today")
+print("  Galaxies appear denser because we resolve fewer pixels")
+print("  A 10^11 Msun galaxy at z=8 looks like ~10^10 Msun")
 print("  because it's sub-sampled at lower R")
 print()
-print("CONCLUSION: JWST excess at high z is expected")
-print("in the Render framework, problematic for LCDM.")
+print("CONCLUSION: JWST excess at high z is qualitatively consistent")
+print("with the Render framework. The Postulate 3 R(z) scaling")
+print("gives a cleaner prediction than the power-law R ~ t^0.5 used")
+print("in earlier versions.")
+print()
 
-# Guardar tabla
+# Save
 outdir = os.path.dirname(os.path.abspath(__file__))
 outpath = os.path.join(outdir, "jwst_smd.csv")
 with open(outpath, "w") as f:
@@ -82,9 +89,10 @@ with open(outpath, "w") as f:
     for z in sorted(jwst_smd.keys()):
         j = jwst_smd[z]
         l = lcdm_smd.get(z, 0)
-        t_rel = (1+z)**(-1.5)
-        R_rel = t_rel**0.5
-        smd_r = smd_hoy + np.log10(R_rel**3)
+        R_rel = 1.0 / (1+z)
+        r = 9.2 + 3 * np.log10(R_rel)
         diff = j - l
-        f.write(f"{z},{j},{l},{smd_r:.2f},{diff:.2f}\n")
+        f.write(f"{z},{j},{l},{r:.2f},{diff:.2f}\n")
 print(f"Table saved to {outpath}")
+print()
+print("DONE")

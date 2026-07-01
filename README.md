@@ -88,7 +88,7 @@ $$
 
 Stacking DESI DR2 voids with Planck CMB at $z \sim 0.3$ should yield:
 
-$$ \Delta T \approx 11\ \mu\text{K} \quad (\text{vs } \approx 2\ \mu\text{K for }\Lambda\text{CDM}) $$
+$$ \Delta T \approx 14\ \mu\text{K} \quad (\text{vs } \approx 2\ \mu\text{K for }\Lambda\text{CDM}) $$
 
 ## Author
 

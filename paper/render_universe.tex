@@ -181,9 +181,14 @@ The causal profile wins in 7 of 8 test galaxies. The single NFW winner (UGC02885
 {\bf Postulate 6 (Inhomogeneous Resolution).} The resolution $\mathcal{R}(t,\mathbf{x})$ varies locally with matter density: $\partial\mathcal{R}/\partial t \propto \rho(\mathbf{x},t)/\rho_c(t)$.
 
 \subsection{JWST: Massive Galaxies at High Redshift}
-The stellar mass density \citep{labbe2023} evolves as:
+The stellar mass density \citep{labbe2023} follows from the resolution scaling. From Postulate 3 ($1+z = \mathcal{R}_0/\mathcal{R}$):
 \begin{equation}
-{\rm SMD}(z) \approx {\rm SMD}(0) \left(\frac{\mathcal{R}(z)}{\mathcal{R}_0}\right)^3
+{
+m SMD}(z) \approx {
+m SMD}(0) \left(\frac{\mathcal{R}(z)}{\mathcal{R}_0}
+ight)^3 = {
+m SMD}(0)\,(1+z)^{-3}
+\label{eq:smd}
 \end{equation}
 
 \begin{table}[H]
@@ -191,7 +196,7 @@ The stellar mass density \citep{labbe2023} evolves as:
 \caption{JWST stellar mass density vs redshift.}
 \begin{tabular}{cccc}
 \hline
-$z$ & JWST & $\Lambda$CDM & This work \\
+$z$ & JWST (log) & $\Lambda$CDM & This work \\
 \hline
 7.0 & $10^{7.36}$ & $10^{7.15}$ & $10^{6.27}$ \\
 10.5 & $10^{6.20}$ & $10^{5.50}$ & $10^{5.91}$ \\
