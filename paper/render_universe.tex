@@ -107,11 +107,14 @@ The cosmological constant emerges as $\Lambda = 3(\dot{\mathcal{R}}/\mathcal{R})
 \subsection{The Vacuum Catastrophe}
 \label{sec:vacuum}
 
-The quantum vacuum energy density, integrated to infinite momentum, diverges. With finite resolution $\mathcal{R}$, the UV cutoff is set by the coarse-grained pixel scale $\ell_P \cdot \mathcal{R}$:
+The quantum vacuum energy density, integrated to infinite momentum, diverges. We postulate that the vacuum energy \emph{that gravitates} is bounded by the coherence scale of the causal render:
 \begin{equation}
 \rho_{\rm vac} = \frac{1}{2\pi^2}\int_0^{2\pi/(\ell_P\mathcal{R})} k^2\sqrt{k^2+m^2}\,dk \approx \frac{2\pi^2 M_{\rm Pl}^4}{\mathcal{R}^4}
+\label{eq:rhovac}
 \end{equation}
-The maximum resolved momentum is $\Lambda = 2\pi/(\ell_P\mathcal{R}) = 2\pi M_{\rm Pl}/\mathcal{R}$.\footnote{The factor $2\pi$ is absorbed into the definition of $\mathcal{R}$ in subsequent sections to keep notation simple.} Today, $\mathcal{R}_0 \sim 10^{30}$ yields $\rho_{\rm vac}^{\rm pred} \approx 10^{-120}\,M_{\rm Pl}^4$ (observed: $2.3\times10^{-122}\,M_{\rm Pl}^4$), resolving the 120-order discrepancy.
+with effective momentum bound $k_{\rm max} = 2\pi M_{\rm Pl}/\mathcal{R}$.\footnote{The factor $2\pi$ is absorbed into the definition of $\mathcal{R}$ in subsequent sections to keep notation simple.} Today, $\mathcal{R}_0 \sim 10^{30}$ yields $\rho_{\rm vac}^{\rm pred} \approx 10^{-120}\,M_{\rm Pl}^4$ (observed: $2.3\times10^{-122}\,M_{\rm Pl}^4$), removing the 120-order discrepancy up to a factor of $\sim 40$.
+
+{\bf What this ansatz is and is not.} The bound $k_{\rm max} \sim M_{\rm Pl}/\mathcal{R}_0 \sim 10^{-11}$~eV must \emph{not} be read as a cutoff on laboratory quantum field theory, which is verified to TeV scales; modes above $k_{\rm max}$ exist and interact, but their zero-point energy is postulated not to source the effective $T_{\mu\nu}^{(\mathcal{R})}$. This is an infrared/holographic regularization of the \emph{gravitating} vacuum energy, in the spirit of the Cohen--Kaplan--Nelson bound $\rho_{\rm vac} \lesssim M_{\rm Pl}^2 L^{-2}$ for a region of size $L$ \citep{cohen1999} and of holographic entropy bounds \citep{bousso2002}: taking $L \sim R_H$ gives $\rho \sim M_{\rm Pl}^2 H_0^2 \sim 10^{-122}\,M_{\rm Pl}^4$, numerically consistent with our $\mathcal{R}^{-4}$ scaling. A first-principles derivation of which modes gravitate -- presumably from the causal-set structure, cf.\ the everpresent-$\Lambda$ program \citep{sorkin2005,ahmed2004} -- is an open problem of the framework; Eq.~(\ref{eq:rhovac}) is an ansatz whose independent support is the DESI-facing dynamics of Section~4, not a derivation from quantum field theory.
 
 \subsection{Temperature as Sampling Noise}
 \label{sec:temp}
@@ -133,10 +136,11 @@ Since $\rho_{\rm DE} \propto \mathcal{R}^{-4}$, the equation of state is:
 \begin{equation}
 w(a) = -1 + \frac{4}{3}\frac{d\ln\mathcal{R}}{d\ln a}
 \end{equation}
-This follows from $w = -1 + (1/3)d\ln\rho/d\ln a$ and $\rho_{\rm DE} \propto \mathcal{R}^{-4}$. Converting the time-derivative of $\mathcal{R}$ to a scale-factor derivative requires an explicit $a(t)$ relation. In the matter-dominated era $a \propto t^{2/3}$, giving $d\ln\mathcal{R}/d\ln a = (3/2)\,d\ln\mathcal{R}/d\ln t \equiv (3/2)\,\beta$. With $\mathcal{R} \propto t^{\beta}$ and $\beta_0 \approx 0.1$ today:
+This follows from $w = -1 + (1/3)d\ln\rho/d\ln a$ and $\rho_{\rm DE} \propto \mathcal{R}^{-4}$. Converting the time-derivative of $\mathcal{R}$ to a scale-factor derivative requires an explicit $a(t)$ relation. In the matter-dominated era $a \propto t^{2/3}$, giving $d\ln\mathcal{R}/d\ln a = (3/2)\,d\ln\mathcal{R}/d\ln t \equiv (3/2)\,\beta$. With $\mathcal{R} \propto t^{\beta}$:
 \begin{equation}
-w_0 = -1 + 2\beta_0 \approx -0.8
+w_0 = -1 + 2\beta_0
 \end{equation}
+Two independent estimates of $\beta_0$ do not currently agree, and we state this openly. Direct reconstruction of $\mathcal{R}(z)$ from the DESI DR2 BAO distances (repository script 02) gives $\beta_{\rm eff} \approx 0.02$--$0.07$ at low redshift, corresponding to $w_0 \approx -0.96$ to $-0.86$. The published DESI $w_0w_a$CDM fit, $w_0 = -0.727 \pm 0.067$ \citep{desi2025}, instead implies $\beta_0 \approx 0.14 \pm 0.03$. Both share the qualitative signature of the framework ($\beta_0 > 0$, hence $w_0 > -1$, with $\beta$ decreasing from $\approx 0.5$ in the matter era, hence $w_a < 0$), but the factor $\sim$2--3 discrepancy in $\beta_0$ between reconstruction and parametric fit is unresolved; it may reflect the inadequacy of the $w_0$--$w_a$ parameterization for this model, or a genuine shortcoming of the framework. A full likelihood fit of $\mathcal{R}(t)$ to the BAO data is required to settle it.
 {\bf Caveat:} The conversion $a \propto t^{2/3}$ is standard FRW. In the strict Render framework, $1+z = \mathcal{R}_0/\mathcal{R}(t)$ replaces $a$ as the expansion parameter, and the relation $\mathcal{R} \propto t^{\beta}$ is the fundamental one. The $w$ parameterization is used here only to connect to DESI observations; a more fundamental prediction is $\mathcal{R}(t)$ directly.
 
 \subsection{DESI DR2 Comparison}
@@ -151,6 +155,7 @@ DESI DR2 \citep{desi2025} measured BAO from 14 million galaxies ($0.1<z<4.2$). T
 The causal halo's velocity profile:
 \begin{equation}
 V_{\rm halo}^2(R) = V_{\rm flat}^2 \frac{(R/R_c)^2}{1 + (R/R_c)^2}
+\label{eq:causal-halo}
 \end{equation}
 For $R \ll R_c$: $V_{\rm halo} \propto R$; for $R \gg R_c$: $V_{\rm halo} \to V_{\rm flat}$.
 
@@ -181,7 +186,15 @@ The causal profile wins in 7 of 8 test galaxies. The single NFW winner (UGC02885
 \section{Cosmic Structure from Resolution}
 \label{sec:structure}
 
-{\bf Postulate 6 (Inhomogeneous Resolution).} The resolution $\mathcal{R}(t,\mathbf{x})$ varies locally with matter density: $\partial\mathcal{R}/\partial t \propto \rho(\mathbf{x},t)/\rho_c(t)$.
+{\bf Postulate 6 (Inhomogeneous Resolution via Link Counting).} The spatial variation of the resolution field is sourced by matter through the causal \emph{link} structure of the underlying causal set. Writing $\psi(x) \equiv \ln[\mathcal{R}(x)/\bar{\mathcal{R}}(t)]$, we define
+\begin{equation}
+\psi(x) = \mu \, K \sum_{s \,\in\, \mathrm{matter}} L(s, x),
+\qquad K = \frac{1}{2\pi}\sqrt{\frac{\rho_c}{6}},
+\label{eq:post6-links}
+\end{equation}
+where $L(s,x)=1$ if $(s,x)$ is a link (a causal relation with no intermediate element), $K$ is the normalization of the discrete retarded propagator of Johnston \citep{johnston2008}, $\rho_c$ is the sprinkling density, and $\mu$ a coupling constant. This definition is intrinsically non-local -- links concentrate on the past light cone \citep{myrheim1978,bombelli1987} -- and inherits the program of recovering geometry from causal order and counting \citep{benincasa2010}.
+
+Two properties make this the correct formulation. First, numerical sprinkling experiments (repository experiments 12--13) show that the link-counted $\psi$ reproduces the Newtonian kernel quantitatively: potential $\propto 1/r$ (measured exponent $-0.984\pm0.031$), force $\propto 1/r^2$ ($-2.03\pm0.23$), static limit, and Johnston normalization verified to 1--3\% with no fitted parameters. Second, the same experiments show that the naive alternative -- counting all elements of the causal past interior -- fails: it has no static limit and yields a distance-independent force ($1/r^2$ excluded at $>500\sigma$), and is therefore \emph{discarded} as a definition of $\mathcal{R}$. Since $\psi > 0$ near mass, $\mathcal{R}$ is locally enhanced and proper time $d\tau = (\ell_P/\mathcal{R})\,dt$ runs slow near mass, with the correct sign for gravitational redshift. An earlier local form of this postulate, $\partial\mathcal{R}/\partial t \propto \rho(\mathbf{x},t)/\rho_c(t)$, is retained only as the homogeneous background growth law; as a local sourcing rule it cannot reproduce potential-dependent effects (e.g.\ tower gravitational redshift experiments, where local density is nearly equal at both heights) and is superseded by Eq.~(\ref{eq:post6-links}).
 
 \subsection{JWST: Massive Galaxies at High Redshift}
 The stellar mass density \citep{labbe2023,harvey2024,boylankolchin2023} follows from the resolution scaling. From Postulate 3 ($1+z = \mathcal{R}_0/\mathcal{R}$):
@@ -283,7 +296,9 @@ MOND \citep{milgrom1983} & $a_0 = cH_0/2\pi$ & $a_0$ as render refresh rate \\
 \item The dynamics of $\mathcal{R}(t)$ require a first-principles derivation from the causal set action or a stochastic growth law.
 \item The transition from $\mathcal{R}$ inhomogeneity to Einstein's equations requires a full action principle.
 \item {\bf The ISW coupling constant $A=0.0024$ is empirically calibrated.} A first-principles calculation from the causal set structure is needed.
-\item The SPARC comparison is currently an eight-galaxy pilot test; a publishable claim requires the full sample, measurement errors, nuisance parameters, and Bayesian or information-criterion model comparison.
+\item The SPARC comparison is currently an eight-galaxy pilot test; a publishable claim requires the full sample, measurement errors, nuisance parameters, and Bayesian or information-criterion model comparison. Moreover, the causal-halo profile of Eq.~(\ref{eq:causal-halo}) is a \emph{cored} profile, and cored profiles are known to outperform NFW on dwarf and low-surface-brightness rotation curves independently of any specific theory (the core--cusp problem; \citealp{deblok2010}); the 7/8 result therefore does not by itself discriminate this framework from other cored alternatives.
+\item {\bf The causal-halo profile is not derived from Postulate 6.} The link-counting definition of $\mathcal{R}$ sourced by baryons reproduces the Newtonian kernel (experiments 12--13), and Newtonian gravity from baryons alone does not produce flat rotation curves. Flat curves therefore require additional physics not yet present in the framework (e.g.\ inhomogeneous-sprinkling effects or back-reaction of $\mathcal{R}$ gradients), and Eq.~(\ref{eq:causal-halo}) must currently be read as an empirical fitting function pending derivation.
+\item {\bf The Bullet Cluster.} Any resolution field sourced solely by baryonic matter faces the same objection as baryon-sourced modified gravity: in merging clusters the weak-lensing mass peaks separate from the dominant baryonic component (the X-ray gas) and track the galaxies \citep{clowe2006}. Explaining this requires a dynamical rule for how collisions affect link counting differently for gas and galaxies -- no such rule is currently formulated. Until it is, the framework has no account of merging-cluster lensing.
 \item Quantum mechanics is not addressed.
 \end{enumerate}
 
@@ -343,6 +358,18 @@ All data and code are publicly available at \url{https://github.com/Editorenbici
 \bibitem[Boylan-Kolchin(2023)]{boylankolchin2023} M.~Boylan-Kolchin, Nature Astronomy {\bf 7}, 731 (2023).
 
 \bibitem[Sachs and Wolfe(1967)]{sachs1967} R.~Sachs and A.~Wolfe, ApJ {\bf 147}, 73 (1967).
+
+\bibitem[Johnston(2008)]{johnston2008} S.~Johnston, Class. Quantum Grav. {\bf 25}, 202001 (2008), arXiv:0806.3083.
+
+\bibitem[Myrheim(1978)]{myrheim1978} J.~Myrheim, CERN preprint TH-2538 (1978).
+
+\bibitem[Benincasa and Dowker(2010)]{benincasa2010} D.~M.~T.~Benincasa and F.~Dowker, Phys. Rev. Lett. {\bf 104}, 181301 (2010), arXiv:1001.2725.
+
+\bibitem[Cohen et al.(1999)]{cohen1999} A.~G.~Cohen, D.~B.~Kaplan and A.~E.~Nelson, Phys. Rev. Lett. {\bf 82}, 4971 (1999).
+
+\bibitem[de Blok(2010)]{deblok2010} W.~J.~G.~de Blok, Adv. Astron. {\bf 2010}, 789293 (2010).
+
+\bibitem[Clowe et al.(2006)]{clowe2006} D.~Clowe et al., ApJ {\bf 648}, L109 (2006).
 
 \end{thebibliography}
 
