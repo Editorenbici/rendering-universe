@@ -75,8 +75,7 @@ print("CONCLUSION: JWST excess at high z is expected")
 print("in the Render framework, problematic for LCDM.")
 
 # Guardar tabla
-outdir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "paper", "tables"))
-os.makedirs(outdir, exist_ok=True)
+outdir = os.path.dirname(os.path.abspath(__file__))
 outpath = os.path.join(outdir, "jwst_smd.csv")
 with open(outpath, "w") as f:
     f.write("z,JWST_SMD,LCDM_SMD,Render_SMD,diff_JWST_LCDM\n")

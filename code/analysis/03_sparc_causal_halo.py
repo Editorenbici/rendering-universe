@@ -133,9 +133,8 @@ print("NFW wins in", sum(1 for r in results if r[-1]=="NFW"), "/", len(results))
 print("Causal halo has 1 fewer free parameter (Rc only, no concentration)")
 print()
 
-# Save results
-outdir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "paper", "tables"))
-os.makedirs(outdir, exist_ok=True)
+# Save results to the script's own directory
+outdir = os.path.dirname(os.path.abspath(__file__))
 outpath = os.path.join(outdir, "sparc_fit_results.csv")
 with open(outpath, "w", newline="") as f:
     w = csv.writer(f)
