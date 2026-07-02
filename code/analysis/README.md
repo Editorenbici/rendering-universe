@@ -19,6 +19,7 @@ which results support the paper and which are exploratory or superseded.
 |---|---|
 | `12_sprinkling_pound_rebka.py` + `12b_replica_E4.py` | 2D: causal-past counting = Johnston retarded solution, 0.2–0.4% agreement |
 | `13_sprinkling_4d_kernel.py` + `13b_verificacion_F3.py` | 4D decisive test: **link counting reproduces Newton; raw causal-past counting refuted** |
+| `15_rt_likelihood.py` | Direct R(t)~t^β likelihood vs official DESI DR2 BAO (13 pts + cov): **β₀ = 0.055 (+0.045/−0.050); estimator tension resolved; ΛCDM disfavored by only Δχ²≈1**. See `RESULTS_15.md` |
 
 See `RESULTS_12_13.md` for full pre-registrations, criteria and outcomes.
 These experiments are the basis of the link-counting Postulate 6.

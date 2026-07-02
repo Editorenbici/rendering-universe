@@ -27,15 +27,19 @@ print("DESI DR2 -> R(z) RECONSTRUCTION")
 print("="*72)
 print()
 
-# DESI DR2 BAO data - D_H/r_d from Table IV (r_d-constrained fit)
-# Source: DESI Collaboration, arXiv:2503.14738 (2025)
+# DESI DR2 BAO data - D_H/r_d, official likelihood release values
+# Source: DESI Collaboration, arXiv:2503.14738 (2025); verified against
+# github.com/CobayaSampler/bao_data/desi_bao_dr2 (2026-07-01).
+# NOTE (data integrity): a previous "fix" had replaced these with
+# unphysical values (D_H/r_d INCREASING with z, i.e. H(2.33) < H0).
+# Restored to the official values. D_H/r_d must DECREASE with z.
 desi_data = [
-    ("LRG1",      0.510, 21.34, 0.62),
-    ("LRG2",      0.706, 23.29, 0.67),
-    ("LRG3+ELG1", 0.934, 26.43, 0.99),
-    ("ELG2",      1.321, 29.24, 1.52),
-    ("QSO",       1.484, 30.72, 1.69),
-    ("Lya",       2.330, 35.87, 2.42),
+    ("LRG1",      0.510, 21.863, 0.429),
+    ("LRG2",      0.706, 19.455, 0.334),
+    ("LRG3+ELG1", 0.934, 17.641, 0.201),
+    ("ELG2",      1.321, 14.176, 0.225),
+    ("QSO",       1.484, 12.817, 0.518),
+    ("Lya",       2.330,  8.632, 0.101),
 ]
 
 # Constants
@@ -124,12 +128,14 @@ The Render framework predicts w0 > -1 because:
   => rho_DE(r) ~ R^(-4) decays slower than LCDM expectation
   => w0 > -1  (consistent with DESI direction)
 
-Beta values from direct R(z) reconstruction:
-  Low z (DESI): beta ~ 0.02-0.07
-  Matter era:   beta ~ 0.5
-  This evolution of beta with time is expected as the universe
-  transitions from matter-dominated (fast refinement) to
-  dark-energy-dominated (slow refinement).
+Beta estimates:
+  Per-bin R(z) reconstruction (this script): scatter ~ -0.02..+0.07
+  JOINT LIKELIHOOD (experiment 15, official 13-pt DESI DR2 + cov):
+    beta_0 = +0.055 (68%: +0.005..+0.100)  ->  w0_eff = -0.92
+    LCDM (beta=0) disfavored by only dchi2 ~ 1 (BAO alone)
+  Matter era: beta ~ 0.5 (theoretical expectation)
+  The transition matter-era -> today is expected as refinement
+  slows when matter dilutes.
 """)
 
 repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
