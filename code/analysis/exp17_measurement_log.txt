@@ -1,0 +1,44 @@
+======================================================================
+EXP 17: STACKING DESIVAST x PLANCK
+======================================================================
+
+Voids no-edge: 1489 | z: 0.055-0.234 (mediana 0.194)
+L=R_EFF: mediana 22.4 Mpc | theta_v mediana 1.67 deg
+H_EMP stack esperado: -18.9 uK | H_H2 stack esperado: -62.1 uK | H_LCDM: ~-1.5 uK
+
+Cargando mapa SMICA...
+
+--- V1: control nulo (posiciones aleatorias en footprint) ---
+  nulos 100/1000: sigma parcial 0.879 uK
+  nulos 200/1000: sigma parcial 0.943 uK
+  nulos 300/1000: sigma parcial 0.935 uK
+  nulos 400/1000: sigma parcial 0.934 uK
+  nulos 500/1000: sigma parcial 0.909 uK
+  nulos 600/1000: sigma parcial 0.906 uK
+  nulos 700/1000: sigma parcial 0.906 uK
+  nulos 800/1000: sigma parcial 0.907 uK
+  nulos 900/1000: sigma parcial 0.915 uK
+  nulos 1000/1000: sigma parcial 0.920 uK
+nulos: media +0.00 uK, sigma 0.92 uK (1000 sets)
+V1: PASA
+
+--- V2: inyeccion de -10 uK sintetica ---
+recuperado: -9.12 +/- 0.95 uK (esperado ~-10; n_parches=1019)
+V2: PASA
+
+======================================================================
+MEDICION REAL (pre-registrada, una sola vez)
+======================================================================
+
+dT_stack = +1.24 uK (sigma_null = 0.92, sigma_boot = 1.46; 460 voids con parche valido)
+Significancia de deteccion: 1.3 sigma
+
+Hipotesis     pred (uK)  |obs-pred|/sigma    veredicto
+LCDM               -1.5               3.0   COMPATIBLE
+EMPIRICA          -18.5              21.4     EXCLUIDA
+H2                -61.7              68.3     EXCLUIDA
+
+--- Robustez ---
+  NGC: +1.12 uK (sigma ~ 0.92, n=458)
+  R_EFF>mediana: +1.00 uK (sigma ~ 1.35, n=215)
+DONE
