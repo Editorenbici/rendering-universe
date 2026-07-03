@@ -75,3 +75,15 @@ Si no está publicado exactamente así, ¡tu paper técnico gana el resultado ce
   condicionada al chequeo pendiente contra sus curvas.
 - El archivo original de Grok venia corrupto (texto de chat pegado,
   incluia el encabezado de otro archivo); truncado.
+
+## COMPUERTA CERRADA (Fable, 2026-07-03 — script 23)
+El chequeo pendiente contra el objeto de Glaser-Surya esta HECHO:
+en diamante causal 4D (T_D=10, rho=1), la integral exacta
+<N_0> = rho^2 Int Int e^{-rho V} da 27,602 +- 95 y el conteo exacto de
+links de nuestra maquinaria da 27,537 +- 876 — acuerdo a 0.07 sigma.
+El pipeline queda AMARRADO al baseline publicado. La aproximacion de
+banda tipo-slab sobreestima +21% en el diamante (costo de clipping de
+borde, medido): las constantes de diamante y slab difieren por
+geometria, como se anticipo. Cadena de custodia del Paper A completa:
+N_0 Glaser-Surya (reproducido) -> ley slab pi*sqrt6*sqrt(rho)*T^2
+(18b, 5%) -> transitorio FRW con asintota de area (18c/18d).
