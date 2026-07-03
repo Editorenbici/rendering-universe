@@ -53,12 +53,12 @@ print("=" * 70)
 
 # 1) 18a cacheado
 print("\n[1/3] Control 2D (18a) — resultados pre-documentados, O(N²) cacheado")
-print("      v(T) log ✔  |  v(N) plana ✔")
+print("      v(T) log [OK]  |  v(N) plana [OK]")
 report["controls"]["18a_lema_valencia"] = {
     "exit_code": 0,
     "stdout": (
-        "Cached: v(T)=8.3/9.3/10.6/12.9 para T=5/10/20/40 (log ✔); "
-        "v(N)=10.2/10.0/9.3/9.7 para N 7.5k->60k (plana ✔)."
+        "Cached: v(T)=8.3/9.3/10.6/12.9 para T=5/10/20/40 (log [OK]); "
+        "v(N)=10.2/10.0/9.3/9.7 para N 7.5k->60k (plana [OK])."
     ),
     "stderr": "",
 }
