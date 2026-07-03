@@ -22,3 +22,9 @@ del más simple y el test "1/3 no nace nunca" son aritmética exacta —
 con floats esas propiedades se rompen o se vuelven aproximadas.
 pyinterval queda anotada como opción SOLO si algún día hace falta un
 modo float de alto rendimiento a gran escala. 21b se queda como está.
+
+## Segunda pasada de Grok (2026-07-03, tarde)
+Evaluación revisada: pyinterval "disponible y funcional pero no la más
+activa"; IntvalPy (2023) y mpmath.iv (1.4.0) más frescas para proyectos
+nuevos. NO cambia la decisión de diseño de arriba: 21b no migra a
+ninguna (todas float-based; ℕ_R exige diádicos exactos).
