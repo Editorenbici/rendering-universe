@@ -55,3 +55,36 @@ Archivar esta nota como dirección prometedora para rama B. Si se quiere profund
 - Relacionado con falsadores y lo que sobrevive (links-Newton, β_BAO, ∞=1).
 
 Si se encuentra un paper más específico que haga el puente explícito, actualizar.
+
+---
+
+## AUDITORÍA (Fable, 2026-07-03 — nota barrida sin auditar en bea2886, deuda saldada)
+
+**Citas verificadas:**
+- Ahmed-Dodelson-Greene-Sorkin, PRD 69, 103523 (2004),
+  astro-ph/0209274 ✓ (ya en la bibliografía del paper).
+- Alvarez, Graef & Brandenberger, "Back-Reaction of Super-Hubble
+  Fluctuations, Late Time Tracking and Recent Observational Results",
+  Symmetry 17(9), 1507 (2025), arXiv:2502.17395 ✓ VERIFICADA — real,
+  y además comparan contra BAO radiales de DESI, exactamente nuestro
+  dataset del Exp 15.
+
+**Contexto que la nota no tiene (fue escrita 2026-07-02, antes de los
+Exps 19 y 18d):**
+1. El Exp 19 desfavoreció la Λ everpresent con correlación ~Hubble
+   (R1 < 1%), pero dejó pre-registrada la escapatoria EXACTA que esta
+   nota describe: "para sobrevivir necesita tiempos de correlación
+   >> Hubble en z<2.4". Las correlaciones súper-Hubble SON esa
+   escapatoria — consistente, no contradictorio.
+2. El precio, ya anotado en RESULTS_19: una Λ con correlación
+   súper-Hubble es efectivamente SUAVE en la ventana BAO —
+   fenomenológicamente indistinguible hoy de las ramas A/C. Es un
+   rescate de ontología (por qué fluctúa) más que de observables.
+3. El paper de Brandenberger et al. da el siguiente paso natural si
+   se retoma: su parametrización (Λ = constante + oscilante) es
+   fiteable con la maquinaria del Exp 15 contra los mismos 13 puntos
+   — un "Exp 19b" bien definido, con la ventaja de que ellos ya
+   hicieron la comparación preliminar y se puede contrastar.
+
+**Estado:** dirección legítima, correctamente archivada como
+prometedora-no-urgente. Prioridad por debajo del Paper A y del Exp 22.
