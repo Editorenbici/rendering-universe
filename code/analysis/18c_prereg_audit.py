@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-ATENCIÓN: este wrapper usa solo ASCII para evitar EncodingError en Windows cp1252.
-"""
+"""ATENCION: wrapper de auditoria Exp 18 (ver 18c_frw_valencia.py).
+Fix 2026-07-04 (Fable): el docstring del modulo habia quedado sin las
+comillas de apertura tras una edicion -> SyntaxError en el parseo; el
+run anterior NO ejecuto ninguna medicion (blinding intacto)."""
 import subprocess, sys, json, os, re
 from datetime import datetime
 from pathlib import Path
