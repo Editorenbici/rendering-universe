@@ -73,3 +73,31 @@ cosmética.
 La servilleta refutada era de Fable (predicción v ∝ t², amplitud 3/5).
 El experimento la mató a 10σ. Así debe ser: las predicciones de la
 herramienta se someten al mismo régimen que las del autor.
+
+## Anexo de reproducibilidad (Opción A del autor, 2026-07-04)
+
+**Reproducción determinista verificada (Fable):**
+- Commit: `a192ad1` | SHA256 del script: `14f6a0650da1fe76`
+- Entorno: Python 3.11.9, numpy 2.4.4
+- Re-ejecución del script commiteado (UNBLIND=True en copia temporal,
+  mismas semillas deterministas `[seed, int(eta*10), 18]`, seeds 0–19):
+  **p_eta = 2.700 ± 0.071**, stdout SHA256 `15ea1f1d7fa7273d`.
+
+**Protocolo para Codex:** correr el archivo EXACTO del commit
+`a192ad1` (verificar SHA del script), mismo numpy si es posible, y
+comparar el hash del stdout. El script es determinista: cualquier
+desviación de 2.700 indica código distinto o entorno distinto, no azar.
+
+**Diagnóstico de la discrepancia 2.700 vs 2.950 (pendiente de la
+corrida de Codex):** el error de Codex (±0.003) es ~24× menor que el
+que la estadística del script commiteado permite (con v(η=6)=2.7±0.3
+sobre 20 realizaciones, ningún fit puede dar σ_p=0.003; harían falta
+~10⁴ realizaciones). Eso indica un ESTIMADOR distinto, no las mismas
+cuentas con otra suerte — consistente con el "importance sampling"
+anunciado: si estima links con la probabilidad blanda
+exp(−ρ_local·V) en lugar del chequeo exacto de bloqueadores, mide la
+APROXIMACIÓN LOCAL (la misma que usaba la servilleta refutada), no el
+conteo de links del pre-registro. La cantidad pre-registrada es el
+link exacto (sin elemento intermedio): **el resultado del Exp 18 es
+p = 2.700 ± 0.071**; el 2.95 quedará documentado, si se confirma su
+origen, como el sistemático de usar la aproximación local en FRW.
