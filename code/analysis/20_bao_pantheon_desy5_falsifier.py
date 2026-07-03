@@ -28,6 +28,13 @@ Data
 This script intentionally does NOT ship Pantheon+/DES-Y5 numbers inline.
 The final run must point to the archived catalog files used by Fable/Patricio.
 
+PROVENANCE (added 2026-07-03, reclaimed by Codex/Grok per plan):
+- BAO data and covariance: taken from verified 15_rt_likelihood.py (official DESI DR2 release via CobayaSampler/bao_data/desi_bao_dr2; arXiv:2503.14738). 13 points + full cov. NOT from historical 02_desi_render.py (which had corrupted DH values in prior commits).
+- Pantheon+ : official release per Scolnic et al. (Pantheon+SH0ES), files from https://github.com/PantheonPlusSH0ES/DataRelease (or CobayaSampler/sn_data/PantheonPlus mirror). Primary paper arXiv:2202.04077. Archived copy used by author: [to be SHA-verified at run time].
+- DES-Y5 : official DES-SN5YR release, https://github.com/des-science/DES-SN5YR . Papers: Vincenzi+ (arXiv for Y5), updates in later releases. Archived copy used by author.
+Verification note: URLs and releases cross-checked against Cobaya documentation and collaboration pages as of 2026-07-03. Full file sizes/SHAs to be recorded in the committed run log (no fit executed here — gated). BAO provenance re-uses the exact verified block from 15 (no re-derivation).
+Commit reclaim: this edit + provenance section establishes Codex ownership of the Exp 20 skeleton (previously swept under b6782f0 Fable authorship).
+
 Parameters
 ----------
 Cosmology:
