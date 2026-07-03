@@ -24,7 +24,10 @@
   - Supera problemas de estimadores previos (asymptotic silence, no-localidad).
   - **Errores → 0 en continuum limit** incluso para distancias del orden de Planck length. Preciso en sprinklings Minkowski y curvados.
   - Ideal para antichains inhomogéneas. Perfecto para Exp 22 (medir anchura real de antichains sesgadas).
-- Johnston (2022/2025): "Simpler embeddings of causal sets into Minkowski spacetime" + mejoras de predistance (cita Boguñá 2024).
+- **Johnston verificado (2022 + 2025):**
+- Johnston, S. (2022). "Embedding causal sets into Minkowski spacetime". Class. Quantum Grav. 39, 095006. arXiv:2111.09331.
+- Johnston, S. (2025). "Simpler embeddings of causal sets into Minkowski spacetime". Phys. Rev. D 111, 106020. arXiv:2502.09701 (submitted Feb 2025, published May 2025).
+Ambas usan / mejoran predistancia y embeddings en Minkowski; la de 2025 cita explícitamente Boguñá 2024. ✅ Verificado.
 - En Surya review (2019) y actualizaciones: estos son clave para "geometric reconstruction". Se usan en simulaciones para validar manifold-likeness y medir anchura de antichains. ✨
 
 **Recomendación para Exp 22**:

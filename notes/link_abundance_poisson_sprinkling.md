@@ -55,6 +55,8 @@
 
 Si no está publicado exactamente así, ¡tu paper técnico gana el resultado central! 🚀
 
+**Actualización de prioridad (2026-07-03):** Ver nota dedicada `priority_check_frw_interval_abundances.md`. No se encontró medición del transitorio FRW específico post-2013. Claim resiste como "primera medición explícita".
+
 ---
 
 ## AUDITORIA (Fable, 2026-07-03)
