@@ -39,3 +39,19 @@ Datos (ratios v/(0.513η²) siguen convergiendo: 0.146 → 0.442 en η=6→40).
    (Exp 19 + el t^−0.22 medido del Exp 15).
 4. **Nuevo abierto:** derivar el factor ½ de la variación de a en la
    banda (lápiz; si sale, la amplitud FRW queda cerrada).
+
+## ABIERTO #4 CERRADO (Fable, 2026-07-03): el "factor ½" está derivado
+
+La corrección que la servilleta omitía: P(link) depende de a⁴
+PROMEDIADO sobre el intervalo candidato→sonda con el peso de volumen
+del diamante 4D, w(s) = 32·min(s,1−s)³ — no de a⁴ en el candidato
+(el extremo diluido, que subestima el bloqueo). Con eso:
+
+  A_corr/A_napkin = 30·∫₀¹ x(1−x)⁸/√⟨a⁴⟩(x) dx = 0.4991
+  Medido (18d):    0.256/0.513 = 0.4990
+  Amplitud FRW corregida: 0.2560 vs 0.256 medida — acuerdo a 4 cifras.
+
+Nota anti-numerología: el valor NO es exactamente ½ (es 0.4991...);
+la cercanía a ½ era accidental. La amplitud FRW queda CERRADA
+analíticamente: la cadena Minkowski (5%) → FRW asíntota (0.04%) →
+transitorio está completa para el Paper A.
