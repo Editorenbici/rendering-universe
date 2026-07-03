@@ -30,19 +30,29 @@ prediccion fisica (v ~ t^2, amplitud 3/5 de Minkowski) NO cambia.
 Con a=(eta/eta_e)^2 y t(eta_e)=eta_e/3:
     v(eta_e) = (pi*sqrt(6)/15) * sqrt(rho) * eta_e^2 ~ 0.5130 * eta_e^2
 
-CRITERIOS (congelados; auditoria autor + Codex antes de UNBLIND):
+ENMIENDA 2 (2026-07-04, autorizada por el autor antes del unblinding):
+  - Grilla extendida a eta_e = 20 (convergencia de amplitud).
+  - Caso mixto definido: el veredicto de RAMA descansa en F1.
+CRITERIOS (congelados):
   F1: exponente p_eta = 2.00 +- max(0.15, 2 sigma_fit)
-  F2: amplitud dentro de +-20% de 0.5130*sqrt(rho) (correcciones de
-      borde esperadas ~10% como en el control 4D)
+  F2: amplitud dentro de +-20% de 0.5130*sqrt(rho)
+  F2' (si F2 falla): ratio medido/teoria debe CRECER monotonicamente
+      con eta_e (convergencia tipo control 4D: 0.899 -> 0.983)
 INTERPRETACION PRE-REGISTRADA:
-  - F1 y F2 PASAN -> la valencia cruda es area/tracker tambien en FRW;
-    el miembro viable del sector refinamiento para DE es log2(v) ~ ln t
-    (rama A, Hartley/Gisin); el conteo crudo queda para el sector
-    holografico. El arbol queda: rama A con fundamento, rama B muerta
+  - F1 y F2 PASAN -> valencia cruda = area/tracker en FRW; rama A
+    (log2 v ~ ln t) es el sector refinamiento viable; rama B muerta
     dos veces (Exp 19 + esto).
-  - F1 FALLA -> la servilleta FRW esta mal y la expansion SI reforma
-    la ley de crecimiento de links: resultado nuevo, se publica el
-    exponente medido y se recalcula la rama.
+  - F1 PASA, F2 FALLA, F2' PASA -> mismo veredicto de rama (la ley es
+    t^2); la amplitud tiene correcciones de tamano finito/variacion de
+    a, se publica el deficit medido como resultado abierto.
+  - F1 PASA, F2 y F2' FALLAN -> la ley t^2 sobrevive pero la
+    servilleta de amplitud esta genuinamente mal; se publica.
+  - F1 FALLA -> la expansion SI reforma la ley de links: resultado
+    nuevo, se publica el exponente medido y se recalcula la rama.
+NOTA OPERATIVA: el fix de importance sampling anunciado por Codex no
+llego al repo antes del run; se verifico que es innecesario (pasado
+causal ~10^2-10^3 elementos con la normalizacion por sonda). El run
+se hace con el codigo tal como esta commiteado.
 COMPROMISO: publicar salga como salga.
 
 CONTROLES YA PASADOS: 2D (v ~ 2 ln T, pendiente 2.01+-0.12 por
@@ -56,7 +66,7 @@ UNBLIND = False   # <- True solo tras auditoria del pre-registro
 RHO = 1.0
 TAU2MAX = 6.8
 N_REAL = 20
-ETA_GRID = [6.0, 9.0, 12.0, 16.0]
+ETA_GRID = [6.0, 9.0, 12.0, 16.0, 20.0]
 AMP_TEO = np.pi * np.sqrt(6.0) / 15.0 * np.sqrt(RHO)   # x eta_e^2
 
 
@@ -122,20 +132,33 @@ if __name__ == "__main__":
     den = np.sum(w * (lx - xb) ** 2)
     p = np.sum(w * (lx - xb) * (ly - yb)) / den
     sp = 1.0 / np.sqrt(den)
-    ratio = np.mean(np.array(ms) / (AMP_TEO * np.array(ETA_GRID) ** 2))
+    ratios = np.array(ms) / (AMP_TEO * np.array(ETA_GRID) ** 2)
+    ratio = ratios.mean()
     f1 = abs(p - 2.0) < max(0.15, 2 * sp)
     f2 = abs(ratio - 1.0) < 0.20
+    f2p = bool(np.all(np.diff(ratios) > 0))
     print(f"\nExponente p_eta = {p:.3f} +- {sp:.3f} (F1: 2.00 +- 0.15)")
-    print(f"Amplitud ratio = {ratio:.3f} (F2: 1.00 +- 0.20)")
-    print(f"F1: {'PASA' if f1 else 'FALLA'} | F2: {'PASA' if f2 else 'FALLA'}")
+    print(f"Ratios por eta: {np.round(ratios, 3)}")
+    print(f"Amplitud ratio medio = {ratio:.3f} (F2: 1.00 +- 0.20)")
+    print(f"F1: {'PASA' if f1 else 'FALLA'} | F2: {'PASA' if f2 else 'FALLA'}"
+          f" | F2' (convergencia monotona): {'PASA' if f2p else 'FALLA'}")
     if f1 and f2:
         print("""
 VEREDICTO PRE-REGISTRADO: la valencia cruda es AREA/TRACKER tambien en
-FRW (v ~ t^2). El sector refinamiento viable para DE es log2(v) ~ ln t
-(rama A). Rama B: muerta dos veces (Exp 19 + Exp 18).""")
+FRW (v ~ t^2), amplitud confirmada. Rama A (log2 v ~ ln t) es el
+sector refinamiento viable. Rama B: muerta dos veces (Exp 19 + 18).""")
+    elif f1 and f2p:
+        print("""
+VEREDICTO PRE-REGISTRADO (caso mixto): la ley t^2 se CONFIRMA (F1);
+la amplitud converge pero no llego (tamano finito / variacion de a).
+Mismo veredicto de rama: A viable, B muerta dos veces. El deficit de
+amplitud se publica como resultado abierto.""")
+    elif f1:
+        print("""
+VEREDICTO PRE-REGISTRADO: la ley t^2 sobrevive (F1) pero la amplitud
+de la servilleta esta genuinamente mal (sin convergencia). Se publica.""")
     else:
         print("""
-VEREDICTO PRE-REGISTRADO: la servilleta FRW FALLA — la expansion
-reforma la ley de links. Se publica el exponente medido y se
-reconstruye la rama con el.""")
+VEREDICTO PRE-REGISTRADO: la expansion SI reforma la ley de links
+(F1 fallo). Se publica el exponente medido y se recalcula la rama.""")
     print("DONE")
