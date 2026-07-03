@@ -78,11 +78,20 @@ During matter and radiation domination, $\rho_m/\rho_c \approx 1$, recovering $\
 \subsection{The Effective Metric and Emergent Gravity}
 \label{sec:metric}
 
-If the fundamental metric is Minkowski but observations are made at resolution $\mathcal{R}(x)$, the effective metric emerges as a conformal rescaling:
+If the fundamental metric is Minkowski but observations are made at resolution $\mathcal{R}(x)$, the effective metric was originally taken to be a conformal rescaling:
 \begin{equation}
 g_{\mu\nu}^{\rm (eff)}(x) = \eta_{\mu\nu} \frac{\ell_P^2}{\mathcal{R}(x)^2}
+\label{eq:conformal-metric}
 \end{equation}
-The Ricci curvature tensor for this conformally flat metric is:
+
+{\bf Postulate 3$'$ (Effective Metric, amended 2026-07-04).} The render maps resolution to the effective metric \emph{anisotropically}: clocks respond as $1/\mathcal{R}$ and rulers as $\mathcal{R}$. In the weak field, with $\psi \equiv \ln(\mathcal{R}/\bar{\mathcal{R}})$,
+\begin{equation}
+ds^2 = -e^{-2\psi}\,c^2dt^2 + e^{+2\psi}\,d\mathbf{x}^2,
+\label{eq:disformal}
+\end{equation}
+which yields $\gamma_{\rm PPN}=1$ by construction: gravitational light deflection, lensing and the Shapiro delay are recovered at linear order, and the Cassini bound $\gamma-1=(2.1\pm2.3)\times10^{-5}$ is satisfied. The conformal form of Eq.~(\ref{eq:conformal-metric}) is retained \emph{only} for the homogeneous cosmological background, where the two coincide up to a redefinition of the scale factor; as a local metric it gives $\gamma_{\rm PPN}=-1$ -- null geodesics are conformally invariant, so light would not bend at all -- and is observationally excluded at the $\sim10^5$ level. The amendment must apply universally (photons, gravitons and matter couple to the same $g_{\mu\nu}$), which keeps it consistent with the GW170817 bound $|c_{\rm GW}/c-1|<10^{-15}$. The $\mathcal{O}(\psi^2)$ sector (PPN $\beta$, perihelion precession) and the derivation of the anisotropic response from causal-set counting remain open problems; a covariant completion is deferred to future work.
+
+The curvature formulas below are derived for the conformal metric of Eq.~(\ref{eq:conformal-metric}) and therefore apply to the {\bf homogeneous cosmological background only}; the local weak-field sector is governed by Postulate~3$'$, Eq.~(\ref{eq:disformal}). The Ricci curvature tensor for the conformally flat background metric is:
 \begin{align}
 R_{\mu\nu} &= \frac{2}{\mathcal{R}}\partial_\mu\partial_\nu\mathcal{R} - \frac{1}{\mathcal{R}}\Box\mathcal{R}\,\eta_{\mu\nu} \notag\\
 &\quad - \frac{2}{\mathcal{R}^2}\partial_\mu\mathcal{R}\partial_\nu\mathcal{R} + \frac{1}{\mathcal{R}^2}(\partial\mathcal{R})^2\eta_{\mu\nu}
