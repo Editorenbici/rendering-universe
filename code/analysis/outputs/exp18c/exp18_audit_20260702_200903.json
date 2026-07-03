@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-07-02T20:06:18.905056",
+  "python": "3.11.9",
+  "numpy": "2.4.4",
+  "controls": {
+    "18a_lema_valencia": {
+      "exit_code": 0,
+      "stdout": "Cached: v(T)=8.3/9.3/10.6/12.9 para T=5/10/20/40 (log ✔); v(N)=10.2/10.0/9.3/9.7 para N 7.5k->60k (plana ✔).",
+      "stderr": ""
+    },
+    "18b_control_4d": {
+      "exit_code": 0,
+      "stdout": "======================================================================\nEXP 18 - CONTROL 4D: v(T) en Minkowski 3+1\n======================================================================\nPrediccion: v = 7.695 * T^2\n\n    T        <v>     SEM    teoria   ratio\n    6      249.2     6.0     277.0   0.899\n    9      584.6     9.7     623.3   0.938\n   12     1070.7    14.0    1108.1   0.966\n   16     1937.0    24.4    1970.0   0.983\n\nExponente p = 2.089 +- 0.025   (C1: 2.00 +- 0.10 a 2sigma)\nAmplitud efectiva <v>/T^2 media = 7.285 (C2: 7.695 +- 15%)\nC1: PASA | C2: PASA\nCONTROL 4D VALIDADO - fase FRW habilitada para pre-registro\nDONE",
+      "stderr": ""
+    }
+  },
+  "frw": {
+    "exit_code": 1,
+    "stdout": "======================================================================\nEXP 18 - FASE FRW: v(eta) en era de materia\n======================================================================\nPrediccion: v = 0.5130 * eta^6\n\n  eta        <v>     SEM     teoria   ratio",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\Users\\pc1\\rendering-universe\\code\\analysis\\18c_frw_valencia.py\", line 103, in <module>\n    vs = [valencia_frw(s, eta_e) for s in range(N_REAL)]\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\pc1\\rendering-universe\\code\\analysis\\18c_frw_valencia.py\", line 103, in <listcomp>\n    vs = [valencia_frw(s, eta_e) for s in range(N_REAL)]\n          ^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\pc1\\rendering-universe\\code\\analysis\\18c_frw_valencia.py\", line 62, in valencia_frw\n    rr = r_box * rng.uniform(0, 1, n) ** (1.0 / 3.0)\n                 ~~~~~~~~~~~~~~~~~~~~~^^~~~~~~~~~~~~\nnumpy._core._exceptions._ArrayMemoryError: Unable to allocate 12.0 GiB for an array with shape (1608795520,) and data type float64"
+  },
+  "status": "running"
+}

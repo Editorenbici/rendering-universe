@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-07-02T22:39:14.326477",
+  "python": "3.11.9",
+  "numpy": "2.4.4",
+  "controls": {
+    "18a_lema_valencia": {
+      "exit_code": 0,
+      "stdout": "Cached: v(T)=8.3/9.3/10.6/12.9 para T=5/10/20/40 (log [OK]); v(N)=10.2/10.0/9.3/9.7 para N 7.5k->60k (plana [OK]).",
+      "stderr": ""
+    },
+    "18b_control_4d": {
+      "exit_code": 0,
+      "stdout": "======================================================================\nEXP 18 - CONTROL 4D: v(T) en Minkowski 3+1\n======================================================================\nPrediccion: v = 7.695 * T^2\n\n    T        <v>     SEM    teoria   ratio\n    6      249.2     6.0     277.0   0.899\n    9      584.6     9.7     623.3   0.938\n   12     1070.7    14.0    1108.1   0.966\n   16     1937.0    24.4    1970.0   0.983\n\nExponente p = 2.089 +- 0.025   (C1: 2.00 +- 0.10 a 2sigma)\nAmplitud efectiva <v>/T^2 media = 7.285 (C2: 7.695 +- 15%)\nC1: PASA | C2: PASA\nCONTROL 4D VALIDADO - fase FRW habilitada para pre-registro\nDONE",
+      "stderr": ""
+    }
+  },
+  "frw": {
+    "exit_code": 0,
+    "stdout": "======================================================================\nEXP 18 - FASE FRW: v(eta) en era de materia\n======================================================================\nPrediccion: v = 0.5130 * eta^6\n\n  eta        <v>     SEM     teoria   ratio\n    6        2.7     0.3       18.5   0.146\n    9        9.9     0.6       41.6   0.238\n   12       21.2     0.8       73.9   0.288\n   16       46.4     1.5      131.3   0.353\n   20       79.5     3.4      205.2   0.387\n\nExponente p_eta = 2.700 +- 0.071 (F1: 2.00 +- 0.15)\nRatios por eta: [0.146 0.238 0.288 0.353 0.387]\nAmplitud ratio medio = 0.282 (F2: 1.00 +- 0.20)\nF1: FALLA | F2: FALLA | F2' (convergencia monotona): PASA\n\nVEREDICTO PRE-REGISTRADO: la expansion SI reforma la ley de links\n(F1 fallo). Se publica el exponente medido y se recalcula la rama.\nDONE",
+    "stderr": ""
+  },
+  "status": "running"
+}
