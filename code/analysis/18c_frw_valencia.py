@@ -16,15 +16,24 @@ fisico automaticamente.
 
 PREDICCION ANALITICA PRE-REGISTRADA (servilleta integrada en el cono,
 2026-07-03, ANTES de correr):
-    v(eta_e) = (pi*sqrt(6)/15) * sqrt(rho) * eta_e^6 / eta_0^4
-  con eta_0 la normalizacion de a. En tiempo propio (t ~ eta^3):
-    v ~ t^2  — MISMO exponente que Minkowski: el peso a^2 del cono
-  y el crecimiento del cono conspiran para mantener la ley de area.
+    v = (3*pi*sqrt(6)/5) * sqrt(rho) * t_propio^2
+  MISMO exponente 2 en tiempo propio que Minkowski, con amplitud
+  EXACTAMENTE 3/5 de la de Minkowski: el peso a^2 del cono reduce la
+  banda de links por el factor int_0^1 5x(1-x)^4·(6/...)dx = 3/5.
+
+ENMIENDA PRE-UNBLINDING (2026-07-04, auditoria del wrapper del autor):
+la version original usaba a(eta)=eta^2 SIN normalizar -> n_esperado
+~ eta_e^9 (10^9 a 10^14 elementos: MemoryError; por eso la fase FRW
+"salio vacia" en la prueba del autor). FIX: normalizar a(eta_e)=1 por
+sonda (densidad local = rho). Es contabilidad de unidades — la
+prediccion fisica (v ~ t^2, amplitud 3/5 de Minkowski) NO cambia.
+Con a=(eta/eta_e)^2 y t(eta_e)=eta_e/3:
+    v(eta_e) = (pi*sqrt(6)/15) * sqrt(rho) * eta_e^2 ~ 0.5130 * eta_e^2
 
 CRITERIOS (congelados; auditoria autor + Codex antes de UNBLIND):
-  F1: exponente conformal p_eta = 6.00 +- max(0.30, 2 sigma_fit)
-  F2: amplitud dentro de +-20% de la formula (correcciones de borde
-      esperadas ~10% como en el control 4D)
+  F1: exponente p_eta = 2.00 +- max(0.15, 2 sigma_fit)
+  F2: amplitud dentro de +-20% de 0.5130*sqrt(rho) (correcciones de
+      borde esperadas ~10% como en el control 4D)
 INTERPRETACION PRE-REGISTRADA:
   - F1 y F2 PASAN -> la valencia cruda es area/tracker tambien en FRW;
     el miembro viable del sector refinamiento para DE es log2(v) ~ ln t
@@ -48,15 +57,16 @@ RHO = 1.0
 TAU2MAX = 6.8
 N_REAL = 20
 ETA_GRID = [6.0, 9.0, 12.0, 16.0]
-AMP_TEO = np.pi * np.sqrt(6.0) / 15.0 * np.sqrt(RHO)   # x eta^6 (eta_0=1)
+AMP_TEO = np.pi * np.sqrt(6.0) / 15.0 * np.sqrt(RHO)   # x eta_e^2
 
 
 def valencia_frw(seed, eta_e):
-    """Valencia de un evento sonda en (eta_e, origen), FRW materia."""
+    """Valencia de un evento sonda en (eta_e, origen), FRW materia.
+    Normalizacion por sonda: a(eta) = (eta/eta_e)^2, a(eta_e)=1."""
     rng = np.random.default_rng([seed, int(eta_e * 10), 18])
     r_box = eta_e + 1.0
-    # numero esperado: int rho*a^4 dV_conf = rho*(4pi/3)r^3 * int eta^8 deta
-    n_exp = RHO * (4 * np.pi / 3) * r_box ** 3 * (eta_e ** 9) / 9.0
+    # numero esperado: int rho*a^4 dV_conf = rho*(4pi/3)r^3 * eta_e/9
+    n_exp = RHO * (4 * np.pi / 3) * r_box ** 3 * eta_e / 9.0
     n = rng.poisson(n_exp)
     eta = eta_e * rng.uniform(0, 1, n) ** (1.0 / 9.0)   # pdf ~ eta^8
     rr = r_box * rng.uniform(0, 1, n) ** (1.0 / 3.0)
@@ -72,7 +82,7 @@ def valencia_frw(seed, eta_e):
     past = d2 < dt ** 2
     # candidatos: tau_conformal^2 chico RESPECTO A LA DENSIDAD LOCAL
     tau2 = dt ** 2 - d2
-    a4 = eta ** 8                       # a(eta)^4 con eta_0=1
+    a4 = (eta / eta_e) ** 8             # a(eta)^4, a(eta_e)=1
     cand = past & (tau2 * np.sqrt(np.maximum(a4, 1e-30)) < TAU2MAX)
     cidx = np.flatnonzero(cand)
     pidx = np.flatnonzero(past)
@@ -93,7 +103,7 @@ if __name__ == "__main__":
     if not UNBLIND:
         print("\nBLOQUEADO: pre-registro pendiente de auditoria "
               "(autor + Codex). UNBLIND=False.")
-        print(f"Prediccion congelada: v = {AMP_TEO:.4f} * eta^6 "
+        print(f"Prediccion congelada: v = {AMP_TEO:.4f} * eta_e^2 "
               f"(p_eta = 6; en tiempo propio t^2)")
         raise SystemExit
     print(f"Prediccion: v = {AMP_TEO:.4f} * eta^6\n")
@@ -103,7 +113,7 @@ if __name__ == "__main__":
         vs = [valencia_frw(s, eta_e) for s in range(N_REAL)]
         m, sem = np.mean(vs), np.std(vs, ddof=1) / np.sqrt(N_REAL)
         ms.append(m); ss.append(sem)
-        teo = AMP_TEO * eta_e ** 6
+        teo = AMP_TEO * eta_e ** 2
         print(f"{eta_e:>5.0f} {m:>10.1f} {sem:>7.1f} {teo:>10.1f} "
               f"{m/teo:>7.3f}", flush=True)
     lx = np.log(np.array(ETA_GRID)); ly = np.log(np.array(ms))
@@ -112,10 +122,10 @@ if __name__ == "__main__":
     den = np.sum(w * (lx - xb) ** 2)
     p = np.sum(w * (lx - xb) * (ly - yb)) / den
     sp = 1.0 / np.sqrt(den)
-    ratio = np.mean(np.array(ms) / (AMP_TEO * np.array(ETA_GRID) ** 6))
-    f1 = abs(p - 6.0) < max(0.30, 2 * sp)
+    ratio = np.mean(np.array(ms) / (AMP_TEO * np.array(ETA_GRID) ** 2))
+    f1 = abs(p - 2.0) < max(0.15, 2 * sp)
     f2 = abs(ratio - 1.0) < 0.20
-    print(f"\nExponente p_eta = {p:.3f} +- {sp:.3f} (F1: 6.00 +- 0.30)")
+    print(f"\nExponente p_eta = {p:.3f} +- {sp:.3f} (F1: 2.00 +- 0.15)")
     print(f"Amplitud ratio = {ratio:.3f} (F2: 1.00 +- 0.20)")
     print(f"F1: {'PASA' if f1 else 'FALLA'} | F2: {'PASA' if f2 else 'FALLA'}")
     if f1 and f2:
