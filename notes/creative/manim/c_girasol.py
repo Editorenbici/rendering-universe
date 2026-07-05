@@ -96,11 +96,11 @@ class Girasol(Scene):
         )
         self.wait(0.5)
 
-        # --- Analogía explícita ---
-        analogia = Text(
-            "Render Universe:\nu_μ (vector) → ℛ(t) (raster) → ⊞ (canvas)",
-            font_size=22, color=GRIS, font="JetBrains Mono", line_spacing=1.3,
+        # --- Cierre ---
+        cierre = Text(
+            "La planta guarda UN número (vector)\ny renderiza cada semilla (raster)",
+            font_size=24, color=GRIS, font="JetBrains Mono", line_spacing=1.3,
         )
-        analogia.to_edge(DOWN, buff=0.4)
-        self.play(Write(analogia), run_time=2)
+        cierre.to_edge(DOWN, buff=0.6)
+        self.play(Write(cierre), run_time=2)
         self.wait(2)
