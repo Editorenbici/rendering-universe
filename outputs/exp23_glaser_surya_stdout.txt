@@ -1,0 +1,18 @@
+======================================================================
+23: CHEQUEO GLASER-SURYA (diamante 4D, T_D=10, rho=1)
+======================================================================
+N esperado en el diamante: 1309
+
+(a) Integral <N_0> (Glaser-Surya, MC 4e+06 pares): 27602 +- 95
+(b) realizacion 0: n=1330, links exactos = 28671
+(b) realizacion 1: n=1336, links exactos = 27362
+(b) realizacion 2: n=1238, links exactos = 24421
+(b) realizacion 3: n=1344, links exactos = 30564
+(b) realizacion 4: n=1265, links exactos = 25990
+(b) realizacion 5: n=1311, links exactos = 28213
+(b) Conteo exacto: <N_0> = 27537 +- 876
+
+(a) vs (b): 0.07 sigma -> AMARRADO al baseline Glaser-Surya
+
+(c) Banda near-cone con clipping (informativo): ~33483 (ratio vs (a): 1.21) — mide el costo del borde
+DONE

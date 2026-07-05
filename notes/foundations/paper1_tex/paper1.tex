@@ -184,8 +184,9 @@ measurement confirms.
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.62\textwidth]{figs/F1_valency_flat_laws.pdf}
-\caption{Past valency vs.\ cutoff: 2D logarithmic law and 4D area law, with
-the parameter-free theory curves superposed.}
+\caption{Past valency vs.\ cutoff: 2D logarithmic law and 4D area law. The
+4D area-law curve is parameter-free ($\kappa_{4}=\pi\sqrt{6}$); in 2D the
+slope 2 is derived and the $O(1)$ offset is fitted.}
 \end{figure}
 
 \section{Results II: matter-dominated FRW}
@@ -242,11 +243,12 @@ Valency divided by the size of the causal past gives a dimensionless,
 cutoff-dependent scarcity measure:
 \begin{equation}
   \varepsilon(\rho, R) \;=\; \frac{N_{\mathrm{links}}}{N_{\mathrm{past}}}
-  \;=\; \frac{3\sqrt{6}}{\sqrt{\rho}\,R^{2}},
+  \;\simeq\; \frac{3\sqrt{6}}{\sqrt{\rho}\,R^{2}}
+  \qquad (\text{asymptotically}),
 \end{equation}
 which follows from the area law and the $R^{4}$ volume growth of the past
-interval; the measured value tracks the prediction with ${\approx}10\%$
-boundary corrections at our scales. The headline reproduction is bit-exact
+interval; at finite size the measured value tracks this asymptote with
+${\approx}10\%$ boundary corrections at our scales. The headline reproduction is bit-exact
 from a clean checkout (declared seeds).
 
 $\varepsilon$ is also a cheap \textbf{manifoldlikeness discriminator}. At the
@@ -291,9 +293,12 @@ in 3+1 dimensions: the depth of maximal chains scales with proper time
 ($\lambda^{-1}$), the width of maximal antichains with spatial volume
 ($\lambda^{+3}$), and their product must recover the volume element, which is
 what a Poisson sprinkling actually samples. The identity closes:
-$-1 + 3 = +2$. A \emph{conformal} rescaling (clocks and rulers both
-$\lambda^{+1}$) requires the chain sector to absorb $\lambda^{-4}$ for the
-same volume budget---the opposite sign, and countable.
+$-1 + 3 = +2$. The \emph{conformal} counterpart (clocks and rulers scaled
+together, $\lambda^{-1}$ each in this convention) gives
+$\sqrt{-g} = \lambda^{-4}$ with both sectors contracted
+($\lambda^{-1} \times \lambda^{-3}$): a \emph{deficit} of elements where the
+disformal case has a surplus. The two assignments thus make opposite-sign,
+countable predictions for the sector split of a faithful sprinkling.
 
 We stress the epistemic status: this is a \textbf{consistency theorem about
 counting}, not a dynamical statement. It says that \emph{if} a poset's growth
@@ -307,9 +312,6 @@ the depth sector near zero, with a smooth sign crossover as the bias
 increases---a susceptibility-like response, not a phase transition---but its
 dimensional targets were mismatched by design and it decides nothing beyond
 the toy.
-
-\figplaceholder{4}{Three-sector schematic: chains (depth), antichains (width),
-links (bonds), and the $(-1,+3) \to +2$ volume budget.}
 
 \section{Outlook}
 \label{sec:outlook}
