@@ -249,3 +249,34 @@ permanece fenomenologico hasta encontrar otra dinamica microscópica.
 
 Si pasa, el resultado habilita un experimento posterior con sprinkling
 geométrico mas realista. No habilita por si solo claims cosmologicos.
+
+---
+
+## AUDITORÍA Y ENMIENDA 1 (Fable, 2026-07-06 — ANTES de correr)
+
+**Defecto encontrado:** la regla original sesga relaciones pero no
+densidad. Con posiciones uniformes, h·w ~ población local ~ const →
+p_hw ≈ 0 SIEMPRE: S3 (+2) era estructuralmente imposible y H0 estaba
+garantizada de antemano. Un experimento cuyo resultado se conoce antes
+de correr no es un experimento.
+
+**ENMIENDA 1 (adoptada):** la probabilidad de posición de inserción
+lleva el presupuesto disforme: P_pos(x) ∝ ℛ(x)². (En sprinklings
+reales BHS lo da gratis; el toy debe otorgarlo.) Con el presupuesto
+dado, el experimento pregunta lo único que importa: **el REPARTO** —
+¿el excedente ℛ² se divide como cadenas ℛ⁻¹ × anticadenas ℛ⁺³
+(disforme), o de otra manera?
+
+**Puntos de referencia pre-registrados para interpretar el reparto:**
+- (−1, +3): métrica disforme (la hipótesis del teorema).
+- (+0.5, +1.5): reparto isótropo del presupuesto (nulo natural).
+- (−0.5, −1.5)·(−1): patrón conforme (ya excluido por Cassini a nivel
+  macro; si el toy lo produjera, sería un toy sin relación con la
+  física).
+
+**Ajuste menor:** h(x) se mide en ventana LOCAL (misma ventana que
+w(x)), no como cadena global — la respuesta local a la masa se diluye
+en la profundidad global.
+
+S1-S5/F1-F5 y la grilla quedan sin cambios. Los tres fits siguen
+usando el MISMO ℛ(x). Compromiso intacto: publicar salga como salga.
