@@ -53,3 +53,22 @@ metodológico del proyecto: encontramos nuestro propio error
 astrométrico, lo publicamos, corregimos, y el veredicto se sostuvo.
 
 Publicado salga como salga. Salió: ΛCDM.
+
+## ANEXO: barrido post-medición (2026-07-05) — un residuo encontrado y corregido
+
+**Splits de robustez mal rotulados en el run:** el corte "NGC/SGC" del
+script usaba rangos de RA ecuatorial aplicados a la longitud galáctica
+post-fix (por eso "SGC n=927" con un catálogo SGC de 156). Recomputado
+por archivo de origen, con la media global reproducida exacta
+(+0.37, n=1454 ✓ determinismo verificado):
+
+| Split (correcto) | ΔT | n |
+|---|---|---|
+| NGC | +0.31 ± 0.84 µK | 1323 |
+| SGC | +0.98 ± 2.37 µK | 131 |
+| R_EFF > mediana | −0.46 µK | 727 |
+
+Todos nulos: el veredicto no cambia en nada. Auditoría de candados en
+scripts gated (20/22/25): correctos (20 exige provenance con raise;
+25 sobre-bloqueado por diseño). La clase "candado cosmético" quedó
+contenida al incidente del 17b.
