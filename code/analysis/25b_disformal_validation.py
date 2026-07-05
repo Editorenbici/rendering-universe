@@ -282,11 +282,14 @@ def run_cell(n, alpha, ia, i_n, *, coord_window=False, shuffle=False,
 
 
 def verdict(cells):
-    """S1'/F1'/F2' congelados (Enm. 2) sobre las celdas de veredicto."""
+    """S1'/F1'/F2' congelados (Enm. 2) sobre las celdas de veredicto.
+    Error del PROMEDIO: sqrt(sum se_i^2)/n — la versión RMS anterior
+    inflaba sigma por sqrt(2) y ablandaba el criterio (audit Codex v2)."""
+    n = len(cells)
     mh = np.mean([c["p_h"][0] for c in cells])
-    sh = np.sqrt(np.mean([c["p_h"][1] ** 2 for c in cells]))
+    sh = np.sqrt(np.sum([c["p_h"][1] ** 2 for c in cells])) / n
     mw = np.mean([c["p_w"][0] for c in cells])
-    sw = np.sqrt(np.mean([c["p_w"][1] ** 2 for c in cells]))
+    sw = np.sqrt(np.sum([c["p_w"][1] ** 2 for c in cells])) / n
     budget = mh + mw
     sb = np.hypot(sh, sw)
     s1 = abs(mh - (-1)) < 3 * sh and abs(mw - 3) < 3 * sw
@@ -366,6 +369,24 @@ if __name__ == "__main__":
                                                   coord_window=True)
 
     out["verdict"] = verdict(vcells)
+
+    # Robustez automática (audit Codex v2): C3/C4/C6 sustituyen a la
+    # celda de referencia (n4096, a0.2); la CATEGORÍA no debe cambiar.
+    base_cat = out["verdict"]["verdict"].split("'")[0] + "'"
+    out["robustness"] = {}
+    for name in ("C3_theta0.3", "C3_theta0.7", "C4_W0.15", "C4_W0.35",
+                 "C6_coord_window"):
+        alt = verdict([vcells[0], out["controls"][name]])
+        alt_cat = alt["verdict"].split("'")[0] + "'"
+        same = alt_cat == base_cat
+        out["robustness"][name] = {"category": alt_cat, "same": same}
+        print(f"robustez {name}: {alt_cat} "
+              f"{'== base OK' if same else '!= base — VEREDICTO NO ROBUSTO'}")
+    out["robust_all"] = all(r["same"] for r in out["robustness"].values())
+    if not out["robust_all"]:
+        print("ATENCION: el veredicto cambia de categoria bajo controles "
+              "de robustez — se reporta como NO ROBUSTO (prereg C3/C4).")
+
     print("\n=== VEREDICTO (celdas congeladas N=4096, alpha=0.1/0.2) ===")
     print(f"p_h = {out['verdict']['p_h'][0]:+.3f} ± "
           f"{out['verdict']['p_h'][1]:.3f}  (target -1)")
