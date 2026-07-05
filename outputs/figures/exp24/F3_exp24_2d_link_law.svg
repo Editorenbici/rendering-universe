@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="540" viewBox="0 0 760 540">
+<rect width="100%" height="100%" fill="#fafafa"/>
+<rect x="92" y="58" width="640" height="404" fill="white" stroke="#222" stroke-width="1"/>
+<line x1="92.00" y1="58" x2="92.00" y2="462" stroke="#ddd"/>
+<line x1="92" y1="462.00" x2="732" y2="462.00" stroke="#ddd"/>
+<text x="92.00" y="484" text-anchor="middle" font-size="12">2.5</text>
+<text x="82" y="466.00" text-anchor="end" font-size="12">2.5</text>
+<line x1="220.00" y1="58" x2="220.00" y2="462" stroke="#ddd"/>
+<line x1="92" y1="381.20" x2="732" y2="381.20" stroke="#ddd"/>
+<text x="220.00" y="484" text-anchor="middle" font-size="12">3.4</text>
+<text x="82" y="385.20" text-anchor="end" font-size="12">3.4</text>
+<line x1="348.00" y1="58" x2="348.00" y2="462" stroke="#ddd"/>
+<line x1="92" y1="300.40" x2="732" y2="300.40" stroke="#ddd"/>
+<text x="348.00" y="484" text-anchor="middle" font-size="12">4.3</text>
+<text x="82" y="304.40" text-anchor="end" font-size="12">4.3</text>
+<line x1="476.00" y1="58" x2="476.00" y2="462" stroke="#ddd"/>
+<line x1="92" y1="219.60" x2="732" y2="219.60" stroke="#ddd"/>
+<text x="476.00" y="484" text-anchor="middle" font-size="12">5.2</text>
+<text x="82" y="223.60" text-anchor="end" font-size="12">5.2</text>
+<line x1="604.00" y1="58" x2="604.00" y2="462" stroke="#ddd"/>
+<line x1="92" y1="138.80" x2="732" y2="138.80" stroke="#ddd"/>
+<text x="604.00" y="484" text-anchor="middle" font-size="12">6.1</text>
+<text x="82" y="142.80" text-anchor="end" font-size="12">6.1</text>
+<line x1="732.00" y1="58" x2="732.00" y2="462" stroke="#ddd"/>
+<line x1="92" y1="58.00" x2="732" y2="58.00" stroke="#ddd"/>
+<text x="732.00" y="484" text-anchor="middle" font-size="12">7</text>
+<text x="82" y="62.00" text-anchor="end" font-size="12">7</text>
+<text x="380.0" y="28" text-anchor="middle" font-size="20" font-weight="600">F3. 2D link abundance vs finite-cone law</text>
+<text x="380.0" y="516" text-anchor="middle" font-size="15">finite-cone 2D expectation</text>
+<text x="24" y="270.0" text-anchor="middle" font-size="15" transform="rotate(-90 24 270.0)">measured v_link</text>
+<polyline points="92.00,462.00 732.00,58.00" fill="none" stroke="#111" stroke-width="2" stroke-dasharray="6 4"/>
+<line x1="188.71" y1="452.24" x2="188.71" y2="416.04" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="183.71" y1="452.24" x2="193.71" y2="452.24" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="183.71" y1="416.04" x2="193.71" y2="416.04" stroke="#1f77b4" stroke-width="1.3"/>
+<circle cx="188.71" cy="434.14" r="5" fill="#1f77b4" stroke="white" stroke-width="1"/>
+<line x1="317.88" y1="389.12" x2="317.88" y2="339.85" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="312.88" y1="389.12" x2="322.88" y2="389.12" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="312.88" y1="339.85" x2="322.88" y2="339.85" stroke="#1f77b4" stroke-width="1.3"/>
+<circle cx="317.88" cy="364.48" r="5" fill="#1f77b4" stroke="white" stroke-width="1"/>
+<line x1="403.18" y1="286.84" x2="403.18" y2="230.37" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="398.18" y1="286.84" x2="408.18" y2="286.84" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="398.18" y1="230.37" x2="408.18" y2="230.37" stroke="#1f77b4" stroke-width="1.3"/>
+<circle cx="403.18" cy="258.61" r="5" fill="#1f77b4" stroke="white" stroke-width="1"/>
+<line x1="467.95" y1="260.66" x2="467.95" y2="206.40" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="462.95" y1="260.66" x2="472.95" y2="260.66" stroke="#1f77b4" stroke-width="1.3"/>
+<line x1="462.95" y1="206.40" x2="472.95" y2="206.40" stroke="#1f77b4" stroke-width="1.3"/>
+<circle cx="467.95" cy="233.53" r="5" fill="#1f77b4" stroke="white" stroke-width="1"/>
+<line x1="299.98" y1="363.68" x2="299.98" y2="315.14" stroke="#d62728" stroke-width="1.3"/>
+<line x1="294.98" y1="363.68" x2="304.98" y2="363.68" stroke="#d62728" stroke-width="1.3"/>
+<line x1="294.98" y1="315.14" x2="304.98" y2="315.14" stroke="#d62728" stroke-width="1.3"/>
+<circle cx="299.98" cy="339.41" r="5" fill="#d62728" stroke="white" stroke-width="1"/>
+<line x1="420.36" y1="285.41" x2="420.36" y2="237.37" stroke="#d62728" stroke-width="1.3"/>
+<line x1="415.36" y1="285.41" x2="425.36" y2="285.41" stroke="#d62728" stroke-width="1.3"/>
+<line x1="415.36" y1="237.37" x2="425.36" y2="237.37" stroke="#d62728" stroke-width="1.3"/>
+<circle cx="420.36" cy="261.39" r="5" fill="#d62728" stroke="white" stroke-width="1"/>
+<line x1="503.47" y1="224.10" x2="503.47" y2="176.10" stroke="#d62728" stroke-width="1.3"/>
+<line x1="498.47" y1="224.10" x2="508.47" y2="224.10" stroke="#d62728" stroke-width="1.3"/>
+<line x1="498.47" y1="176.10" x2="508.47" y2="176.10" stroke="#d62728" stroke-width="1.3"/>
+<circle cx="503.47" cy="200.10" r="5" fill="#d62728" stroke="white" stroke-width="1"/>
+<line x1="567.33" y1="181.72" x2="567.33" y2="118.17" stroke="#d62728" stroke-width="1.3"/>
+<line x1="562.33" y1="181.72" x2="572.33" y2="181.72" stroke="#d62728" stroke-width="1.3"/>
+<line x1="562.33" y1="118.17" x2="572.33" y2="118.17" stroke="#d62728" stroke-width="1.3"/>
+<circle cx="567.33" cy="149.94" r="5" fill="#d62728" stroke="white" stroke-width="1"/>
+<line x1="403.18" y1="290.54" x2="403.18" y2="232.25" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="398.18" y1="290.54" x2="408.18" y2="290.54" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="398.18" y1="232.25" x2="408.18" y2="232.25" stroke="#2ca02c" stroke-width="1.3"/>
+<circle cx="403.18" cy="261.39" r="5" fill="#2ca02c" stroke="white" stroke-width="1"/>
+<line x1="520.36" y1="232.36" x2="520.36" y2="167.84" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="515.36" y1="232.36" x2="525.36" y2="232.36" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="515.36" y1="167.84" x2="525.36" y2="167.84" stroke="#2ca02c" stroke-width="1.3"/>
+<circle cx="520.36" cy="200.10" r="5" fill="#2ca02c" stroke="white" stroke-width="1"/>
+<line x1="602.51" y1="144.18" x2="602.51" y2="72.13" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="597.51" y1="144.18" x2="607.51" y2="144.18" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="597.51" y1="72.13" x2="607.51" y2="72.13" stroke="#2ca02c" stroke-width="1.3"/>
+<circle cx="602.51" cy="108.15" r="5" fill="#2ca02c" stroke="white" stroke-width="1"/>
+<line x1="665.95" y1="121.94" x2="665.95" y2="49.78" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="660.95" y1="121.94" x2="670.95" y2="121.94" stroke="#2ca02c" stroke-width="1.3"/>
+<line x1="660.95" y1="49.78" x2="670.95" y2="49.78" stroke="#2ca02c" stroke-width="1.3"/>
+<circle cx="665.95" cy="85.86" r="5" fill="#2ca02c" stroke="white" stroke-width="1"/>
+<circle cx="604" cy="82" r="5" fill="#1f77b4"/>
+<text x="616" y="86" font-size="13">rho=0.5</text>
+<circle cx="604" cy="104" r="5" fill="#d62728"/>
+<text x="616" y="108" font-size="13">rho=1</text>
+<circle cx="604" cy="126" r="5" fill="#2ca02c"/>
+<text x="616" y="130" font-size="13">rho=2</text>
+</svg>

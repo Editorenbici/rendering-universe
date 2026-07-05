@@ -57,6 +57,35 @@ class Row:
     epsilon_sem: float
 
 
+def expected_links_2d(rho: float, R: float, n_quad: int = 4096) -> float:
+    """Expected probe links in a finite 1+1D past cone.
+
+    In null coordinates u=dt-x, v=dt+x, the probe past truncated at t>=0 is
+    u>0, v>0, u+v<=2R, with dtdx=du dv/2 and interval volume V=uv/2.
+
+    E[N_links] = rho/2 int du dv exp(-rho uv/2).
+    After integrating v, the remaining integrand is
+      (1 - exp[-rho u(2R-u)/2]) / u,
+    with finite u->0 limit rho*R.
+    """
+    u = (np.arange(n_quad, dtype=float) + 0.5) * (2.0 * R / n_quad)
+    expo = -0.5 * rho * u * (2.0 * R - u)
+    integrand = (1.0 - np.exp(expo)) / u
+    return float(np.sum(integrand) * (2.0 * R / n_quad))
+
+
+def expected_links_4d_area(rho: float, R: float) -> float:
+    return float(np.pi * np.sqrt(6.0) * np.sqrt(rho) * R * R)
+
+
+def expected_links(dim: int, rho: float, R: float) -> float | None:
+    if dim == 2:
+        return expected_links_2d(rho, R)
+    if dim == 4:
+        return expected_links_4d_area(rho, R)
+    return None
+
+
 def sem(x):
     x = np.asarray(x, dtype=float)
     if len(x) < 2:
@@ -207,11 +236,33 @@ def main():
         fits.append({"dim": dim, **fit_power_law(rows, "links_mean")})
         fits.append({"dim": dim, **fit_power_law(rows, "epsilon_mean")})
 
+    theory_comparison = []
+    for row in all_rows:
+        expected = expected_links(row.dim, row.rho, row.R)
+        theory_comparison.append({
+            "dim": row.dim,
+            "rho": row.rho,
+            "R": row.R,
+            "links_mean": row.links_mean,
+            "expected_links": expected,
+            "relative_error": (
+                None if expected is None else float((row.links_mean - expected) / expected)
+            ),
+            "law": (
+                "finite 1+1D null-coordinate Poisson link integral"
+                if row.dim == 2
+                else "4D area law pi*sqrt(6)*sqrt(rho)*R^2"
+                if row.dim == 4
+                else None
+            ),
+        })
+
     payload = {
         "status": "DRAFT_NOT_PREREGISTERED",
         "warning": "Do not use as measurement without committed pre-registration.",
         "rows": [asdict(r) for r in all_rows],
         "fits": fits,
+        "theory_comparison": theory_comparison,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
