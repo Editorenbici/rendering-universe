@@ -1,0 +1,40 @@
+--- V0: astrometria (obligatoria tras el bug del 17) ---
+  V0a plano enmascarado/polos limpios: PASA
+  V0b parches validos: 98.0% (>=95): PASA
+  V0c |b| mediana: 42.0 deg: PASA
+
+--- V1: control nulo (posiciones aleatorias en footprint) ---
+  nulos 100/1000: sigma parcial 0.848 uK
+  nulos 200/1000: sigma parcial 0.843 uK
+  nulos 300/1000: sigma parcial 0.911 uK
+  nulos 400/1000: sigma parcial 0.901 uK
+  nulos 500/1000: sigma parcial 0.915 uK
+  nulos 600/1000: sigma parcial 0.954 uK
+  nulos 700/1000: sigma parcial 0.943 uK
+  nulos 800/1000: sigma parcial 0.943 uK
+  nulos 900/1000: sigma parcial 0.936 uK
+  nulos 1000/1000: sigma parcial 0.932 uK
+nulos: media +0.00 uK, sigma 0.93 uK (1000 sets)
+V1: PASA
+
+--- V2: inyeccion de -10 uK sintetica ---
+recuperado: -10.58 +/- 0.89 uK (esperado ~-10; n_parches=1156)
+V2: PASA
+
+======================================================================
+MEDICION REAL (pre-registrada, una sola vez)
+======================================================================
+
+dT_stack = +0.37 uK (sigma_null = 0.93, sigma_boot = 0.80; 1454 voids con parche valido)
+Significancia de deteccion: 0.4 sigma
+
+Hipotesis     pred (uK)  |obs-pred|/sigma    veredicto
+LCDM               -1.5               2.0   COMPATIBLE
+EMPIRICA          -18.9              20.7     EXCLUIDA
+H2                -62.1              67.0     EXCLUIDA
+
+--- Robustez ---
+  NGC: +0.49 uK (sigma ~ 1.55, n=527)
+  SGC: +0.30 uK (sigma ~ 1.17, n=927)
+  R_EFF>mediana: -0.53 uK (sigma ~ 1.32, n=730)
+DONE
