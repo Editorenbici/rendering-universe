@@ -1,0 +1,25 @@
+Exp 22 — interval geometry diagnostics
+Estado: FORMAL_RUN
+Fecha: 2026-07-03
+Pre-registro: notes/exp22_prereg_outline_2026-07-03.md
+
+Archivos:
+  code/analysis/22_interval_geometry_background.py     Esqueleto + runner formal
+  outputs/exp22_interval_geometry_background/exp22_formal_run_2026-07-03.json   Salida completa
+
+Grilla ejecutada:
+  - N=256/512/1024, dims 2/4, 32 realizaciones por caso.
+  - 200 intervalos medidos por caso, max_m=6.
+  - Controles random_order incluidos.
+
+Resultados clave:
+  - Casos totales: 198 (192 minkowski + 6 random_order).
+  - epsilon_link_global minkowski: mean≈0.2124, min≈0.0195, max≈0.5244.
+  - epsilon_link_global random_order: mean≈0.0170, min≈0.0057, max≈0.0363.
+  - Separación geométrico vs no-geométrica visible en epsilon_link.
+
+Interpretación:
+  - epsilon_link discrimina entre sprinklings manifold-like (mayor fracción irreducible) y órdenes aleatorios (muy baja).
+  - Faltan: baseline BB/BK/GS explícita, estadística por (dim,N) con errores, análisis longest-chain/N_m.
+
+Uso: resultado operativo de Exp 22. No es falsador/confirmación cosmológica aún.

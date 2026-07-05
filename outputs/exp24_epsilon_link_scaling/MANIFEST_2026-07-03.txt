@@ -1,0 +1,20 @@
+Exp 24 — epsilon_link scaling
+Estado: CONFIRMADO_BACKGROUND
+Fecha: 2026-07-03
+Pre-reg mirror commit: 7109a064c2d8f21ec3d5d0ef6c2ba60b8b5466ee
+Resultados mirror commit: 29708c1
+
+Archivos:
+  exp24_epsilon_link_scaling.json        Resultados completos 4D/2D
+  exp24_epsilon_link_scaling_summary.json Resumen numérico
+  exp24_results_2026-07-03.md           Nota humana (repo notes/)
+  exp24_prereg_2026-07-03.md            Pre-registro (repo notes/)
+
+Hallazgos clave:
+  epsilon_link rango 4D: 0.0507–0.4907 (fracción <0.5)
+  v_link vs ley de área: error relativo 26% @R=4 → 2.6% @R=10
+  Fit 4D links_mean: rho_power=0.5487, R_power=2.2134, log_rms=0.019
+  Fit 4D epsilon:    rho_power=-0.4531, R_power=-1.7949, log_rms=0.017
+  2D: no comparar con ley de área 4D (error 97–99%)
+
+Uso: background numérico para Paper A. No es pre-reg formal Ni falsificador.

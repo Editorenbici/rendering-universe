@@ -1,0 +1,42 @@
+{
+  "status": "SYMBOL_CONVENTION_CHECK_ONLY",
+  "input": {
+    "rho": 1.0,
+    "L_R": 10.0,
+    "R_dimless": 10.0,
+    "M_Pl": 1.0,
+    "dimension": 4
+  },
+  "source_note": {
+    "path": "C:\\Users\\pc1\\Documents\\Codex\\2026-07-01\\hola-claude-necesito-que-revises-el\\notes\\variables_R_and_epsilon_link_draft.md",
+    "exists": true,
+    "has_sticky_convention": true,
+    "declares_R_dimensionless": true,
+    "mentions_v_link_not_fraction": true
+  },
+  "formulae": {
+    "v_link": "pi*sqrt(6)*sqrt(rho)*L_R^2",
+    "N_past_estimate": "rho*pi*L_R^4/3",
+    "epsilon_link": "v_link/N_past",
+    "eta_E_misuse_guard": "pi*sqrt(6)*sqrt(rho)*R_dimless^2/M_Pl^4"
+  },
+  "values": {
+    "v_link": 769.5298980971183,
+    "N_past_estimate": 10471.975511965977,
+    "epsilon_link": 0.07348469228349534,
+    "eta_E": 769.5298980971183,
+    "relative_area_law_error": 0.0
+  },
+  "checks": {
+    "epsilon_link_less_than_1": true,
+    "epsilon_link_much_less_than_1": true,
+    "eta_E_greater_than_1": true,
+    "eta_E_much_greater_than_1": true,
+    "v_link_matches_area_law": true
+  },
+  "decision": {
+    "epsilon_link": "OK_fractional",
+    "eta_E": "REJECT_AS_EPSILON_LINK",
+    "R_convention": "[R]=1; use L_R or E_R for dimensional formulae"
+  }
+}
