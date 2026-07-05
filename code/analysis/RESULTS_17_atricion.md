@@ -1,64 +1,61 @@
-# Exp 17 Attrition Diagnosis (1,029 discards)
+# Diagnóstico de atrición Exp 17 — RESUELTO: bug de marco de coordenadas
 
-**Date:** 2026-07-03 (Codex analysis, low risk, measurement already published per plan)  
-**Script used:** 17_isw_stacking_pipeline.py (exact logic from committed version; no modifications to closed experiment script)  
-**Deliverable per plan.**
+Fecha: 2026-07-05. Script de Codex (17_isw_attrition_diagnosis.py) +
+test decisivo de Fable. Outputs: outputs/exp17_attrition.{json,csv}.
 
-## Cause of the 1,029 discards
+## La causa, probada cuantitativamente
 
-From pipeline code (function patch_dt):
+El pipeline del Exp 17 (17_isw_stacking_pipeline.py, líneas 85/209)
+metió RA/DEC ECUATORIALES de DESIVAST directamente como (θ,φ) en el
+mapa SMICA, que está en coordenadas GALÁCTICAS. Cero conversión.
 
-```python
-mi, mr = mask[inner], mask[ring]
-if mi.mean() < 0.7 or mr.mean() < 0.7:
-    return np.nan
-```
+Test decisivo (mismos voids, misma máscara TMASK):
+- Posiciones erróneas (como se midió): 34.3% de parches válidos,
+  mediana de fracción válida = 0.009 (parche mediano ~totalmente
+  enmascarado — el "footprint" aparente cruzaba el plano galáctico).
+- Posiciones correctas (ICRS→galáctico): 98.0% válidos, mediana 1.000.
+  |b| real de los voids: 19°–64°, mediana 42° (cielo limpio).
 
-- mi.mean() = fraction of valid pixels in inner disc (theta < theta_v)
-- mr.mean() = fraction in ring (theta_v to sqrt(2)*theta_v)
-- Discard if either < 0.7  →  >30% masked in the patch.
+La atrición del 69% nunca fue física ni de máscara: era el bug.
 
-This is the **pre-registered filter** ("parches con >30% enmascarado se descartan").
+## Consecuencias (sin anestesia)
 
-Total voids started: 1,489 non-edge (BGS z<0.24).
-Discarded: 1,029 (as previously logged in RESULTS_17).
-Retained for stack: ~460.
+1. **La medición del Exp 17 es INVÁLIDA tal como se ejecutó.** El
+   ΔT = +1.24 ± 1.46 µK corresponde a posiciones sin relación con los
+   voids. La predicción de −19 µK NUNCA FUE TESTEADA.
+2. **El falsador #1 pasa de "FIRED" a "INVALIDADO-POR-BUG / NO
+   TESTEADO".** El paper necesita erratum (decisión del autor):
+   abstract (4), sección 7, status del falsador, limitación 3.
+3. **Vuelve a estar en juego toda la cascada que el nulo había
+   matado:** el sector ISW como calibrado, la coincidencia
+   β_ISW ≈ β_BAO (exp 16), y la lectura de efectos de selección.
+   Ninguna está confirmada — están NO-TESTEADAS de nuevo.
+4. **V1/V2 pasaron porque eran internamente consistentes en el mismo
+   marco erróneo.** La validación nunca incluyó chequeo astrométrico.
 
-The criterion is strict to ensure reliable compensated top-hat (dT = inner mean - ring mean) on the masked Planck SMICA map + TMASK.
+## Responsabilidad
 
-## Per-void masked fraction calculation
+El pipeline lo diseñé y ejecuté yo (Fable). El test de inyección que
+diseñé tampoco podía detectar el bug (inyectaba en el mismo marco).
+El script de atrición de Codex destapó la inconsistencia; el test
+decisivo la confirmó. Cuarta asignación de esta deuda: la que valió.
 
-For each void, compute:
-- masked_frac_inner = 1 - mi.mean()
-- masked_frac_ring = 1 - mr.mean()
-- max_masked = max(masked_frac_inner, masked_frac_ring)
+## Plan Exp 17b (pendiente de autorización del autor)
 
-Then flag discard if max_masked > 0.3 .
+- Fix de UNA línea: transformar ICRS→galáctico (astropy SkyCoord o
+  hp.Rotator) antes de extraer parches.
+- CRITERIOS PRE-REGISTRADOS SIN CAMBIOS (siguen congelados y son el
+  test correcto). Solo cambia la astrometría.
+- Validación nueva obligatoria: V0 astrométrico (verificar que el
+  plano galáctico del mapa cae donde la máscara dice; stack de
+  control sobre posiciones de |b| conocido).
+- Re-run con auditoría autor+Codex del diff del fix ANTES del
+  unblinding, como siempre.
+- Con datos ya en disco: ejecutable el mismo día de la autorización.
 
-In a full run of the pipeline (with data), tabulate:
-void_id, ra, dec, z, L, theta_v, masked_frac_inner, masked_frac_ring, discarded (bool)
+## Lección de protocolo (quinta del proyecto)
 
-## Tabular / graphical summary (to be populated on full data run)
-
-**Expected patterns (inferred from galactic mask + pipeline):**
-- Higher discard rate near galactic plane (low |b| galactic latitude) due to stronger foreground masking in TMASK.
-- NGC vs SGC asymmetry possible (different coverage or mask depth).
-- Valid voids (retained) should show roughly uniform distribution in |b| away from plane, but with cutoff.
-
-**Suggested plots (run with matplotlib on full catalog + mask):**
-1. Histogram: masked_frac for all voids (inner+ring max). Vertical line at 0.3.
-2. Scatter: galactic latitude b vs masked_frac (color by discarded/valid). Expect cluster of discards at low |b|.
-3. Bar or violin: fraction discarded | NGC vs SGC.
-4. 2D density: RA/DEC or galactic coords, valid vs all (to visualize footprint loss).
-
-**Preliminary cause statement (no data run here):**
-The 1,029 discards are almost entirely driven by the >30% mask threshold in the compensated patch. This is not random attrition but a deliberate quality cut frozen in pre-registration to protect the estimator from noisy edge/masked regions. Any latitude dependence is a secondary consequence of the Planck TMASK (galactic plane heavy).
-
-If re-running full pipeline with data:
-- Compute the per-void fracs.
-- Confirm ~1,029 have max_masked >0.3.
-- Check if NGC/SGC or b distribution shows bias beyond the mask (unlikely, as cut is isotropic in patch).
-
-**No new measurement or unblind.** This is pure diagnostic of already-published attrition numbers using the exact pipeline logic.
-
-**Provenance:** Code inspected from current 17_isw_stacking_pipeline.py + RESULTS_17 context. All criteria from pre-reg in the script header.
+Toda medición sobre mapas del cielo requiere validación ASTROMÉTRICA
+de extremo a extremo (posición conocida → píxel esperado), no solo
+estadística. Los controles nulos no detectan errores de marco: son
+ciegos exactamente en la dirección del bug.
