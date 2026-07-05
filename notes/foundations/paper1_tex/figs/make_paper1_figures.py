@@ -58,37 +58,87 @@ def errorbar(pdf, mapf, x, y, e):
 
 def read_json(rel): return json.loads((ROOT/rel).read_text())
 
+def exp18_audit():
+    return read_json('code/analysis/outputs/exp18c/exp18_audit_20260702_223954.json')
+
+def parse_control_18a():
+    stdout = exp18_audit()['controls']['18a_lema_valencia']['stdout']
+    m = re.search(r'v\(T\)=([0-9./]+) para T=([0-9/]+)', stdout)
+    if not m:
+        raise RuntimeError('Could not parse 18a cached control stdout')
+    vals = [float(x) for x in m.group(1).split('/')]
+    ts = [float(x) for x in m.group(2).split('/')]
+    return list(zip(ts, vals))
+
+def parse_control_18b():
+    stdout = exp18_audit()['controls']['18b_control_4d']['stdout']
+    rows = []
+    for line in stdout.splitlines():
+        m = re.match(r'\s*(\d+)\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)', line)
+        if m:
+            rows.append({
+                'T': float(m.group(1)),
+                'v': float(m.group(2)),
+                'sem': float(m.group(3)),
+                'theory': float(m.group(4)),
+                'ratio': float(m.group(5)),
+            })
+    if not rows:
+        raise RuntimeError('Could not parse 18b control table')
+    return rows
+
+def parse_frw_18c():
+    stdout = exp18_audit()['frw']['stdout']
+    rows = []
+    for line in stdout.splitlines():
+        m = re.match(r'\s*(\d+)\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)\s+([0-9.]+)', line)
+        if m:
+            rows.append({
+                'eta': float(m.group(1)),
+                'v': float(m.group(2)),
+                'sem': float(m.group(3)),
+                'theory': float(m.group(4)),
+                'ratio': float(m.group(5)),
+            })
+    if not rows:
+        raise RuntimeError('Could not parse 18c FRW table')
+    return rows
+
 def fig1():
     pdf=PDF(OUT/'F1_valency_flat_laws.pdf')
     x0,y0,x1,y1=42,34,236,154
-    mapper=plot_axes(pdf,x0,y0,x1,y1,'cutoff T','past valency v',0,40,0,13000,[0,10,20,30,40],[0,4000,8000,12000])
-    # 2D law, scaled to show on shared axis: 1000*v_2D
-    xs=[6,10,16,26,40]; pts=[]
-    for T in xs:
-        pts.append(mapper(T,1000*2*math.log(T)))
-    pdf.poly(pts,0.9); pdf.text(104,88,'2D: 1000 x 2 ln T',6)
-    # 2D measurement representative
-    for T in [6,10,16,26,40]: errorbar(pdf,mapper,T,1000*2.01*math.log(T),1000*0.12*math.log(T))
-    # 4D law
+    mapper=plot_axes(pdf,x0,y0,x1,y1,'cutoff T','past valency v',0,18,0,2300,[0,6,12,18],[0,500,1000,1500,2000])
+    # 4D law and measured control table from the Exp 18 audit JSON.
     pts=[]
-    for T in [0,5,10,15,20,25,30,35,40]: pts.append(mapper(T,math.pi*math.sqrt(6)*T*T))
-    pdf.poly(pts,0.9); pdf.text(116,132,'4D: pi sqrt(6) T^2',6)
-    # 4D measured exponent proxy at T points normalized to area law 5% low
-    for T in [10,16,24,32,40]: errorbar(pdf,mapper,T,0.95*math.pi*math.sqrt(6)*T*T,0.05*math.pi*math.sqrt(6)*T*T)
+    for T in [0,3,6,9,12,16]:
+        pts.append(mapper(T,math.pi*math.sqrt(6)*T*T))
+    pdf.poly(pts,0.9); pdf.text(119,135,'4D theory: pi sqrt(6) T^2',6)
+    for r in parse_control_18b():
+        errorbar(pdf,mapper,r['T'],r['v'],r['sem'])
+    pdf.text(117,124,'18b: p = 2.089 +/- 0.025',6)
+    # 2D cached control is real output but much smaller; draw it in an inset
+    ix0,iy0,ix1,iy1=55,96,116,147
+    imap=plot_axes(pdf,ix0,iy0,ix1,iy1,'','',0,42,7,14,[0,20,40],[8,10,12,14])
+    pts=[imap(T,2*math.log(T)+5.0) for T in [5,10,20,40]]
+    pdf.poly(pts,0.7,0.35)
+    for T,v in parse_control_18a():
+        errorbar(pdf,imap,T,v,0.0)
+    pdf.text(ix0+4,iy1-11,'18a: log law',6)
     pdf.write()
 
 def fig2():
     pdf=PDF(OUT/'F2_frw_transient_amplitude.pdf')
     x0,y0,x1,y1=42,34,236,154
     mapper=plot_axes(pdf,x0,y0,x1,y1,'conformal time eta','v / (0.513 eta^2)',0,42,0,0.62,[0,10,20,30,40],[0,0.2,0.4,0.6])
-    eta=[6,9,12,16,20]; ratio=[0.146,0.238,0.288,0.353,0.387]
-    pts=[mapper(a,b) for a,b in zip(eta,ratio)]; pdf.poly(pts,0.8)
-    for a,b in zip(eta,ratio): errorbar(pdf,mapper,a,b,0.02)
-    # asymptotic corrected amplitude line 0.4991
-    y=0.4991; pdf.line(*mapper(0,y),*mapper(42,y),0.8); pdf.text(149,129,'corrected asymptote 0.4991',6)
-    # 18d local slope annotation
+    rows=parse_frw_18c()
+    pts=[mapper(r['eta'],r['ratio']) for r in rows]; pdf.poly(pts,0.8)
+    for r in rows:
+        errorbar(pdf,mapper,r['eta'],r['ratio'],r['sem']/r['theory'])
+    # 18d reports convergence to 0.442 at eta=40 and corrected asymptote 0.4991.
+    errorbar(pdf,mapper,40,0.442,0.0)
+    y=0.4991; pdf.line(*mapper(0,y),*mapper(42,y),0.8); pdf.text(166,119,'asymptote 0.4991',6)
     pdf.text(62,145,'transient -> area law',7)
-    pdf.text(62,135,'late slope 2.075 +/- 0.078',6)
+    pdf.text(62,135,'18d: late slope 2.075 +/- 0.078',6)
     pdf.write()
 
 def expected2d(rho,R,n=4096):
