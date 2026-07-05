@@ -23,3 +23,10 @@ data/sparc/*
 *.blg
 *.toc
 paper/arxiv/
+
+# Manim
+Tex/
+media/manim/videos/
+media/manim/images/
+media/manim/partial_movie_files/
+media/manim/*.log
