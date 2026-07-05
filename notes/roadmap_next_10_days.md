@@ -1,45 +1,73 @@
 # Roadmap Next 10 Days — Experimentos Formales
 
 **Fecha:** 2026-07-03  
-**Base:** index_master_2026-07-03.md + pre-regs committed.  
-**Regla:** Todo committed pre-reg antes de run. Solo notes/ y code/analysis/ como necesario. Sin paper/.
+**Propósito:** Priorizar los próximos 3 experimentos formales post-auditoría de hoy. Basado en pre-regs committed.  
+**Regla:** Todo con pre-reg auditado antes de run. Solo notes/ y code/analysis. Sin paper/, README, UNBLIND.
 
 ---
 
-## 1. Exp 24 (committed pre-reg → run)
+## 1. Exp 24 — escalamiento de ε_link (committed pre-reg → run)
 
-- **Estado actual:** Background results + JSON disponible (epsilon scaling confirma ε_link <<1, v_link ~ área con error decreciente). Pre-reg en exp24_prereg (Codex) + results md.
-- **Acción:** Commit formal del pre-reg si no está (o sync a main notes/). Correr el script 24_epsilon_link_scaling.py con la grilla completa (rhos, Rs, dims, n_real suficientes para stats).
-- **Entregables esperados:** JSON full + summary + update a symbol_table (ya tiene benchmarks parciales). Validar contra convención [R]=1 y ε_link fracción.
-- **Riesgos:** Background no es pre-reg; debe auditoría antes de claims.
-- **Timeline:** 1-2 días (run + análisis).
+**Por qué primero:** Background results + JSON ya listos (confirma ε_link scaling <<1 con tamaño, v_link ~ área). Pre-reg y results en Codex notes/ + outputs/. Símbolos Option D y kernel draft dependen de esto.
 
-## 2. Exp 22 (committed pre-reg → run)
+**Acción inmediata:**
+- Sync/confirm pre-reg formal (exp24_prereg_2026-07-03.md) en main notes/.
+- Correr `code/analysis/24_epsilon_link_scaling.py` con grilla completa (rhos, Rs, dims 2/4, n_real suficiente para SEM).
+- Producir JSON full + summary.
+- Actualizar symbol_table_new_conventions.md con benchmarks exactos.
+- Validar contra [ℛ]=1 y ε_link = N_links/N_past.
 
-- **Estado actual:** Pre-reg completo en exp22_prereg_outline (grilla, observables ℓ_max/N_m/ε_link/v_link, métricas Δd/Z_sep, criterios S/F, baselines BB/BK/GS). Referee questions listas. Diseño: sprinkling sesgado (b bias hacia anchura cerca de masa), medir h(x) ∝ R^{-1}, w(x) ∝ R^{+3} con mismo R de links.
-- **Acción:** Sync outline a main si necesario. Correr script de sprinkling sesgado (basado en 18a/inhomogéneo + bias param). Comparar contra homogéneo GS y box-order BB.
-- **Entregables:** Datos de abundances, altura/anchura vs R, tests vs baselines, update a inhomogeneous_box_orders.md y pre-reg.
-- **Riesgos:** Sesgo debe ser pre-registrado exactamente; no mezclar con claims de R dinámica.
-- **Timeline:** 2-4 días (implement bias + runs + comparación).
-
-## 3. Lo que siga (decidido: factor 1/2 + atrición Exp 17)
-
-- **Decisión:** Siguiente es extensión de Exp 17 (atrition/stacking pipeline) con factor 1/2 (probablemente corrección o normalización en conteo de links/potencial, ver history de 1/2 C en Johnston 2D y kernel).
-  - Razón: Exp 17 tiene pipeline de stacking ISW/atrition ya en RESULTS_17*.md y 17_isw_stacking_pipeline.py. Integrar factor 1/2 para consistencia con kernels 2D/4D y validar contra atrición (descartes >30% mask).
-  - Alternativa (factor 1/2 puro) menos prioritaria que cerrar atrición + pre-reg.
-- **Acción:** 
-  - Commit pre-reg para "Exp 17+ factor 1/2 + atrición".
-  - Correr/actualizar 17_isw_stacking_pipeline.py con factor explícito.
-  - Medir impacto en delta T / ISW signal y falsificación (ya ~13σ en history).
-  - Update a pre_domingo_checks y symbol table si introduce nuevos observables.
-- **Entregables:** Updated pipeline + resultados con/ sin factor + análisis de atrición bias.
-- **Timeline:** 3-5 días después de Exp 22 (priorizar cerrar 24 y 22 primero).
-- **Riesgos:** Atrición ya identificada como issue (mask >30% descartes); factor 1/2 debe justificarse contra Johnston/Sorkin para no introducir bias ad-hoc.
+**Entregables:** JSON + updated index + symbols_option_D refinement.
+**Timeline:** Hoy/mañana (run + análisis ligero).
 
 ---
 
-**Orden general:** Exp 24 → Exp 22 → Exp17+factor1/2. Mantener pre-regs actualizados en index_master. Auditoría Fable domingo antes de runs mayores. Re-evaluar después de cada (usar pre_domingo_checks como template).
+## 2. Exp 22 — intervalos en inhomogeneous box orders / sesgado (committed pre-reg → run)
 
-**Próximos después de estos:** Dependiente de resultados (posible Exp 18d finite-size o new inhomogeneous con curvatura). Actualizar este roadmap post-auditoría.
+**Por qué segundo:** Pre-reg completo (exp22_prereg_outline + referee_questions) ya en main + Codex. Baselines BB/BK/GS listos. Diseñado para medir impacto de bias en abundances, height/width, y separación manifold vs random orders.
 
-Mantener solo en notes/. Listo para Codex.
+**Acción:**
+- Sync outline a main si hay diffs.
+- Implementar/extender script de sprinkling sesgado (basado en 18a + bias param b modulado por "masa").
+- Correr grilla (d=2/4, varios N, b values).
+- Medir ℓ_max, N_m, ε_link, v_link vs homogéneo GS y box-order BB.
+- Testear trade-off altura/anchura.
+
+**Entregables:** Datos + update a inhomogeneous_box_orders.md + pre-reg results + cross con symbol table.
+**Timeline:** 2-4 días.
+
+---
+
+## 3. Siguiente: Exp 17 atrición + factor 1/2 (decidido: integrar atrición con corrección de factor)
+
+**Decisión:** En vez de "factor 1/2 puro" o "atrition Exp17" separado, el próximo es **Exp 17 atrición con factor 1/2**.
+
+**Por qué esta elección:**
+- Historia fuerte en atrición (mask >30% descartes en stacking pipeline, ver 17_isw_stacking_pipeline.py y RESULTS_17*).
+- Factor 1/2 aparece en kernel 2D de Johnston (G_R = 1/2 C) y necesita validación cruzada con 4D.
+- Cierra pipeline de stacking ISW antes de nuevos exps. Riesgo alto si se ignora (sesgo en delta T).
+
+**Acción:**
+- Commit pre-reg específico "Exp17+atrition+factor1/2".
+- Actualizar 17_isw_stacking_pipeline.py (aplicar factor 1/2 explícito en conteo o kernel).
+- Re-correr con controls de atrición (diferentes masks).
+- Medir impacto en falsificación (ya ~13σ) y robustez.
+- Update symbol_table si introduce nuevos observables (ej. corrected epsilon).
+
+**Entregables:** Pipeline actualizado + resultados con/ sin factor + análisis de bias de atrición + update roadmap.
+**Timeline:** 3-5 días después de Exp 22.
+
+---
+
+**Orden y reglas generales:**
+1. Exp 24 (rápido, background ya listo)
+2. Exp 22 (pre-reg maduro)
+3. Exp17 atrición + factor 1/2 (cierre de pipeline existente)
+
+Mantener index_master actualizado después de cada.
+Usar pre_domingo_checks como template para auditoría.
+Re-evaluar roadmap post cada run (depende de números).
+
+**Después de estos 3:** Posible expansión de Exp18 (finite size) o nuevo con curvatura. Depende de falsificaciones/sobrevivientes.
+
+Solo notas/. Listo.

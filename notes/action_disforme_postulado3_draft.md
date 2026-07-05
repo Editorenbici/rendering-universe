@@ -9,53 +9,36 @@ Objetivo: escribir una acción efectiva mínima para un escalar adimensional
 ds^2=-e^{-2\psi}c^2dt^2+e^{+2\psi}d\mathbf{x}^2 .
 \]
 
-La nota usa una formulación efectiva con un frame temporal preferido. No se
-declara como teoría covariante final. Para volverla covariante habría que
-dinamizar el vector temporal \(u^\mu\) o reemplazarlo por un campo reloj.
+La nota usa $u_\mu$ definido operativamente desde la profundidad de cadena $h(x)$, no un vector fijo. No se declara como teoría covariante final; la dinámica completa de $u^\mu$ (si debe ser derivable de las ecuaciones de campo) está abierta.
 
 ---
 
 ## 1. Métrica efectiva
 
-Sea \(\eta_{\mu\nu}\) la métrica de Minkowski con firma \((-+++)\), y sea
-\(u^\mu\) un vector unitario temporal fijo,
-
+Sea $\eta_{\mu\nu}$ la métrica de Minkowski con firma $(-+++)$. Definimos
 \[
-\eta_{\mu\nu}u^\mu u^\nu=-1 .
+u_\mu \equiv \frac{\partial_\mu h}{\sqrt{-\,\partial_\nu h\,\partial^\nu h}},
+\qquad
+h(x) = \text{longitud de la cadena más larga desde el post hasta } x,
 \]
+donde $h$ es el campo de profundidad de cadena (DP 18a). Su gradiente normalizado es timelike donde el poset es manifoldlike (Brightwell–Gregory). Esta $u_\mu$ reemplaza el vector fijo de versiones anteriores y se vuelve computable directamente sobre cualquier conjunto causal (véase la nota `anisotropia_cadena_anticadena.md`, sección 4).
 
-Definimos el proyector espacial
-
+El proyector espacial es
 \[
-h_{\mu\nu}=\eta_{\mu\nu}+u_\mu u_\nu .
+h_{\mu\nu} = \eta_{\mu\nu} + u_\mu u_\nu .
 \]
 
 La métrica que ve la materia es
-
 \[
 \tilde g_{\mu\nu}(\psi)
-=e^{2\psi}h_{\mu\nu}-e^{-2\psi}u_\mu u_\nu .
+= e^{2\psi} h_{\mu\nu} - e^{-2\psi} u_\mu u_\nu .
 \]
 
-En el frame de reposo de \(u^\mu=(1,0,0,0)\), esto da
-
+En el frame de reposo de $u^\mu = (1,0,0,0)$, esto da
 \[
-d\tilde s^2=-e^{-2\psi}c^2dt^2+e^{2\psi}d\mathbf{x}^2 .
+d\tilde s^2 = -e^{-2\psi} c^2 dt^2 + e^{2\psi} d\mathbf{x}^2 ,
 \]
-
-Límite plano:
-
-\[
-\psi\to 0
-\quad\Rightarrow\quad
-\tilde g_{\mu\nu}\to h_{\mu\nu}-u_\mu u_\nu=\eta_{\mu\nu}.
-\]
-
-Por lo tanto,
-
-\[
-d\tilde s^2\to -c^2dt^2+d\mathbf{x}^2 .
-\]
+con el límite plano $\psi\to0 \Rightarrow \tilde g_{\mu\nu}\to\eta_{\mu\nu}$.
 
 ---
 
@@ -293,11 +276,10 @@ Lo logrado por esta nota:
 
 Limitaciones:
 
-1. La formulación usa un frame temporal preferido \(u^\mu\).
-2. No deriva \(u^\mu\), ni lo hace dinámico.
+1. $u_\mu$ se define operativamente desde $h(x)$ (profundidad de cadena), pero $h$ es calculable solo sobre el conjunto causal; no es un campo suave independiente.
+2. La dinámica de $u^\mu$ (si debe ser derivable de las ecuaciones de campo) no está cerrada.
 3. El término galileónico queda como opción, no como necesidad.
-4. Esto no reemplaza una teoría relativista completa; es una acción
-   efectiva para estudiar el Postulado 3 en fondo plano.
+4. Esto no reemplaza una teoría relativista completa; es una acción efectiva para estudiar el Postulado 3 en fondo plano.
 
 ## Comparación con literatura (destilado de búsqueda previa)
 
