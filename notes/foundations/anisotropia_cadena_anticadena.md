@@ -89,3 +89,21 @@ decisión editorial del autor; esta nota la deja lista.
 - Regla de inserción sesgada: REQUERIDA, no derivada (abierto).
 - Exp 22: diseñado, pendiente de pre-registro formal.
 - u_μ: ecuación operativa disponible.
+
+---
+
+## Apéndice: lectura u_μ → ⊞ (2026-07-06, propuesta del autor, redacción Fable)
+
+**Estado: INTERPRETACIÓN — no derivación. No deriva nada aún. No entra
+al paper. Candidata a Paper 3 (fundamentos) si ℕ_R le da estructura.**
+
+u_μ = ∂_μh/|∂h| y ⊞ no son iguales (tipo distinto: campo vectorial vs
+totalidad), pero están relacionados como la brújula y el norte: h mide
+cuánto render ya ocurrió en cada punto; ⊞ es el llenado completo (el
+límite de la torre); u_μ es entonces el gradiente local de
+completación — en cada evento, la dirección en la que la totalidad se
+está completando más rápido. En esta lectura el tiempo no es una
+dimensión dada sino el apuntador local del proceso de completación:
+⊞ es lo único absoluto y u_μ es cómo se ve ⊞ desde adentro, en
+perspectiva de grano. Versión divulgable (video girasol): "cada
+semilla apunta hacia la flor completa".
