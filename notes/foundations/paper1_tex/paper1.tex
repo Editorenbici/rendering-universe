@@ -131,8 +131,12 @@ measurement in the repository history.
 Before measuring anything new, the pipeline must reproduce something old. We
 chose the mean interval abundance $\langle N_{0}\rangle$---the expected number
 of links from the bottom element, in the notation of Glaser \& Surya
-\cite{GlaserSurya2013}---in a 4D causal diamond at matched density. Our result
-agrees with the published value to $0.07\sigma$.
+\cite{GlaserSurya2013}---in a 4D causal diamond at matched density.
+Concretely, at $\rho = 1$ in a diamond of temporal extent $T_{D} = 10$
+($\langle N\rangle \approx 1309$ elements), direct Monte Carlo evaluation of
+the Glaser--Surya integral gives $\langle N_{0}\rangle = 27602 \pm 95$, while
+exact blocker counting in sprinkled diamonds gives $27537 \pm 876$: agreement
+to $0.07\sigma$.
 
 The same exercise quantifies a systematic that matters for everything
 downstream: measuring valency in a slab rather than a diamond inflates the
@@ -169,8 +173,11 @@ In 3+1 Minkowski the logarithm steepens to a power:
   v(T) = \kappa_{4}\,\sqrt{\rho}\,T^{2},
   \qquad \kappa_{4} = \pi\sqrt{6} \approx 7.6953.
 \end{equation}
-The exponent is measured as $2.089 \pm 0.025$ and the amplitude matches
-$\pi\sqrt{6}$ at the 5\% level with no fitted parameters. The $T^{2}$ is an
+The exponent fitted over the full cutoff range is $2.089 \pm 0.025$ ---
+slightly above 2, as expected: Section~\ref{sec:frw} documents how
+finite-interval boundary transients bias power-law fits upward long before
+they are visually apparent, and the excess here is of that size. The
+amplitude matches $\pi\sqrt{6}$ at the 5\% level with no fitted parameters. The $T^{2}$ is an
 \emph{area} law: the linked shell hugs the past light cone, whose intersection
 with the cutoff interval scales as the cone's lateral area. The constant
 follows from integrating the first-blocking-layer probability $e^{-\rho V}$
@@ -275,63 +282,35 @@ the predicted $3\sqrt{6}/(\sqrt{\rho}R^{2})$ curve; manifoldlike sprinklings
 vs.\ transitively-closed random orders separate by an order of magnitude.}
 \end{figure}
 
-\section{Three-sector accounting: a partition identity}
-\label{sec:sectors}
-
-The counting objects of this paper organize into three sectors: chains
-(timelike depth $h$), antichains (spacelike width $w$), and links (the bonds).
-For a weakly disformal rescaling of a metric \cite{Bekenstein1993}---clocks
-scaled by $\lambda^{-1}$ and rulers by $\lambda^{+1}$, i.e.\
-$ds^{2} = -\lambda^{-2}c^{2}dt^{2} + \lambda^{+2}dx^{2}$ to first order---the
-sector counts of a faithful sprinkling must respond as
-\begin{equation}
-  \big(\text{chains} \times \lambda^{-1}\big) \times
-  \big(\text{antichains} \times \lambda^{+3}\big)
-  \;=\; \sqrt{-g} \;=\; \lambda^{+2}
-\end{equation}
-in 3+1 dimensions: the depth of maximal chains scales with proper time
-($\lambda^{-1}$), the width of maximal antichains with spatial volume
-($\lambda^{+3}$), and their product must recover the volume element, which is
-what a Poisson sprinkling actually samples. The identity closes:
-$-1 + 3 = +2$. The \emph{conformal} counterpart (clocks and rulers scaled
-together, $\lambda^{-1}$ each in this convention) gives
-$\sqrt{-g} = \lambda^{-4}$ with both sectors contracted
-($\lambda^{-1} \times \lambda^{-3}$): a \emph{deficit} of elements where the
-disformal case has a surplus. The two assignments thus make opposite-sign,
-countable predictions for the sector split of a faithful sprinkling.
-
-We stress the epistemic status: this is a \textbf{consistency theorem about
-counting}, not a dynamical statement. It says that \emph{if} a poset's growth
-is biased so as to mimic a disformal metric, its chain and antichain sectors
-must split the volume budget as $(-1, +3)$; it does not say any natural growth
-dynamics does so. Whether biased sequential growth can produce these exponents
-is an open, pre-registered question (Section~\ref{sec:outlook}). A first toy
-experiment in 1+1 dimensions (where the disformal split is $(-1,+1)$ and there
-is no surplus to allocate) found the width sector saturating its budget and
-the depth sector near zero, with a smooth sign crossover as the bias
-increases---a susceptibility-like response, not a phase transition---but its
-dimensional targets were mismatched by design and it decides nothing beyond
-the toy.
-
 \section{Outlook}
 \label{sec:outlook}
 
-Three follow-ups are defined and, where marked, pre-registered.
+The counting objects of this paper---chains (timelike depth), antichains
+(spacelike width), and links---suggest one forward-looking consistency
+statement. For a weakly disformal rescaling of a metric
+\cite{Bekenstein1993}, $ds^{2} = -\lambda^{-2}c^{2}dt^{2} + \lambda^{+2}dx^{2}$
+to first order, a faithful sprinkling must split its volume budget as
+$(\text{chains} \times \lambda^{-1}) \times (\text{antichains} \times
+\lambda^{+3}) = \sqrt{-g} = \lambda^{+2}$, whereas the conformal counterpart
+(clocks and rulers scaled together) gives $\sqrt{-g} = \lambda^{-4}$ with both
+sectors contracted---an opposite-sign, countable prediction. This is a
+bookkeeping identity, not a result of this paper; its value is that it is
+directly testable, which motivates the first item below. Three follow-ups are
+defined and, where marked, pre-registered.
 
 \begin{enumerate}
-\item \textbf{Validation in a disformal metric (pre-registered):} a uniform
-  sprinkling \emph{into} the weakly disformal geometry
+\item \textbf{Estimator test in a disformal metric (pre-registered):} a
+  uniform sprinkling \emph{into} the weakly disformal geometry
   $ds^{2} = -\mathcal{R}^{-2}dt^{2} + \mathcal{R}^{2}d\vec{x}^{\,2}$, where
-  the partition identity of Section~\ref{sec:sectors} predicts $(-1,+3)$
-  analytically. The experiment validates that the identity survives finite
-  size and boundaries and that windowed local estimators---depth in
-  proper-radius balls, width by the causal-overlap method of Bogu\~n\'a \&
-  Krioukov \cite{BogunaKrioukov2024} rather than raw adjacency, which is
-  asymptotically silent---can \emph{see} the signature. Chain lengths in
-  inhomogeneous (Schwarzschild) sprinklings have been studied
-  \cite{Eichhorn2026}; the disformal partition test appears to be new.
-  Whether biased \emph{growth dynamics} produce this split is a separate,
-  open question deferred to future work.
+  the partition identity above predicts $(-1,+3)$ analytically. The test
+  checks that the identity survives finite size and boundaries and that
+  windowed local estimators---depth in proper-radius balls, width by the
+  causal-overlap method of Bogu\~n\'a \& Krioukov \cite{BogunaKrioukov2024}
+  rather than raw adjacency, which is asymptotically silent---can \emph{see}
+  the signature. Chain lengths in inhomogeneous (Schwarzschild) sprinklings
+  have been studied \cite{Eichhorn2026}; the disformal partition test appears
+  to be new. Whether any \emph{growth dynamics} produces this split is a
+  separate, open question deferred to future work.
 \item \textbf{Link fraction in FRW:} whether $\varepsilon(T)$ and its $T^{-2}$
   scaling survive expansion with the same $\mathfrak{F}$-type renormalization
   as the valency law.
