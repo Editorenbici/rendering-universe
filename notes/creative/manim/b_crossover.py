@@ -90,31 +90,28 @@ class Crossover(Scene):
             self.play(GrowArrow(arrow), Write(cross_label), run_time=1.5)
             self.wait(1)
 
-        # --- Título: "el sesgo convierte tiempo en espacio" ---
+        # --- Título ---
         title = Text(
-            "el sesgo convierte\ntiempo en espacio",
-            font_size=42, color=BLANCO, font="JetBrains Mono",
-            line_spacing=1.2,
+            "el sesgo convierte\\ntiempo en espacio",
+            font_size=36, color=BLANCO, font="JetBrains Mono",
+            line_spacing=1.1,
         )
-        title.to_corner(UL, buff=0.5)
+        title.to_corner(UL, buff=0.15)
         self.play(Write(title), run_time=1.5)
         self.wait(1)
 
-        # --- Etiqueta obligatoria ---
+        # --- Etiqueta obligatoria + dato de cierre (UR) ---
         etiq = Text(
             "toy 1+1D — HIPÓTESIS (Exp 25b pendiente)",
-            font_size=20, color=AMBER, font="JetBrains Mono",
+            font_size=18, color=AMBER, font="JetBrains Mono",
         )
-        etiq.to_corner(DR, buff=0.4)
+        etiq.to_corner(UR, buff=0.4)
         self.play(Write(etiq), run_time=1)
-        self.wait(2)
-
-        # --- Punto final: dato de cierre ---
         cierre = Text(
-            "p_h(0) = +0.47 ± 0.07\np_h(4) = −0.11 ± 0.08",
-            font_size=26, color=GRIS, font="JetBrains Mono",
-            line_spacing=1.5,
+            "p_h(0) = +0.47 ± 0.07\\np_h(4) = −0.11 ± 0.08",
+            font_size=22, color=GRIS, font="JetBrains Mono",
+            line_spacing=1.3,
         )
-        cierre.next_to(etiq, UP, buff=0.5, aligned_edge=RIGHT)
+        cierre.next_to(etiq, DOWN, buff=0.3, aligned_edge=RIGHT)
         self.play(Write(cierre), run_time=1.5)
         self.wait(3)

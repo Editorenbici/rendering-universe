@@ -65,18 +65,19 @@ class Escalera(Scene):
         self.wait(1)
 
         # --- Explicación ---
-        expl = Text(
+        expl1 = Text(
             "Medir por adyacencia → π = 4\nMedir con estructura → π emerge",
-            font_size=26, color=BLANCO, font="JetBrains Mono",
+            font_size=24, color=BLANCO, font="JetBrains Mono",
         )
-        expl.to_edge(DOWN, buff=0.5)
-        self.play(Write(expl), run_time=1.5)
-        self.wait(1)
+        expl1.to_edge(DOWN, buff=0.5)
+        expl1.shift(LEFT * 3.5)
+        self.play(Write(expl1), run_time=1.5)
+        self.wait(0.5)
 
-        cierre = Text(
+        expl2 = Text(
             "Distancia espacial en causal sets:\noverlaps, no adyacencia",
-            font_size=22, color=GRIS, font="JetBrains Mono",
+            font_size=20, color=GRIS, font="JetBrains Mono",
         )
-        cierre.next_to(expl, DOWN, buff=0.3, aligned_edge=LEFT)
-        self.play(Write(cierre), run_time=1.5)
+        expl2.next_to(expl1, DOWN, buff=0.15, aligned_edge=LEFT)
+        self.play(Write(expl2), run_time=1.5)
         self.wait(2)
