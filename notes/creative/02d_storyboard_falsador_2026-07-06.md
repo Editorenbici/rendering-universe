@@ -124,23 +124,29 @@ Los puntos se estabilizan alrededor de +0.37 μK.
 
 ---
 
-# EPÍLOGO — La lección (5 s, opcional)
+# EPÍLOGO — El patrón (10 s)
 
-*Visual:* Cuatro cajas secuenciales:
-1. Pre-registraste → EXIGE
-2. Refutaron → PUBLICA
-3. Descubriste un error → PUBLICA LA CORRECCIÓN
-4. La refutación se sostiene → ESO ES CIENCIA
+*Visual:* Tres imágenes en paralelo, una por una:
 
-*Silencio.* Sin música triunfal. Sin música triste. Solo el cursor parpadeando.
+**1. Escalera (π=4):** Un círculo pixelado. Texto: "π = 4 — medir con adyacencia del instrumento".
+
+**2. Bug de coordenadas (17):** Dos marcos superpuestos (ecuatorial vs galáctico). Texto: "ΔT = +1.2 µK — medir con el marco del instrumento".
+
+**3. Ventana del 25b:** Una escala que crece con la señal. Texto: "Exponente fabricado — ventana escala con el instrumento".
+
+*Texto común:* "Cuatro fallas. Un mismo error: medir estructura con coordenadas del instrumento. El refinamiento no lo corrige — lo consolida."
+
+*Ultima línea:* "El antídoto no es más resolución. Es preguntar: ¿esto mediría algo si el objeto fuera trivial y solo el instrumento variara?"
+
+*Luz:* Gris `#6B7280` todo el epílogo. Sin música. Sin triunfo. Sin derrota. Solo la lección.
 
 ---
 
 ## Notas técnicas
 
-- **Duración total (9 escenas + epílogo):** ~70 s.
-- **Colores:** Los de FUNDAMENTOS + identidad visual ⊞. El rojo `#DC2626` solo para el bug — es forense, no acusatorio.
-- **Sonido:** Cursor parpadeante (tic suave) durante los commits. En Escena 5 (bug), un tono bajo sostenido que sube 2 dB y se corta. En Escena 8, silencio absoluto.
-- **Hash commits:** Placeholder `[a1b2c3d]` para el pre-registro real; `[c4d5e6f]` para 17b. Sustituir por hashes reales antes de render.
-- **Claims usados:** FUNDAMENTOS §I #9 (REFUTADO-FIRME), §III #6 (muerto en cementerio), PROTOCOLO reglas 3 y 5.
-- **No renderizar** hasta que Patricio apruebe el arco de 3 actos.
+- **Duración total (10 escenas + epílogo):** ~80 s.
+- **Colores:** Los de FUNDAMENTOS + identidad visual ⊞. Rojo `#DC2626` solo para el bug.
+- **Sonido:** Tic de cursor en commits. En el epílogo, silencio absoluto.
+- **Patrón citado:** notes/foundations/patron_instrumento_raster_2026-07-06.md
+- **No renderizar** hasta que Patricio apruebe guion completo.
+- **Companion del Paper 2** — sale 2-4 semanas después de Paper 1.
