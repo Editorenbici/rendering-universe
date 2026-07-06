@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Render Universe — el sitio animado</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #0F0F12; color: #F8F9FA; font-family: 'Inter', system-ui, sans-serif; }
+      #root { position:relative; width:1920px; height:1080px; overflow:hidden; background:#0F0F12; }
+      .clip { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:80px 160px; }
+      .clip.l { align-items:flex-start; padding-left:200px; }
+      h1 { font-size:76px; font-weight:700; letter-spacing:-0.02em; text-align:center; }
+      h2 { font-size:48px; font-weight:600; }
+      .sub { font-size:28px; font-weight:300; color:#6B7280; max-width:1100px; text-align:center; line-height:1.5; }
+      .sub.l { text-align:left; }
+      .sm { font-size:22px; color:#6B7280; font-weight:300; line-height:1.6; max-width:900px; text-align:center; }
+      .sm.l { text-align:left; }
+      .hl { color:#00FFC8; }
+      .ac { color:#A78BFA; }
+      .tag { position:absolute; bottom:36px; right:48px; font-size:14px; color:#6B7280; opacity:0.3; }
+      .card { padding:24px 32px; border-radius:12px; background:rgba(0,255,200,0.04); border:1px solid rgba(0,255,200,0.1); }
+      .card.p { background:rgba(167,139,250,0.04); border-color:rgba(167,139,250,0.12); }
+      .c-title { font-size:26px; color:#00FFC8; margin-bottom:8px; }
+      .grid2 { display:flex; gap:40px; max-width:1000px; }
+      .col { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; }
+      .big-n { font-size:80px; font-weight:700; }
+      .badge { display:inline-block; padding:6px 16px; border-radius:16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); font-size:16px; color:#6B7280; }
+      .box-code { background:rgba(0,0,0,0.3); border-radius:8px; padding:16px 24px; font-family:'Courier New',monospace; font-size:18px; color:#A78BFA; line-height:1.6; border:1px solid rgba(167,139,250,0.08); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="render-universe-site" data-width="1920" data-height="1080" data-start="0" data-duration="80">
+
+      <!-- S1: Portada -->
+      <section id="s1" class="clip" data-start="0" data-duration="6" data-track-index="1">
+        <h1>Render Universe</h1>
+        <div class="sub" style="margin-top:16px;font-size:30px;color:#A78BFA;">
+          &ldquo;El universo es un conteo que se completa.<br>La f&iacute;sica es lo que el conteo conserva.&rdquo;
+        </div>
+        <div style="display:flex;gap:10px;margin-top:40px;flex-wrap:wrap;justify-content:center;">
+          <span class="badge">&#x2115;<sub>R</sub> aritm&eacute;tica</span>
+          <span class="badge">&#x3C0; = 4</span>
+          <span class="badge">(&minus;1,+3)</span>
+          <span class="badge">causal sets</span>
+          <span class="badge">pre-registro</span>
+        </div>
+        <div class="tag">editorenbici.github.io/rendering-universe</div>
+      </section>
+
+      <!-- S2: Los números de grado R -->
+      <section id="s2" class="clip l" data-start="6" data-duration="10" data-track-index="2">
+        <h2 style="font-size:42px;">&#x2115;<sub>R</sub> &mdash; Los n&uacute;meros de grado <span class="hl">R</span></h2>
+        <div class="sm l" style="margin-top:12px;">
+          Tu computadora ya vive en &#x2115;<sub>R</sub>. Cada n&uacute;mero flotante es una fracci&oacute;n di&aacute;dica exacta &mdash; un ciudadano de grado <i>R</i>, con 2<sup>R</sup> posiciones por unidad.
+        </div>
+        <div class="box-code" style="margin-top:16px;align-self:center;">
+          0.1 en la m&aacute;quina:<br>
+          3602879701896397 / 2<sup>55</sup><br>
+          ciudadano de grado R = 55
+        </div>
+        <div class="sm l" style="margin-top:12px;color:#A78BFA;">
+          La resoluci&oacute;n no es un error. Es lo que hay.
+        </div>
+      </section>
+
+      <!-- S3: La ley del mínimo -->
+      <section id="s3" class="clip" data-start="16" data-duration="7" data-track-index="3">
+        <h2 style="font-size:42px;">La ley del m&iacute;nimo</h2>
+        <div class="sub" style="font-size:26px;margin-top:12px;">
+          La resoluci&oacute;n m&aacute;s pobre manda
+        </div>
+        <div class="sm" style="margin-top:16px;">
+          grado(<i>a</i>+<i>b</i>) = min(<i>R</i><sub>1</sub>, <i>R</i><sub>2</sub>)
+        </div>
+        <div class="card" style="margin-top:16px;">
+          <div class="sm" style="font-size:20px;">
+            Si sum&aacute;s algo medido con grado 4 y algo con grado 10,<br>
+            el resultado es de grado 4. La informaci&oacute;n extra no sobrevive.
+          </div>
+        </div>
+      </section>
+
+      <!-- S4: π=4 escalera -->
+      <section id="s4" class="clip" data-start="23" data-duration="9" data-track-index="4">
+        <h2 style="font-size:42px;">La escalera: por qu&eacute; <span class="hl">&#x3C0; = 4</span> si med&iacute;s mal</h2>
+        <div class="sm" style="margin-top:12px;">
+            Un c&iacute;rculo dibujado en p&iacute;xeles mide 4 di&aacute;metros si cont&aacute;s pasos ortogonales.
+        </div>
+        <div class="grid2" style="margin-top:20px;">
+          <div class="col">
+            <div class="big-n hl">4</div>
+            <div class="sm" style="font-size:18px;">Por adyacencia</div>
+          </div>
+          <div class="col">
+            <div class="big-n" style="color:#F8F9FA;">&#x3C0;</div>
+            <div class="sm" style="font-size:18px;">Con estructura</div>
+          </div>
+        </div>
+        <div class="sm" style="margin-top:12px;color:#A78BFA;">
+          M&aacute;s resoluci&oacute;n NO arregla el error &mdash; lo consolida.
+        </div>
+      </section>
+
+      <!-- S5: La hipótesis viva (-1,+3) -->
+      <section id="s5" class="clip l" data-start="32" data-duration="12" data-track-index="5">
+        <h2 style="font-size:40px;">La hip&oacute;tesis viva &mdash; <span class="hl">(&minus;1,+3)</span></h2>
+        <div class="sm l" style="margin-top:12px;font-size:24px;">
+          Cerca de una masa, el presupuesto de eventos crece &times;&#x211C;<sup>2</sup>, pero se distribuye asim&eacute;tricamente:
+        </div>
+        <div class="card" style="margin-top:16px;align-self:center;">
+          <div style="font-size:24px;text-align:center;line-height:1.8;">
+            cadenas &times; <span class="hl">&#x211C;<sup>&minus;1</sup></span> &nbsp;(reloj m&aacute;s lento)<br>
+            anticadenas &times; <span class="hl">&#x211C;<sup>+3</sup></span> &nbsp;(m&aacute;s espacio)<br>
+            total: <span class="hl">&minus;1 + 3 = +2</span>
+          </div>
+        </div>
+        <div class="sm l" style="margin-top:12px;">
+          La gravedad no atrae. <b>Convierte tiempo en espacio.</b>
+        </div>
+        <div class="sm l" style="margin-top:6px;font-size:18px;color:#A78BFA;">
+          &#x2705; Ancla: GPS corrige dilataci&oacute;n gravitacional a diario<br>
+          &#x23F3; Exp 25b en progreso
+        </div>
+      </section>
+
+      <!-- S6: REFUTADO + TIE -->
+      <section id="s6" class="clip" data-start="44" data-duration="10" data-track-index="6">
+        <h2 style="font-size:40px;">Lo que NO hemos demostrado</h2>
+        <div class="grid2" style="margin-top:24px;width:100%;max-width:900px;">
+          <div class="card" style="flex:1;">
+            <div class="c-title" style="color:#E53935;">REFUTADO</div>
+            <div class="sm" style="font-size:18px;text-align:left;">
+              ISW por &#x211C; variable<br>
+              &#x394;T = +0.37 &plusmn; 0.93 &micro;K<br>
+              Predicci&oacute;n excluida a 20.7&sigma;
+            </div>
+          </div>
+          <div class="card" style="flex:1;">
+            <div class="c-title" style="color:#6B7280;">EMPATE</div>
+            <div class="sm" style="font-size:18px;text-align:left;">
+              BAO: &#x3B2; = 0.055<br>
+              Consistente con &#x39B;CDM<br>
+              Ni gana ni pierde
+            </div>
+          </div>
+        </div>
+        <div class="card p" style="margin-top:16px;max-width:700px;">
+          <div class="sm" style="font-size:18px;">
+            &ldquo;Este proyecto publica sus derrotas.&rdquo;
+          </div>
+        </div>
+      </section>
+
+      <!-- S7: Cierre -->
+      <section id="s7" class="clip" data-start="54" data-duration="6" data-track-index="7">
+        <h1 style="font-size:56px;">&#x229E; &nbsp; ⊞</h1>
+        <div class="sub" style="margin-top:16px;font-size:28px;">
+          El TODO. Una pantalla completa. Ni infinito ni abierto.
+        </div>
+        <div class="sm" style="margin-top:24px;">
+          <span class="hl">&#x211C;</span> mide cu&aacute;nto se complet&oacute;.<br>
+          <span class="hl">&#x3BA;<sub>4</sub></span>, <span class="hl">&#x1D534;</span>, <span class="hl">&epsilon;</span>, <span class="hl">&#x229E;</span> &mdash; cinco s&iacute;mbolos bastan.
+        </div>
+        <div style="margin-top:32px;font-size:20px;color:#6B7280;">
+          Code, pre-registros y resultados en el repositorio p&uacute;blico
+        </div>
+        <div class="tag">Render Universe &middot; &#x229E;</div>
+      </section>
+
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.from("#s1 > *:not(.tag)", { y:60, opacity:0, duration:0.8, ease:"power3.out", stagger:0.15 }, 0.3);
+      tl.to("#s1", { opacity:0, duration:0.4, ease:"power2.in" }, 5.4);
+      tl.from("#s2 > *", { y:40, opacity:0, duration:0.5, ease:"power2.out", stagger:0.12 }, 6.3);
+      tl.to("#s2", { opacity:0, duration:0.4, ease:"power2.in" }, 15.4);
+      tl.from("#s3 > *", { y:40, opacity:0, duration:0.5, ease:"power2.out", stagger:0.12 }, 16.3);
+      tl.to("#s3", { opacity:0, duration:0.4, ease:"power2.in" }, 22.4);
+      tl.from("#s4 > *", { y:40, opacity:0, duration:0.5, ease:"power2.out", stagger:0.12 }, 23.3);
+      tl.to("#s4", { opacity:0, duration:0.4, ease:"power2.in" }, 31.4);
+      tl.from("#s5 > *", { y:40, opacity:0, duration:0.5, ease:"power2.out", stagger:0.12 }, 32.3);
+      tl.to("#s5", { opacity:0, duration:0.4, ease:"power2.in" }, 43.4);
+      tl.from("#s6 > *", { y:40, opacity:0, duration:0.5, ease:"power2.out", stagger:0.12 }, 44.3);
+      tl.to("#s6", { opacity:0, duration:0.4, ease:"power2.in" }, 53.4);
+      tl.from("#s7 > *", { y:40, opacity:0, duration:0.6, ease:"power2.out", stagger:0.15 }, 54.3);
+      window.__timelines["render-universe-site"] = tl;
+    </script>
+  </body>
+</html>
