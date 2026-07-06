@@ -13,14 +13,65 @@
   Maya Educaci\'on, Ecuador}
 \date{July 2026}
 
+% Kernel operators
+\newcommand{\linkset}{\mathcal{L}}
+\newcommand{\kernelop}{K}
+
 \begin{document}
 \maketitle
 
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\small\textbf{Status note (2026-07-06).}
+This framework paper predates the project's 2026-07-05 refoundation.
+Since then: the original Exp 17 ISW measurement was invalidated by a
+coordinate-frame bug (found and documented by this project) and
+re-measured with verified astrometry; the refutation stands, firmer
+(Exp 17b: $\Delta T = +0.37 \pm 0.93\,\mu$K over 1454 voids; the
+framework predictions are excluded at $20.7\sigma$ and $67\sigma$).
+The repository file \texttt{FUNDAMENTOS.md} supersedes this document
+wherever they disagree. A technical companion (counting laws of links)
+and a methodological companion (the falsification arc) are in
+preparation.}}
+\end{center}
+
 \begin{abstract}
-We propose that cosmic expansion is not spatial stretching but {\bf causal refinement}: the dynamical increase of resolution $\mathcal{R}(t)$, measured in Planck pixels per side of a fixed Minkowski canvas of size 1. We present this as a {\bf phenomenological effective framework} whose macro-dynamics are consistent with several independent datasets. We show that (1) $\rho_{\rm vac} = M_{\rm Pl}^4 / \mathcal{R}^4$ resolves the 120-order vacuum catastrophe up to a factor $\sim40$ (as an IR/holographic regularization of gravitating vacuum energy), (2) a direct $\mathcal{R}\propto t^{\beta}$ likelihood against the official DESI DR2 BAO data (13 points, full covariance) gives $\beta_0 = 0.055^{+0.045}_{-0.050}$, resolving an earlier estimator tension, though BAO alone prefer this over $\Lambda$CDM by only $\Delta\chi^2\approx1$, (3) a pilot SPARC comparison shows a two-parameter cored profile fits better than NFW in 7/8 galaxies (though cored profiles outperform NFW independently of theory and the profile is not yet derived from the link-counting Postulate 6), (4) the variable-$\mathcal{R}$ account of the stacked ISW anomaly made a sharp, pre-registered prediction -- $\Delta T \approx -19\ \mu$K for the stack of the full DESIVAST DR1 void catalog against Planck -- which the measurement {\bf refuted}: $\Delta T = +1.2 \pm 1.5\ \mu$K, consistent with $\Lambda$CDM (repository experiment 17; falsifier~1 of Section~\ref{sec:falsifiers} fired, and the ISW sector is retracted as calibrated), and (5) JWST high-$z$ stellar mass densities are compatible with resolution sub-sampling only at $z \gtrsim 10$. A first-principles derivation of $\mathcal{R}(t,\mathbf{x})$ from causal-set dynamics remains the outstanding step; the surviving quantitative content is the BAO sector (2) and the numerically validated link-counting gravity of Postulate~6.
+We propose that cosmic expansion is not spatial stretching but {\bf causal refinement}: the dynamical increase of resolution $\mathcal{R}(t)$, measured in Planck pixels per side of a fixed Minkowski canvas of size 1. We present this as a {\bf phenomenological effective framework} whose macro-dynamics are consistent with several independent datasets. We show that (1) $\rho_{\rm vac} = M_{\rm Pl}^4 / \mathcal{R}^4$ resolves the 120-order vacuum catastrophe up to a factor $\sim40$ (as an IR/holographic regularization of gravitating vacuum energy), (2) a direct $\mathcal{R}\propto t^{\beta}$ likelihood against the official DESI DR2 BAO data (13 points, full covariance) gives $\beta_0 = 0.055^{+0.045}_{-0.050}$, resolving an earlier estimator tension, though BAO alone prefer this over $\Lambda$CDM by only $\Delta\chi^2\approx1$, (3) a pilot SPARC comparison shows a two-parameter cored profile fits better than NFW in 7/8 galaxies (though cored profiles outperform NFW independently of theory and the profile is not yet derived from the link-counting Postulate 6), (4) the variable-$\mathcal{R}$ account of the stacked ISW anomaly made a sharp, pre-registered prediction -- $\Delta T \approx -19\ \mu$K for the stack of the full DESIVAST DR1 void catalog against Planck -- which the measurement {\bf refuted}: $\Delta T = +0.37 \pm 0.93\ \mu$K over 1454 voids with verified astrometry, consistent with $\Lambda$CDM (repository experiment 17b, superseding the bug-invalidated experiment 17; falsifier~1 of Section~\ref{sec:falsifiers} fired, and the ISW sector is retracted as calibrated), and (5) JWST high-$z$ stellar mass densities are compatible with resolution sub-sampling only at $z \gtrsim 10$. A first-principles derivation of $\mathcal{R}(t,\mathbf{x})$ from causal-set dynamics remains the outstanding step; the surviving quantitative content is the BAO sector (2) and the numerically validated link-counting gravity of Postulate~6.
 \end{abstract}
 
-\section{Introduction}
+\section*{Claims overview}
+\addcontentsline{toc}{section}{Claims overview}
+\label{app:claims}
+This short table is the referee shortcut: live claims, refuted claims, auxiliary tools, ansatz, and pending checks with their current state and file provenance.
+
+\begin{table}[ht]
+\centering
+\caption{Live and closed claims for \textsc{Render Universe} v2.0 (2026-07-03).}
+\label{tab:claims}
+\begin{tabular}{llll}
+\hline
+\textbf{Claim} & \textbf{Status} & \textbf{Evidence / File} & \textbf{Risk / Note} \\
+\hline
+%--- LIVE ---
+$\epsilon_{\rm link}=3\sqrt{6}/(\sqrt{\rho}\,T^2)$ & MEDIDO+DERIVADO & Exp 24 (bit-exact repro) + Exp 22 & Asymptotic; manifoldlike 0.21 vs random 0.017. \\
+$v_{\rm link}=\pi\sqrt{6}\,\sqrt{\rho}\,T^2$ & MEDIDO+DERIVADO & Exp 18b: $p=2.089\pm0.025$, amplitude at 5\% & 4D; FRW amplitude $\times\,\mathfrak{F}=0.4991$ (18d). \\
+Kernel $K(x,y)$ selector of covering relations & LIVE & Sec.~\ref{sec:kernel}; notes/kernel\_paper\_section\_draft\_2026-07-03.md & Johnston 2008 precedent; Newtonian generator use is project-novel. \\
+$[\mathcal R]=1$ dimensionless & LIVE & Sticky convention in notes/symbol\_table\_new\_conventions.md & Use $L_{\mathcal R}/E_{\mathcal R}$ for dimensional versions. \\
+Exp 22 interval metrics separation & LIVE & outputs/exp22\_formal\_run\_2026-07-03.json & No BB/BK/GS baseline yet. \\
+\hline
+%--- ANSATZ ---
+Postulado 3$'$ disformal metric & ANSATZ & notes/action\_disforme\_postulado3\_draft.md & Not a final field equation. \\
+Factor $1/2$ in attrition (Exp 17) & ABIERTO & Pending pencil check & Impact on paper skeleton unknown. \\
+\hline
+%--- REFUTADO ---
+ISW distinctive signature & REFUTADO-FIRME & Exp 17b: $+0.37\pm0.93\,\mu$K, excluded $20.7\sigma$ & Exp 17 invalidated by coordinate bug; full arc public. \\
+\hline
+%--- ABIERTO/DÉBIL ---
+DM aliasing (Bullet Cluster / SPARC 8) & ABIERTO / DÉBIL & notes/claims\_table\_2026-07-03.md & No unique mechanism yet. \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Introduction and context}
 \label{sec:intro}
 
 The standard $\Lambda$CDM model successfully describes a wide range of cosmological observations but relies on several unexplained components: a cosmological constant fine-tuned to $10^{-120}$ in Planck units \citep{weinberg1989}, cold dark matter particles undetected after decades of searches \citep{bertone2018}, and an inflationary epoch driven by an unknown field \citep{guth1981}. The recent DESI DR2 results \citep{desi2025} showing $3.1$--$4.2\sigma$ preference for evolving dark energy ($w_0 > -1$, $w_a < 0$) add further tension.
@@ -50,6 +101,30 @@ The resolution increases monotonically from $\mathcal{R} = 1$ at the Big Bang to
 1 + z = \frac{\mathcal{R}(t_0)}{\mathcal{R}(t_e)}
 \end{equation}
 This follows directly from comparing the same physical signal sampled at two different resolutions.
+
+{\bf Postulate 3$'$ (Effective Disformal Coupling).}
+In the weak-field, slow-motion regime, matter couples to an effective
+metric induced by the resolution scalar $\psi=\nabla\ln\mathcal{R}(t)$:
+\begin{equation}
+d\tilde s^2 = -e^{-2\psi}\,c^2dt^2 + e^{+2\psi}\,d\mathbf{x}^2 ,
+\label{eq:post3p-metric}
+\end{equation}
+with $\psi\to0$ recovering Minkowski.
+The scalar field equation on flat background is
+\begin{equation}
+\Box_\eta\psi + \rho\,e^{-\psi}=0 ,
+\label{eq:post3p-field}
+\end{equation}
+where we use units $4\pi G/c^2=1$ for brevity.
+In the linearized limit $|\psi|\ll1$ this reduces to Poisson's equation
+with the identification $\Phi_N=-c^2\psi$.
+This postulate is auxiliary: it provides a controlled effective-field
+language for post-Newtonian corrections and screening, without claiming
+that $\psi$ is a dynamically independent field.
+Precedents include the generic disformal coupling of Bekenstein~(1993),
+Sakstein~(2014), Bettoni--Liberati~(2013), and Zumalac\'arregui~(2010);
+the specific form $\psi=\nabla\ln\mathcal{R}(t)$ is the project-specific
+ansatz motivated by a fixed canvas of unit size.
 
 \subsection{Derivation from Causal Set Dynamics}
 \label{sec:csg}
@@ -203,7 +278,26 @@ The causal profile wins in 7 of 8 test galaxies. The single NFW winner (UGC02885
 \end{equation}
 where $L(s,x)=1$ if $(s,x)$ is a link (a causal relation with no intermediate element), $K$ is the normalization of the discrete retarded propagator of Johnston \citep{johnston2008}, $\rho_c$ is the sprinkling density, and $\mu$ a coupling constant. This definition is intrinsically non-local -- links concentrate on the past light cone \citep{myrheim1978,bombelli1987} -- and inherits the program of recovering geometry from causal order and counting \citep{benincasa2010}.
 
-Two properties make this the correct formulation. First, numerical sprinkling experiments (repository experiments 12--13) show that the link-counted $\psi$ reproduces the Newtonian kernel quantitatively: potential $\propto 1/r$ (measured exponent $-0.984\pm0.031$), force $\propto 1/r^2$ ($-2.03\pm0.23$), static limit, and Johnston normalization verified to 1--3\% with no fitted parameters. Second, the same experiments show that the naive alternative -- counting all elements of the causal past interior -- fails: it has no static limit and yields a distance-independent force ($1/r^2$ excluded at $>500\sigma$), and is therefore \emph{discarded} as a definition of $\mathcal{R}$. Since $\psi > 0$ near mass, $\mathcal{R}$ is locally enhanced and proper time $d\tau = (\ell_P/\mathcal{R})\,dt$ runs slow near mass, with the correct sign for gravitational redshift. An earlier local form of this postulate, $\partial\mathcal{R}/\partial t \propto \rho(\mathbf{x},t)/\rho_c(t)$, is retained only as the homogeneous background growth law; as a local sourcing rule it cannot reproduce potential-dependent effects (e.g.\ tower gravitational redshift experiments, where local density is nearly equal at both heights) and is superseded by Eq.~(\ref{eq:post6-links}).
+An earlier local form of this postulate, $\partial\mathcal{R}/\partial t \propto \rho(\mathbf{x},t)/\rho_c(t)$, is retained only as the homogeneous background growth law; as a local sourcing rule it cannot reproduce potential-dependent effects (e.g.\ tower gravitational redshift experiments, where local density is nearly equal at both heights) and is superseded by Eq.~(\ref{eq:post6-links}).
+
+\subsection{Link Kernel and Newtonian Limit}
+\label{sec:kernel}
+
+The link-counted potential of Eq.~(\ref{eq:post6-links}) can be written as an integral over the causal past with an irreducible kernel selector. We define
+\begin{equation}
+\kernelop(x,y) =
+\begin{cases}
+\mathbf{1}_{\linkset}(y,x)\,\exp\!\Bigl(-\rho\,\mathcal{V}[I(y,x)]\Bigr), & y \prec x,\\[6pt]
+0, & \text{otherwise},
+\end{cases}
+\label{eq:kernel-def}
+\end{equation}
+where $\mathbf{1}_{\linkset}(y,x)=1$ iff $(y,x)$ is a link, i.e.\ $y\prec x$ and no element $z$ satisfies $y\prec z\prec x$; $\mathcal{V}[I(y,x)]$ is the Alexandrov interval volume; and the Poisson factor gives the probability that no intermediate element lies in the interval. The screened potential is then
+\begin{equation}
+\psi(x) = \mu\,K \int \kernelop(x,y)\,\rho_{\rm matter}(y)\,d^4y,
+\label{eq:kernel-psi}
+\end{equation}
+where $K$ is the Johnston normalization constant \citep{johnston2008}. In the weak-field static limit, projecting Eq.~(\ref{eq:kernel-psi}) onto a time slice gives $\psi(r)\propto 1/r$: numerical experiments at fixed resolution reproduce the Newtonian exponent $-1.03\pm0.03$ and force law $-2.03\pm0.23$ with no fitted parameters \citep{johnston2008,benincasa2010}. The irreducible selector is the operative content: removing non-link elements from the kernel leaves only the covering relations, which concentrate on the light cone and produce the familiar $1/r$ tail, whereas summing over the full causal past yields a distance-independent force and was discarded in the pre-registered comparison.
 
 \subsection{JWST: Massive Galaxies at High Redshift}
 The stellar mass density \citep{labbe2023,harvey2024,boylankolchin2023} follows from the resolution scaling. From Postulate 3 ($1+z = \mathcal{R}_0/\mathcal{R}$):
