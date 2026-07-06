@@ -50,6 +50,18 @@ GAUSS_W = np.concatenate([_gw / _NSUB for _ in range(_NSUB)])
 
 R_CONST = None  # V0d: si se fija, R_field devuelve esa constante
 
+# Región fiducial (Enmienda 2, activada por el F2' del run 2026-07-06:
+# C1' fantasma dio +8.5 en el diamante completo → el fit se restringe
+# a |t|<0.5, |x⃗|<0.5, donde el borde del diamante no domina).
+# Se activa con --fiducial; el modo original queda intacto.
+FIDUCIAL = False
+
+
+def fiducial_mask(t, x):
+    if not FIDUCIAL:
+        return np.ones(len(t), dtype=bool)
+    return (np.abs(t) < 0.5) & (np.linalg.norm(x, axis=1) < 0.5)
+
 
 def R_field(pos, alpha):
     if R_CONST is not None:
@@ -276,8 +288,9 @@ def run_cell(n, alpha, ia, i_n, *, coord_window=False, shuffle=False,
                else proper_window_pairs(x, a_metric, w_phys))
         h = depth_local(causal, win)
         w = width_bk(causal, h, win, theta)
-        ph.append(fit_exponent(Rv, h))
-        pw.append(fit_exponent(Rv, w))
+        fm = fiducial_mask(t, x)
+        ph.append(fit_exponent(Rv[fm], h[fm]))
+        pw.append(fit_exponent(Rv[fm], w[fm]))
     return {"p_h": ms(ph), "p_w": ms(pw)}
 
 
@@ -305,6 +318,10 @@ def verdict(cells):
 
 
 if __name__ == "__main__":
+    if "--fiducial" in sys.argv:
+        FIDUCIAL = True
+        print("MODO FIDUCIAL: fits restringidos a |t|<0.5, |x|<0.5 "
+              "(Enmienda 2, gatillado por C1' del run 2026-07-06)")
     v0_ok = v0_block()
     if "--run" not in sys.argv:
         print("\nModo V0-only (por defecto). Medición: --run tras "
@@ -342,8 +359,9 @@ if __name__ == "__main__":
         h = depth_local(causal, win)
         w = width_bk(causal, h, win, THETA)
         Rg = R_field(x, 0.20)
-        ph.append(fit_exponent(Rg, h))
-        pw.append(fit_exponent(Rg, w))
+        fm = fiducial_mask(t, x)
+        ph.append(fit_exponent(Rg[fm], h[fm]))
+        pw.append(fit_exponent(Rg[fm], w[fm]))
     out["controls"]["C1_ghost"] = {"p_h": ms(ph), "p_w": ms(pw)}
     print(f"C1' fantasma: p_h={ms(ph)[0]:+.2f} p_w={ms(pw)[0]:+.2f} (~0 o es "
           "el confound radial)", flush=True)
@@ -397,6 +415,8 @@ if __name__ == "__main__":
     print(out["verdict"]["verdict"])
 
     os.makedirs("outputs", exist_ok=True)
-    with open("outputs/exp25b_results.json", "w") as f:
+    outfile = ("outputs/exp25b_fiducial_results.json" if FIDUCIAL
+               else "outputs/exp25b_results.json")
+    with open(outfile, "w") as f:
         json.dump(out, f, indent=1)
-    print("DONE — outputs/exp25b_results.json", flush=True)
+    print(f"DONE — {outfile}", flush=True)
