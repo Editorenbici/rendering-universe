@@ -5,7 +5,7 @@ negatives, and a resolution-native arithmetic.**
 
 **Author:** Patricio Fernando Bustos Cabrera · Maya Educación, Ecuador
 **License:** MIT (code) · CC-BY 4.0 (papers)
-🇪🇸 [Versión en español](README.es.md)
+🇪🇸 [Versión en español](README.es.md) · 🌐 [Interactive demo](https://editorenbici.github.io/rendering-universe/)
 
 ---
 
