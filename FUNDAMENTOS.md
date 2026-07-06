@@ -30,7 +30,7 @@ evidencia.
 - **κ₄ = π√6 ≈ 7.6953** — constante de links 4D (κ₂ = 2 en 2D)
 - **𝔉 = 0.4991…** — factor de bloqueo de expansión (integral definida)
 - **ε_link(ρ,T)** — escasez causal; ε(t₀) ~ 10⁻¹²¹ ~ Λℓ_P² (familia T⁻²/CKN: reformulación, NO descubrimiento)
-- **⊞** (田) — el TODO: límite de la torre de pantallas; ⊤_R su sombra por grado; ±∞_R fuera-de-pantalla
+- **⊞** (U+229E, *squared plus*) — el TODO: límite de la torre de pantallas; ⊤_R su sombra por grado; ±∞_R fuera-de-pantalla
 - **(−1, +3)** — firma de anisotropía; HIPÓTESIS hasta el Exp 25
 - Convención: [ℛ]=1 (adimensional); h = profundidad de cadena; w = anchura de anticadena; u_μ = ∂_μh/|∂h| (operativo, no en paper aún)
 

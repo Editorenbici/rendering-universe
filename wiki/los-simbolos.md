@@ -7,7 +7,7 @@ Inventario cerrado. Fuente: `FUNDAMENTOS.md` §II.
 | **κ₄** | π√6 ≈ 7.6953 | Constante de links 4D. κ₂ = 2 en 2D. Aparece de la relación links/pasado causal en 4D Minkowski. |
 | **𝔉** | 0.4991… | Factor de bloqueo de expansión. Integral definida del promedio de a⁴ en el intervalo FRW. Medido a 4 cifras (0.4990). |
 | **ε_link**(ρ,T) | 3√6/(√ρ T²) | Escasez causal — la fracción de pares causales que son links. ε(t₀) ~ 10⁻¹²¹ ~ Λℓ_P². **Misma familia que CKN — reformulación, no descubrimiento.** |
-| **⊞** (田) | El TODO | Límite de la torre de pantallas. ⊤_R su sombra por grado. ±∞_R fuera-de-pantalla. |
+| **⊞** (U+229E, *squared plus*) | El TODO | Límite de la torre de pantallas. ⊤_R su sombra por grado. ±∞_R fuera-de-pantalla. |
 | **(−1, +3)** | — | Firma de anisotropía: cadenas pesan ℛ⁻¹, anticadenas ℛ⁺³. HIPÓTESIS hasta el Exp 25. |
 
 ## Convenciones adicionales
