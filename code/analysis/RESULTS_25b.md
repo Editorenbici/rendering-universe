@@ -114,3 +114,18 @@ rediseño limpio puede decirlo.
 
 Séptima entrada del patrón del instrumento raster. Publicado salga
 como salga.
+
+---
+
+## Verificación independiente (Codex, 2026-07-06 — pactada pre-release)
+
+- JSON vs stdout: 12/12 celdas + controles + veredicto + robustez
+  coinciden (`robust_all = true`).
+- **Reproducción bit-exacta**: celda n1024_a0.1 en modo fiducial,
+  mismas semillas — diferencia 0.0 en las cuatro cantidades
+  (p_h = 2.9907390161509015 ± 0.4588174449853913;
+  p_w = 4.588859275998586 ± 0.4724084334534603).
+- Lectura del Outlook v6: "el ítem 1 dice exactamente lo que el
+  resultado autoriza... 'partition identity remains untested (not
+  refuted)' es el estado justo. OK para cerrar Paper 1 y mandar a
+  Zenodo."
