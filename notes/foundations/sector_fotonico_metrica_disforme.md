@@ -105,3 +105,24 @@ calculado. Sería el "Exp 20-teórico" natural.
 **Estado:** técnica, lista para revisión del autor. Cierra la enmienda
 al Postulado 3 al orden lineal; deja explícitos los O(ψ²) y la
 derivación microscópica como abiertos.
+
+---
+
+## Adenda: el constraint GW170817 (2026-07-06, de la búsqueda de Grok)
+
+**|c_GW − c_γ|/c ≲ 6×10⁻¹⁵** (GW170817+GRB170817A; Sakstein PRL 119
+251303, DOI verificado). Mata la mayoría de los acoplamientos
+disformes de dark energy PORQUE en esas teorías el campo escalar
+acopla disformemente a la materia pero NO (o distinto) a la gravedad
+→ fotones y gravitones ven métricas distintas → velocidades distintas.
+
+**Requisito de diseño para 3′ (se registra como constraint, no como
+logro):** en Render la métrica disforme no es un acoplamiento de un
+campo extra — es LA métrica efectiva del conteo, la misma para todo
+lo que se propaga. Si fotones y gravitones ven la MISMA métrica
+efectiva, c_GW = c_γ automáticamente y GW170817 se satisface por
+construcción. Esto es una restricción sobre cualquier completación
+futura del postulado: **prohibido introducir sectores que vean
+métricas distintas**. Si alguna versión covariante de 3′ (borrador
+Hermes, en pausa) genera birrefringencia gravitacional, ese es su
+falsador inmediato — a 10⁻¹⁵, sin apelación.
