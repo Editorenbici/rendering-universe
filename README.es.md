@@ -33,9 +33,9 @@ de verdad: [FUNDAMENTOS.md](FUNDAMENTOS.md)):
 | El conteo de links reproduce el kernel newtoniano (potencial 1/r, normalización de Johnston al 1–3%) | **MEDIDO** |
 | Ley 2D: v = 2·ln(T√ρ) — pendiente 2.01 ± 0.12, insensible a N | **MEDIDO + DERIVADO** |
 | Ley de área 4D: v = π√6·√ρ·T² — amplitud sin parámetros, al 5% | **MEDIDO + DERIVADO** |
-| Factor FRW 𝔉 = 0.4991 derivado vs 0.4990 medido (4 cifras) | **MEDIDO + DERIVADO** |
+| Factor FRW 𝔉 = 0.4991 derivado vs 0.4990 medido — el criterio congelado de aceptación era ±30% en la amplitud; el acuerdo a 4 cifras lo excede por mucho | **MEDIDO + DERIVADO** |
 | Baseline ⟨N₀⟩ de Glaser–Surya reproducido a 0.07σ | **REPRODUCIDO** |
-| Fracción de links ε = 3√6/(√ρR²); separa manifoldlike (0.21) de órdenes aleatorios (0.017) | **MEDIDO + DERIVADO** |
+| Fracción de links ε = 3√6/(√ρR²); a escala igualada √ρR² separa manifoldlike (0.21) de órdenes aleatorios (0.017) — el discriminador compara ambos A LA MISMA escala, no es umbral absoluto | **MEDIDO + DERIVADO** |
 | Identidad de partición cadena/anticadena (−1,+3) → +2 en métrica débilmente disforme | **TEOREMA — primer test cuantitativo corriendo (Exp 25b)** |
 | Aritmética graduada ℕ_R (diádicos exactos, ley del mínimo, ∞ relativo al grado, ⊤_R) | **IMPLEMENTADA** — [`packages/rendernum`](packages/rendernum), 14/14 tests |
 | Sector ISW de ℛ variable | **REFUTADO** (Exp 17b: ΔT = +0.37 ± 0.93 µK sobre 1454 voids; nuestra predicción excluida a 20.7σ). Público y contado completo — incluido el bug de marcos de coordenadas que encontramos y corregimos en el camino |

@@ -32,9 +32,9 @@ truth: [FUNDAMENTOS.md](FUNDAMENTOS.md)):
 | Link counting reproduces the Newtonian kernel (1/r potential, Johnston normalization to 1–3%) | **MEASURED** |
 | 2D valency law: v = 2·ln(T√ρ) — slope measured 2.01 ± 0.12, insensitive to N | **MEASURED + DERIVED** |
 | 4D area law: v = π√6·√ρ·T² — amplitude parameter-free, matched at 5% | **MEASURED + DERIVED** |
-| FRW blocking factor 𝔉 = 0.4991 derived vs 0.4990 measured (4 figures) | **MEASURED + DERIVED** |
+| FRW blocking factor 𝔉 = 0.4991 derived vs 0.4990 measured — frozen acceptance criterion was ±30% on the amplitude; 4-figure agreement far exceeds it | **MEASURED + DERIVED** |
 | Glaser–Surya ⟨N₀⟩ baseline reproduced to 0.07σ | **REPRODUCED** |
-| Link fraction ε = 3√6/(√ρR²); separates manifoldlike (0.21) from random orders (0.017) | **MEASURED + DERIVED** |
+| Link fraction ε = 3√6/(√ρR²); at matched scale √ρR² it separates manifoldlike (0.21) from transitively-closed random orders (0.017) — the discriminator compares both AT the same scale, it is not an absolute threshold | **MEASURED + DERIVED** |
 | Chain/antichain partition identity (−1,+3) → +2 for weakly disformal metrics | **THEOREM — first quantitative test running (Exp 25b)** |
 | ℕ_R graded arithmetic (dyadic exact, min-law, grade-relative ∞, ⊤_R) | **IMPLEMENTED** — [`packages/rendernum`](packages/rendernum), 14/14 tests |
 | Variable-ℛ ISW sector | **REFUTED** (Exp 17b: ΔT = +0.37 ± 0.93 µK over 1454 voids; our prediction excluded at 20.7σ). Kept public, told in full — including the coordinate-frame bug we found and fixed along the way |
