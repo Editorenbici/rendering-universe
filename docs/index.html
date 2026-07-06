@@ -1,0 +1,443 @@
+<title>ℕ_R — El universo es un conteo</title>
+<style>
+  :root{
+    --bg:#0B1210; --panel:#101B18; --panel2:#0E1714; --line:#1E3A32;
+    --teal:#2EE6A8; --teal-dim:#1A8A66; --amber:#E0A83C; --red:#E06A5A;
+    --txt:#E8F5F0; --dim:#9DB3AC; --faint:#5E736C;
+    --mono:"JetBrains Mono","Cascadia Code",ui-monospace,Consolas,monospace;
+    --sans:"Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);
+       font-size:17px;line-height:1.65}
+  ::selection{background:var(--teal-dim);color:#fff}
+  .wrap{max-width:46rem;margin:0 auto;padding:0 1.4rem}
+  h1,h2,h3{font-family:var(--mono);text-wrap:balance;line-height:1.2}
+  h2{font-size:1.5rem;color:var(--teal);margin:0 0 .8rem;font-weight:700}
+  h3{font-size:1.05rem;margin:1.4rem 0 .5rem;color:var(--txt)}
+  p{max-width:65ch;color:var(--dim)}
+  p strong{color:var(--txt)}
+  code,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  code{background:var(--panel2);padding:.1em .4em;border-radius:4px;
+       border:1px solid var(--line);font-size:.88em;color:var(--teal)}
+  a{color:var(--teal)}
+  /* regla de grados: divisor con ticks binarios */
+  .ruler{display:flex;align-items:flex-end;gap:0;height:22px;margin:4.5rem 0 3rem;
+         opacity:.55}
+  .ruler i{flex:1;border-left:1px solid var(--line);height:8px}
+  .ruler i:nth-child(8n+1){height:20px;border-color:var(--teal-dim)}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;
+           text-transform:uppercase;color:var(--teal-dim);margin-bottom:.6rem}
+  /* hero */
+  #hero{position:relative;min-height:78vh;display:flex;align-items:center;
+        border-bottom:1px solid var(--line);overflow:hidden}
+  #heroCanvas{position:absolute;inset:0;width:100%;height:100%}
+  .heroTxt{position:relative;padding:4rem 1.4rem;max-width:46rem;margin:0 auto;width:100%}
+  .heroTxt h1{font-size:clamp(1.6rem,4.6vw,2.7rem);margin:.4rem 0 1rem;font-weight:700}
+  .heroTxt h1 em{color:var(--teal);font-style:normal}
+  .heroTxt p{font-size:1.02rem}
+  .badge{display:inline-block;font-family:var(--mono);font-size:.72rem;
+         letter-spacing:.12em;padding:.28em .7em;border-radius:3px;
+         border:1px solid var(--line);color:var(--dim);margin-right:.5rem}
+  .badge.warn{border-color:var(--amber);color:var(--amber)}
+  .badge.ok{border-color:var(--teal-dim);color:var(--teal)}
+  .badge.dead{border-color:var(--red);color:var(--red)}
+  /* paneles interactivos */
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;
+         padding:1.3rem 1.4rem;margin:1.6rem 0}
+  .panel label{font-family:var(--mono);font-size:.78rem;color:var(--faint);
+               display:block;margin-bottom:.35rem;letter-spacing:.06em}
+  input[type=text]{background:var(--panel2);border:1px solid var(--line);
+    color:var(--txt);font-family:var(--mono);font-size:1.05rem;padding:.5em .7em;
+    border-radius:6px;width:100%;max-width:15rem}
+  input[type=text]:focus,input[type=range]:focus-visible,button:focus-visible{
+    outline:2px solid var(--teal);outline-offset:2px}
+  input[type=range]{width:100%;accent-color:var(--teal)}
+  .out{font-family:var(--mono);font-size:.92rem;margin-top:1rem;color:var(--txt);
+       overflow-x:auto;white-space:pre;line-height:1.9}
+  .out b{color:var(--teal);font-weight:600}
+  .out .g{color:var(--amber)}
+  .out .f{color:var(--faint)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+  @media(max-width:640px){.row2{grid-template-columns:1fr}}
+  .bar{height:14px;background:var(--panel2);border:1px solid var(--line);
+       border-radius:3px;position:relative;overflow:hidden;margin:.3rem 0 .9rem}
+  .bar>span{position:absolute;inset:0;background:var(--teal-dim);transform-origin:left;
+            border-radius:2px}
+  canvas.demo{width:100%;border:1px solid var(--line);border-radius:8px;
+              background:var(--panel2);display:block}
+  /* tabla comparativa */
+  table{border-collapse:collapse;width:100%;font-size:.9rem;margin:1rem 0}
+  th,td{border:1px solid var(--line);padding:.55em .8em;text-align:left;
+        vertical-align:top;color:var(--dim)}
+  th{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;
+     text-transform:uppercase;color:var(--teal);background:var(--panel)}
+  td:first-child{font-family:var(--mono);font-size:.82rem;color:var(--txt);
+                 white-space:nowrap}
+  .tblwrap{overflow-x:auto}
+  /* marcador honesto */
+  .score{display:grid;gap:.8rem;margin:1.2rem 0}
+  .score>div{display:grid;grid-template-columns:7.5rem 1fr;gap:1rem;
+             padding:.9rem 1rem;background:var(--panel);border:1px solid var(--line);
+             border-radius:8px;align-items:baseline}
+  .score .num{font-size:.8rem;font-weight:600}
+  footer{border-top:1px solid var(--line);margin-top:5rem;padding:2.2rem 0 3rem;
+         color:var(--faint);font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+  @media (prefers-reduced-motion: reduce){ .anim{display:none} }
+</style>
+
+<section id="hero">
+  <canvas id="heroCanvas" class="anim" aria-hidden="true"></canvas>
+  <div class="heroTxt">
+    <div class="eyebrow">Render Universe · ℕ_R · investigación en curso</div>
+    <h1>El universo es un conteo que se completa.<br>
+        <em>La física es lo que el conteo conserva.</em></h1>
+    <p>Un programa de fenomenología sobre conjuntos causales, con
+       pre-registros públicos, resultados negativos publicados y una
+       aritmética propia de resolución finita. Esta página muestra las
+       piezas — con su estado epistémico real, sin inflar.</p>
+    <p>
+      <span class="badge ok">MEDIDO · leyes de conteo</span>
+      <span class="badge warn">HIPÓTESIS · métrica disforme</span>
+      <span class="badge dead">REFUTADO · ISW</span>
+    </p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section>
+    <div class="eyebrow">01 · los números de grado 52</div>
+    <h2>Tu computadora ya vive en ℕ_R</h2>
+    <p>Todo número flotante de toda computadora del mundo es una fracción
+       exacta cuyo denominador es una potencia de 2 — un <strong>diádico</strong>.
+       No es una "aproximación defectuosa de los reales": es un número
+       perfectamente exacto de <strong>resolución finita</strong>. ℕ_R lo
+       llama un ciudadano de grado <code>R</code>: una pantalla con
+       2<sup>R</sup> posiciones por unidad.</p>
+    <p>Escribí un decimal y mirá quién es <em>de verdad</em> dentro de la
+       máquina:</p>
+    <div class="panel">
+      <label for="fin">decimal</label>
+      <input type="text" id="fin" value="0.1" inputmode="decimal"
+             aria-describedby="fout">
+      <div class="out" id="fout"></div>
+    </div>
+    <p>Por eso <code>0.1 + 0.2 ≠ 0.3</code> en cualquier lenguaje: la
+       máquina no se equivoca — hace aritmética de resolución, exacta,
+       mal etiquetada. ℕ_R es la etiqueta correcta.</p>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section>
+    <div class="eyebrow">02 · la ley del mínimo</div>
+    <h2>La resolución más pobre manda</h2>
+    <p>Cuando sumás dos cantidades medidas con resoluciones distintas, el
+       resultado no puede ser más fino que la peor de las dos — igual que
+       una cadena de instrumentos queda limitada por el más malo. En ℕ_R
+       eso es un axioma: <code>grado(a+b) = min(R₁, R₂)</code>.</p>
+    <div class="panel">
+      <div class="row2">
+        <div>
+          <label for="r1">grado R₁ = <span class="num" id="r1v">10</span></label>
+          <input type="range" id="r1" min="1" max="24" value="10">
+          <div class="bar"><span id="b1"></span></div>
+        </div>
+        <div>
+          <label for="r2">grado R₂ = <span class="num" id="r2v">4</span></label>
+          <input type="range" id="r2" min="1" max="24" value="4">
+          <div class="bar"><span id="b2"></span></div>
+        </div>
+      </div>
+      <div class="out" id="mout"></div>
+    </div>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section>
+    <div class="eyebrow">03 · el estándar que ya existe</div>
+    <h2>IEEE 1788, el primo ingeniero de ℕ_R</h2>
+    <p>ℕ_R no nació en el vacío. Desde 2015 existe un estándar
+       internacional — <strong>IEEE 1788, aritmética de intervalos</strong> —
+       que resuelve un problema hermano: cómo calcular con números
+       inciertos <em>garantizando</em> que la respuesta verdadera queda
+       dentro del intervalo que devolvés. Cada número es un intervalo
+       [a,b]; cada operación produce un intervalo que <em>certifica</em>
+       contener el resultado exacto; y unas etiquetas llamadas
+       <em>decoraciones</em> avisan si en el camino pasó algo raro
+       (división por un intervalo que cruza cero, funciones fuera de
+       dominio). Se usa para demostraciones asistidas por computadora y
+       cálculo verificado.</p>
+    <p>Las diferencias son la ontología:</p>
+    <div class="tblwrap">
+    <table>
+      <tr><th></th><th>IEEE 1788 (2015)</th><th>ℕ_R (este proyecto)</th></tr>
+      <tr><td>qué es un número</td>
+          <td>un intervalo [a,b] con extremos reales arbitrarios</td>
+          <td>un intervalo diádico cuantizado: posición m en una pantalla de grado R</td></tr>
+      <tr><td>la incertidumbre</td>
+          <td>defecto a corregir: el intervalo se infla para garantizar cobertura</td>
+          <td>propiedad fundamental: la resolución ES el número; no hay valor "verdadero" detrás</td></tr>
+      <tr><td>suma</td>
+          <td>[a+c, b+d] — los anchos se suman</td>
+          <td>ley del mínimo: el grado más pobre manda</td></tr>
+      <tr><td>división por cero</td>
+          <td>intervalo no acotado + decoración</td>
+          <td>⊤_R: "toda la pantalla" — indefinido pero del tamaño del grado</td></tr>
+      <tr><td>infinito</td>
+          <td>±∞ absolutos (extremos permitidos)</td>
+          <td>relativo al grado: ∞_R = "fuera de esta pantalla"; el absoluto es ⊞</td></tr>
+      <tr><td>para qué sirve</td>
+          <td>cálculo numérico verificado (ingeniería, pruebas formales)</td>
+          <td>fundamento: aritmética nativa de un universo de resolución finita</td></tr>
+    </table>
+    </div>
+    <p><strong>La lectura honesta:</strong> ℕ_R comparte ingredientes con
+       1788 (intervalos, resultados certificados) y con los números
+       surreales de Conway (el día de nacimiento de cada número). Lo
+       nuevo no son los ingredientes — es la interpretación: que la
+       resolución no es un error sino <em>lo que hay</em>. Su examen
+       pendiente: derivar al menos una cosa más simple en ℕ_R que sin él.
+       Hasta entonces, es filosofía computable con 14 tests que pasan.</p>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section>
+    <div class="eyebrow">04 · medir con estructura</div>
+    <h2>La escalera: por qué π = 4 si medís mal</h2>
+    <p>Dibujá un círculo en píxeles y medí su perímetro contando pasos
+       ortogonales: da 4 diámetros. Siempre. <strong>Refinar no lo
+       arregla</strong> — más resolución solo te da el mismo error con
+       más precisión. El problema no es la pantalla: es medir por
+       <em>adyacencia</em> en vez de por <em>estructura</em>. El mismo
+       error aparece en la distancia espacial de los conjuntos causales,
+       en nuestro bug del experimento 17, y en la primera versión de
+       nuestro experimento 25b. Lo llamamos el patrón del instrumento
+       raster.</p>
+    <div class="panel">
+      <label for="res">resolución de pantalla: <span class="num" id="resv">16</span> px por diámetro</label>
+      <input type="range" id="res" min="6" max="72" value="16" step="2">
+      <canvas id="circleCanvas" class="demo" width="900" height="360"
+              aria-label="círculo pixelado con dos medidas de perímetro"></canvas>
+      <div class="out" id="cout"></div>
+    </div>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section>
+    <div class="eyebrow">05 · la hipótesis viva</div>
+    <h2>La gravedad reparte: −1 al tiempo, +3 al espacio</h2>
+    <p>En un conjunto causal, las <strong>cadenas</strong> (secuencias
+       causa→efecto) son relojes: su longitud es tiempo transcurrido. Las
+       <strong>anticadenas</strong> (eventos sin relación causal) son
+       espacio. Nuestro teorema de partición dice que cerca de una masa el
+       presupuesto de eventos crece ×ℛ² pero se reparte de forma
+       anisótropa: las cadenas se acortan (×ℛ⁻¹ — los relojes se
+       enlentecen, como mide el GPS a diario) y las anticadenas se
+       ensanchan (×ℛ⁺³). La gravedad no atrae: <strong>convierte
+       profundidad temporal en anchura espacial</strong>.</p>
+    <div class="panel">
+      <label for="rr">ℛ (resolución local, crece cerca de la masa) =
+        <span class="num" id="rrv">1.00</span></label>
+      <input type="range" id="rr" min="100" max="180" value="100">
+      <canvas id="diamondCanvas" class="demo" width="900" height="420"
+              aria-label="dos diamantes causales, uno deformado por una masa"></canvas>
+      <div class="out" id="dout"></div>
+      <p style="margin-bottom:0"><span class="badge warn">HIPÓTESIS — Exp 25b en curso</span>
+      <span style="font-size:.85rem;color:var(--faint)">El reparto (−1,+3)
+      tiene su primer test cuantitativo pre-registrado corriendo ahora.
+      Esta página se actualizará con el veredicto, salga como salga.</span></p>
+    </div>
+  </section>
+
+  <div class="ruler" aria-hidden="true"></div>
+
+  <section>
+    <div class="eyebrow">06 · el marcador honesto</div>
+    <h2>Qué NO hemos demostrado</h2>
+    <p>Este proyecto publica sus derrotas. Contactos del modelo con el
+       universo real, hasta hoy:</p>
+    <div class="score">
+      <div><span class="num" style="color:var(--red)">REFUTADO</span>
+        <span>El efecto ISW de ℛ variable: el cielo dijo que no
+        (ΔT = +0.37 ± 0.93 µK sobre 1454 voids; nuestra predicción quedó
+        excluida a 20.7σ). Publicado con el bug que encontramos y
+        corregimos en el camino.</span></div>
+      <div><span class="num" style="color:var(--amber)">EMPATE</span>
+        <span>Los BAO: nuestro β = 0.055 (+0.045/−0.050) es consistente
+        con ΛCDM. Ni gana ni pierde. Un empate se cita, no se celebra.</span></div>
+      <div><span class="num" style="color:var(--amber)">COINCIDENCIA</span>
+        <span>ε(t₀) ~ 10⁻¹²¹ ~ Λℓ_P²: cualquier ley T⁻² evaluada en la
+        escala de Hubble da ese número (familia Cohen-Kaplan-Nelson).
+        Reformulación, no descubrimiento. Su examen: ¿sobrevive a la
+        expansión? (Exp 24b, pendiente.)</span></div>
+      <div><span class="num" style="color:var(--teal)">MEDIDO</span>
+        <span>Las leyes de conteo de links (κ₄ = π√6 al 5%, 𝔉 = 0.4991 a
+        4 cifras, ε = 3√6/(√ρR²)): teoremas sobre el modelo, medidos en el
+        modelo, sin parámetros ajustados. Matemática nueva verificable —
+        no evidencia sobre el universo. Todavía.</span></div>
+    </div>
+    <p>Por eso seguimos midiendo.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Render Universe · P. Bustos · κ₄ = π√6 · 𝔉 = 0.4991 · ⊞</span>
+    <span>Paper 1 en preparación (Zenodo) · repo público con pre-registros</span>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ---------- 01: ciudadano de grado R ---------- */
+function exactDyadic(x){
+  if(!isFinite(x)) return null;
+  let k=0, y=Math.abs(x);
+  while(y%1!==0 && k<1200){ y*=2; k++; }
+  return {num:BigInt(Math.round(y))*(x<0?-1n:1n), R:k};
+}
+function fmtPow2(k){ return k<=20 ? (2n**BigInt(k)).toString() : "2^"+k; }
+function updFloat(){
+  const el=document.getElementById('fin'), out=document.getElementById('fout');
+  const v=parseFloat(el.value.replace(',','.'));
+  if(isNaN(v)){ out.textContent="…eso no es un número que la pantalla conozca."; return; }
+  const d=exactDyadic(v);
+  const exact = (v===Math.round(v*Math.pow(2,d.R))/Math.pow(2,d.R));
+  let s = `escribiste      <b>${el.value}</b>\n`;
+  s += `la máquina tiene <b>${d.num}</b> / <b>${fmtPow2(d.R)}</b>\n`;
+  s += `ciudadano de grado <span class="g">R = ${d.R}</span>`;
+  if(d.R>0 && String(v).length<18){
+    // mostrar el valor decimal exacto del diádico (hasta 40 cifras)
+    const den=2n**BigInt(d.R); const n= d.num<0n?-d.num:d.num;
+    let int=n/den, rem=n%den, dec="";
+    for(let i=0;i<42 && rem>0n;i++){ rem*=10n; dec+= (rem/den).toString(); rem%=den; }
+    s += `\n<span class="f">que vale exactamente ${d.num<0n?"-":""}${int}${dec?"."+dec:""}${rem>0n?"…":""}</span>`;
+  }
+  out.innerHTML=s;
+}
+document.getElementById('fin').addEventListener('input',updFloat);
+updFloat();
+
+/* ---------- 02: ley del mínimo ---------- */
+function updMin(){
+  const r1=+document.getElementById('r1').value, r2=+document.getElementById('r2').value;
+  document.getElementById('r1v').textContent=r1;
+  document.getElementById('r2v').textContent=r2;
+  const w1=Math.pow(2,-r1), w2=Math.pow(2,-r2), m=Math.min(r1,r2);
+  document.getElementById('b1').style.transform=`scaleX(${Math.pow(.78,r1-1)})`;
+  document.getElementById('b2').style.transform=`scaleX(${Math.pow(.78,r2-1)})`;
+  document.getElementById('mout').innerHTML =
+    `ancho de píxel:  2⁻${String(r1).padEnd(3)}${r1>=r2?'':'  ← más fino'}   2⁻${String(r2).padEnd(3)}${r2>r1?'':(r1===r2?'':'  ← más fino')}\n`+
+    `suma:            grado <span class="g">min(${r1}, ${r2}) = ${m}</span>\n`+
+    `<span class="f">la información extra del grado fino no sobrevive: no había dónde apoyarla</span>`;
+}
+document.getElementById('r1').addEventListener('input',updMin);
+document.getElementById('r2').addEventListener('input',updMin);
+updMin();
+
+/* ---------- 04: la escalera ---------- */
+function drawCircle(){
+  const cv=document.getElementById('circleCanvas'), ctx=cv.getContext('2d');
+  const n=+document.getElementById('res').value;
+  document.getElementById('resv').textContent=n;
+  ctx.clearRect(0,0,cv.width,cv.height);
+  const cx=cv.width/2, cy=cv.height/2, Rpix=150, px=2*Rpix/n;
+  let per=0, cells=0;
+  const inside=(i,j)=>{const x=(i+.5)*px-Rpix, y=(j+.5)*px-Rpix; return x*x+y*y<=Rpix*Rpix;};
+  for(let i=0;i<n;i++)for(let j=0;j<n;j++){
+    if(!inside(i,j)) continue;
+    cells++;
+    const edge = !inside(i+1,j)||!inside(i-1,j)||!inside(i,j+1)||!inside(i,j-1);
+    ctx.fillStyle = edge? '#2EE6A8' : 'rgba(46,230,168,.13)';
+    ctx.fillRect(cx-Rpix+i*px+.5, cy-Rpix+j*px+.5, px-1, px-1);
+    if(!inside(i+1,j))per+=px; if(!inside(i-1,j))per+=px;
+    if(!inside(i,j+1))per+=px; if(!inside(i,j-1))per+=px;
+  }
+  const piAdj = per/(2*Rpix);
+  const piStruct = Math.PI*Math.sqrt(cells*px*px/(Math.PI*Rpix*Rpix)); // área→π estructural
+  document.getElementById('cout').innerHTML=
+    `perímetro por adyacencia:  ${per.toFixed(0)} px  →  "π" = <b>${piAdj.toFixed(3)}</b>  <span class="f">(siempre ≈ 4, refina lo que quieras)</span>\n`+
+    `midiendo con estructura (área):  π = <b>${(cells*px*px/(Rpix*Rpix)).toFixed(3)}</b>  <span class="f">→ converge a 3.14159… al refinar</span>`;
+}
+document.getElementById('res').addEventListener('input',drawCircle);
+drawCircle();
+
+/* ---------- 05: el reparto (−1,+3) ---------- */
+function drawDiamonds(){
+  const cv=document.getElementById('diamondCanvas'), ctx=cv.getContext('2d');
+  const R=+document.getElementById('rr').value/100;
+  document.getElementById('rrv').textContent=R.toFixed(2);
+  ctx.clearRect(0,0,cv.width,cv.height);
+  const H=150;
+  function diamond(cx,cy,w,h,label,col,seedBase,density){
+    ctx.strokeStyle='#1E3A32'; ctx.lineWidth=1.5;
+    ctx.beginPath(); ctx.moveTo(cx,cy-h); ctx.lineTo(cx+w,cy);
+    ctx.lineTo(cx,cy+h); ctx.lineTo(cx-w,cy); ctx.closePath(); ctx.stroke();
+    // sprinkling determinista
+    let s=seedBase;
+    const rnd=()=>{ s=(s*1103515245+12345)%2147483648; return s/2147483648; };
+    const N=Math.round(140*density);
+    ctx.fillStyle=col;
+    for(let k=0;k<N;k++){
+      const u=rnd()*2-1, v=rnd()*2-1;
+      if(Math.abs(u)+Math.abs(v)<1) ctx.fillRect(cx+u*w-1.4, cy+v*h-1.4, 2.8,2.8);
+    }
+    ctx.fillStyle='#9DB3AC'; ctx.font='13px "Cascadia Code",monospace';
+    ctx.textAlign='center'; ctx.fillText(label, cx, cy+H+46);
+  }
+  diamond(cv.width*0.27, 190, 120, H, 'lejos de la masa · ℛ = 1', 'rgba(46,230,168,.85)', 7, 1);
+  diamond(cv.width*0.73, 190, 120*R*R*R, H/R, `cerca de la masa · ℛ = ${R.toFixed(2)}`, 'rgba(224,168,60,.85)', 7, R*R);
+  document.getElementById('dout').innerHTML=
+    `profundidad (tiempo):   ×ℛ⁻¹ = <b>${(1/R).toFixed(2)}</b>   <span class="f">el reloj se enlentece</span>\n`+
+    `anchura (espacio):      ×ℛ⁺³ = <b>${(R*R*R).toFixed(2)}</b>   <span class="f">el espacio se ensancha</span>\n`+
+    `presupuesto total:      ×ℛ⁺² = <b>${(R*R).toFixed(2)}</b>   <span class="f">−1 + 3 = +2, la cuenta cierra</span>`;
+}
+document.getElementById('rr').addEventListener('input',drawDiamonds);
+drawDiamonds();
+
+/* ---------- regla de grados ---------- */
+document.querySelectorAll('.ruler').forEach(r=>{
+  for(let i=0;i<64;i++){ r.appendChild(document.createElement('i')); }
+});
+
+/* ---------- hero: el conteo que se completa ---------- */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const cv=document.getElementById('heroCanvas'), ctx=cv.getContext('2d');
+  let W,Hh,pts=[],t0=performance.now();
+  function size(){ W=cv.width=cv.offsetWidth*devicePixelRatio;
+                   Hh=cv.height=cv.offsetHeight*devicePixelRatio; }
+  addEventListener('resize',size); size();
+  let s=42; const rnd=()=>{ s=(s*1103515245+12345)%2147483648; return s/2147483648; };
+  function tick(now){
+    const el=(now-t0)/1000;
+    // nacen eventos dentro de un gran diamante a la derecha
+    if(pts.length<900 && rnd()<0.5){
+      const u=rnd()*2-1, v=rnd()*2-1;
+      if(Math.abs(u)+Math.abs(v)<1) pts.push({u,v,b:el});
+    }
+    ctx.clearRect(0,0,W,Hh);
+    const cx=W*0.78, cy=Hh*0.5, w=Math.min(W*0.3,Hh*0.55), h=Math.min(W*0.3,Hh*0.55);
+    ctx.strokeStyle='rgba(46,230,168,.25)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(cx,cy-h); ctx.lineTo(cx+w,cy);
+    ctx.lineTo(cx,cy+h); ctx.lineTo(cx-w,cy); ctx.closePath(); ctx.stroke();
+    for(const p of pts){
+      const a=Math.min(1,(el-p.b)/2);
+      ctx.fillStyle=`rgba(46,230,168,${0.15+0.55*a})`;
+      const r=(1+a)*devicePixelRatio;
+      ctx.fillRect(cx+p.u*w-r, cy+p.v*h-r, 2*r, 2*r);
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
