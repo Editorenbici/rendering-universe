@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Counting Laws of Links — Paper 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { background: #0F0F12; color: #F8F9FA; font-family: 'Inter', system-ui, sans-serif; }
+      #root {
+        position: relative; width: 1920px; height: 1080px; overflow: hidden;
+        background: #0F0F12;
+      }
+      .clip {
+        position: absolute; inset: 0;
+        display: flex; flex-direction: column;
+        justify-content: center; align-items: center;
+        padding: 80px 160px;
+      }
+      .clip.left { align-items: flex-start; padding-left: 200px; }
+      h1 { font-size: 80px; font-weight: 700; letter-spacing: -0.02em; text-align: center; }
+      h2 { font-size: 52px; font-weight: 600; letter-spacing: -0.01em; }
+      .sub { font-size: 32px; font-weight: 300; color: #6B7280; max-width: 1100px; text-align: center; line-height: 1.5; }
+      .sub.left { text-align: left; }
+      .eq { font-size: 48px; margin: 20px 0; text-align: center; font-weight: 400; letter-spacing: 0.02em; font-family: 'Times New Roman', 'Latin Modern Math', serif; }
+      .eq.sm { font-size: 36px; }
+      .eq.lg { font-size: 56px; }
+      .small { font-size: 24px; color: #6B7280; font-weight: 300; line-height: 1.6; max-width: 1000px; text-align: center; }
+      .highlight { color: #00FFC8; }
+      .accent { color: #A78BFA; }
+      .tag { position: absolute; bottom: 40px; right: 48px; font-size: 16px; color: #6B7280; opacity: 0.4; }
+      .data-box {
+        background: rgba(0,255,200,0.06); border: 1px solid rgba(0,255,200,0.15);
+        border-radius: 16px; padding: 28px 40px; display: flex; flex-direction: column; gap: 10px;
+      }
+      .data-row { display: flex; justify-content: space-between; font-size: 28px; gap: 40px; }
+      .data-label { color: #6B7280; }
+      .data-value { color: #F8F9FA; font-weight: 600; }
+      .grid-2 { display: flex; gap: 60px; justify-content: center; align-items: center; }
+      .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+      .num-big { font-size: 90px; font-weight: 700; }
+      .badge {
+        display: inline-block; padding: 8px 20px; border-radius: 20px;
+        border: 1px solid rgba(0,255,200,0.15); background: rgba(0,255,200,0.06);
+        font-size: 20px; color: #6B7280;
+      }
+      .card {
+        flex:1; padding:24px; border-radius:12px;
+        background:rgba(0,255,200,0.04); border:1px solid rgba(0,255,200,0.1);
+      }
+      .card.purple { background:rgba(167,139,250,0.04); border-color:rgba(167,139,250,0.12); }
+      .card-title { font-size:28px; color:#00FFC8; margin-bottom:8px; }
+    </style>
+  </head>
+  <body>
+    <div id="root"
+         data-composition-id="paper1-counting-laws"
+         data-width="1920"
+         data-height="1080"
+         data-start="0"
+         data-duration="75">
+
+      <!-- S1: Title -->
+      <section id="s1" class="clip" data-start="0" data-duration="6" data-track-index="1">
+        <div style="position:absolute;top:40px;right:48px;font-size:18px;color:#6B7280;opacity:0.4;">Patricio Fernando Bustos Cabrera</div>
+        <h1>Counting Laws of Links</h1>
+        <div class="sub" style="font-size:34px;margin-top:16px;">in Poisson-sprinkled causal sets</div>
+        <div style="margin-top:40px;display:flex;gap:14px;font-size:18px;">
+          <span class="badge">IR-cutoff valency</span>
+          <span class="badge">FRW transients</span>
+          <span class="badge">Three-sector accounting</span>
+        </div>
+      </section>
+
+      <!-- S2: What is a link -->
+      <section id="s2" class="clip left" data-start="6" data-duration="8" data-track-index="2">
+        <h2 style="font-size:46px;">What is a <span class="highlight">link</span>?</h2>
+        <div class="sub left" style="margin-top:20px;font-size:26px;">
+          In a causal set, <i>x</i> &lt; <i>y</i> is a <b>link</b> if no element lies between them:
+        </div>
+        <div class="eq lg" style="margin-top:20px;align-self:center;">
+          x &lt; y , &nbsp; &not;&exist; z : &nbsp; x &lt; z &lt; y
+        </div>
+        <div class="sub left" style="margin-top:16px;font-size:24px;color:#A78BFA;">
+          Irreducible causal bonds — every relation is composed from them.
+        </div>
+        <div class="small left" style="margin-top:12px;font-size:22px;">
+          They carry the scalar-field propagator (Johnston 2008) and generate the Newtonian potential.
+        </div>
+      </section>
+
+      <!-- S3: The problem -->
+      <section id="s3" class="clip" data-start="14" data-duration="7" data-track-index="3">
+        <h2 style="font-size:46px;">The valency <span class="highlight">diverges</span></h2>
+        <div class="sub" style="margin-top:16px;font-size:26px;">
+          In a Poisson sprinkling, the expected valency is <b>infinite</b>
+        </div>
+        <div class="small" style="margin-top:20px;">
+          The past light cone has infinite volume within any proper-time shell — arbitrarily remote elements can be linked.
+        </div>
+        <div style="margin-top:28px;padding:20px 36px;background:rgba(0,255,200,0.04);border-radius:12px;border:1px solid rgba(0,255,200,0.1);">
+          <div style="font-size:26px;color:#00FFC8;">Solution: IR cutoff</div>
+          <div class="small" style="margin-top:6px;font-size:22px;">
+            Valency is a <b>growth law</b>, defined relative to a causal-interval cutoff of extent T
+          </div>
+        </div>
+      </section>
+
+      <!-- S4: 2D -->
+      <section id="s4" class="clip" data-start="21" data-duration="10" data-track-index="4">
+        <h2 style="font-size:42px;align-self:flex-start;">1+1 Minkowski</h2>
+        <div class="eq lg" style="margin-top:20px;">
+          v(T) = 2 ln(T &radic;<span style="text-decoration:overline;">&rho;</span>) + O(1)
+        </div>
+        <div class="data-box" style="align-self:center;min-width:480px;">
+          <div class="data-row"><span class="data-label">Measured slope</span><span class="data-value">2.01 &plusmn; 0.12</span></div>
+          <div class="data-row"><span class="data-label">Derived slope</span><span class="data-value highlight">2</span></div>
+          <div class="data-row"><span class="data-label">Tested N range</span><span class="data-value">8&times;</span></div>
+        </div>
+        <div class="small" style="margin-top:12px;font-size:22px;">
+          Valency is <b>local</b> — tracks chain depth, not global element count
+        </div>
+      </section>
+
+      <!-- S5: 4D -->
+      <section id="s5" class="clip" data-start="31" data-duration="12" data-track-index="5">
+        <h2 style="font-size:42px;align-self:flex-start;">3+1 Minkowski — Area Law</h2>
+        <div class="eq lg" style="margin-top:16px;">
+          v(T) = &kappa;<sub>4</sub> &radic;<span style="text-decoration:overline;">&rho;</span> T<sup>2</sup>
+        </div>
+        <div class="eq sm highlight" style="margin-top:4px;">
+          &kappa;<sub>4</sub> = &pi;&radic;<span style="text-decoration:overline;">6</span> &asymp; 7.6953
+        </div>
+        <div class="sub" style="font-size:22px;margin-top:8px;">
+          Parameter-free — derived from the blocking-layer integral
+        </div>
+        <div class="data-box" style="align-self:center;min-width:480px;margin-top:12px;">
+          <div class="data-row"><span class="data-label">Measured exponent</span><span class="data-value">2.089 &plusmn; 0.025</span></div>
+          <div class="data-row"><span class="data-label">Amplitude match</span><span class="data-value highlight">5% (no fitted params)</span></div>
+          <div class="data-row"><span class="data-label">Geometry</span><span class="data-value">Linked shell hugs the past light cone</span></div>
+        </div>
+      </section>
+
+      <!-- S6: FRW -->
+      <section id="s6" class="clip" data-start="43" data-duration="12" data-track-index="6">
+        <h2 style="font-size:42px;">Matter-dominated FRW</h2>
+        <div class="sub" style="font-size:24px;margin-top:12px;">
+          Expansion suppresses valency — the area law <b>survives</b>
+        </div>
+        <div class="eq" style="margin-top:16px;">
+          v(&eta;) = &kappa;<sub>4</sub> <span class="highlight">&#x1D534;</span> &radic;<span style="text-decoration:overline;">&rho;<sub>c</sub></span> &eta;<sup>2</sup>
+        </div>
+        <div class="grid-2" style="margin-top:20px;">
+          <div class="col">
+            <div class="num-big highlight">0.4991</div>
+            <div style="font-size:18px;color:#6B7280;">Derived <span class="highlight">&#x1D534;</span></div>
+          </div>
+          <div class="col">
+            <div class="num-big">0.4990</div>
+            <div style="font-size:18px;color:#6B7280;">Measured</div>
+          </div>
+        </div>
+        <div class="sub" style="font-size:20px;margin-top:8px;color:#A78BFA;">
+          Four-figure agreement &mdash; nothing fitted
+        </div>
+        <div class="small" style="margin-top:8px;font-size:20px;">
+          1/&eta; transient subtracted (AIC +40.7)
+        </div>
+      </section>
+
+      <!-- S7: Link fraction -->
+      <section id="s7" class="clip" data-start="55" data-duration="8" data-track-index="7">
+        <h2 style="font-size:42px;">Link fraction &amp; manifoldness</h2>
+        <div class="eq" style="margin-top:16px;">
+          &epsilon; = 3&radic;<span style="text-decoration:overline;">6</span> / (&radic;<span style="text-decoration:overline;">&rho;</span> R<sup>2</sup>)
+        </div>
+        <div class="grid-2" style="margin-top:24px;">
+          <div class="col">
+            <div class="num-big highlight" style="font-size:72px;">0.21</div>
+            <div style="font-size:18px;color:#6B7280;">Manifoldlike</div>
+          </div>
+          <div class="col">
+            <div class="num-big" style="font-size:72px;color:#6B7280;">0.017</div>
+            <div style="font-size:18px;color:#6B7280;">Random order</div>
+          </div>
+        </div>
+        <div class="sub" style="font-size:20px;margin-top:12px;">
+          O(N<sup>2</sup>) from causal matrix — separates geometry from noise
+        </div>
+      </section>
+
+      <!-- S8: Method -->
+      <section id="s8" class="clip" data-start="63" data-duration="7" data-track-index="8">
+        <h2 style="font-size:42px;">Methodology</h2>
+        <div style="display:flex;gap:32px;margin-top:28px;">
+          <div class="card">
+            <div class="card-title">Anchor</div>
+            <div class="small" style="font-size:20px;text-align:left;">
+              &lt;N<sub>0</sub>&gt; reproduced to 0.07&sigma;<br>Glaser &amp; Surya baseline
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Pre-registration</div>
+            <div class="small" style="font-size:20px;text-align:left;">
+              Frozen criteria before every run<br>git history certifies the ordering
+            </div>
+          </div>
+        </div>
+        <div class="card purple" style="margin-top:16px;max-width:800px;">
+          <div style="font-size:22px;color:#A78BFA;">Deterministic seeds &mdash; bit-exact reproducibility</div>
+        </div>
+      </section>
+
+      <!-- S9: Close -->
+      <section id="s9" class="clip" data-start="70" data-duration="5" data-track-index="9">
+        <h1 style="font-size:56px;">Results are public</h1>
+        <div class="sub" style="margin-top:20px;font-size:26px;">
+          Code, pre-registrations, exact seeds — in the public repository
+        </div>
+        <div style="margin-top:36px;padding:20px 36px;border-radius:12px;background:rgba(0,255,200,0.04);border:1px solid rgba(0,255,200,0.1);">
+          <div style="font-size:24px;color:#00FFC8;">Paper 2: The falsification arc</div>
+          <div class="small" style="margin-top:4px;font-size:20px;">Coming 2-4 weeks after Paper 1</div>
+        </div>
+        <div class="tag">Paper 1 &middot; Render Universe &middot; &#x229E;</div>
+      </section>
+
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // S1
+      tl.from("#s1 > *:not(.tag)", { y: 60, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.15 }, 0.3);
+      tl.to("#s1", { opacity: 0, duration: 0.4, ease: "power2.in" }, 5.4);
+
+      // S2
+      tl.from("#s2 > *", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 6.2);
+      tl.to("#s2", { opacity: 0, duration: 0.4, ease: "power2.in" }, 13.4);
+
+      // S3
+      tl.from("#s3 > *", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 14.3);
+      tl.to("#s3", { opacity: 0, duration: 0.4, ease: "power2.in" }, 20.4);
+
+      // S4
+      tl.from("#s4 > *", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 21.3);
+      tl.to("#s4", { opacity: 0, duration: 0.4, ease: "power2.in" }, 30.4);
+
+      // S5
+      tl.from("#s5 > *", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 31.3);
+      tl.to("#s5", { opacity: 0, duration: 0.4, ease: "power2.in" }, 42.4);
+
+      // S6
+      tl.from("#s6 > *", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 43.3);
+      tl.to("#s6", { opacity: 0, duration: 0.4, ease: "power2.in" }, 54.4);
+
+      // S7
+      tl.from("#s7 > *", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 55.3);
+      tl.to("#s7", { opacity: 0, duration: 0.4, ease: "power2.in" }, 62.4);
+
+      // S8
+      tl.from("#s8 > *", { y: 40, opacity: 0, duration: 0.5, ease: "power2.out", stagger: 0.15 }, 63.3);
+      tl.to("#s8", { opacity: 0, duration: 0.4, ease: "power2.in" }, 69.4);
+
+      // S9
+      tl.from("#s9 > *", { y: 40, opacity: 0, duration: 0.6, ease: "power2.out", stagger: 0.2 }, 70.3);
+
+      window.__timelines["paper1-counting-laws"] = tl;
+    </script>
+  </body>
+</html>

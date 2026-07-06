@@ -30,3 +30,20 @@ media/manim/videos/
 media/manim/images/
 media/manim/partial_movie_files/
 media/manim/*.log
+# Manim intermedios (solo los MP4 finales van a media/manim/renders/)
+media/manim/media/
+media/manim/pngs/
+media/manim/Tex/
+media/manim/renders/images/
+media/manim/renders/texts/
+notes/creative/manim/media/
+media/texts/
+media/videos/
+
+# Pruebas de herramientas de video (no son material del proyecto)
+media/hyperframes/
+media/manim/renders/hyperframes_prueba.mp4
+
+# Logs de compilación LaTeX del paper 1
+notes/foundations/paper1_tex/b*.log
+notes/foundations/paper1_tex/*.aux
