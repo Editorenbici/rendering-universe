@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Render Universe: fenomenologia de conjuntos causales con pre-registros publicos. Demo interactiva de N_R, la ley del minimo, IEEE 1788, la escalera pi=4 y el reparto (-1,+3).">
 <title>ℕ_R — El universo es un conteo</title>
 <style>
   :root{
@@ -86,6 +92,8 @@
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
   @media (prefers-reduced-motion: reduce){ .anim{display:none} }
 </style>
+</head>
+<body>
 
 <section id="hero">
   <canvas id="heroCanvas" class="anim" aria-hidden="true"></canvas>
@@ -441,3 +449,6 @@ document.querySelectorAll('.ruler').forEach(r=>{
   requestAnimationFrame(tick);
 })();
 </script>
+
+</body>
+</html>
